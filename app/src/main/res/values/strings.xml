@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Wandering Earth</string>
+    <string name="StartGame">开始游戏</string>
+    <string name="Settings">设置</string>
+    <string name="ExitGame">退出游戏</string>
+    <string name="VoiceControl">音量</string>
+    <string name="Return">返回</string>
+    <string name="LearnMore">了解更多</string>
+    <string name="TextSplash">"     "我出生在刹车时代，地球刚刚停止转动，地球发动机安装在亚洲和美洲大陆上，共有12000台，地球发动机产生的切线推力分量杀住了地球的自转，我们把人类以前的历史叫作前太阳时代，那真是个让人神往的黄金时代啊。"
+
+        "刘慈欣《流浪地球》</string>
+</resources>
