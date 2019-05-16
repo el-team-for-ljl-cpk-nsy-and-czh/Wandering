@@ -11,32 +11,7 @@ public class StartGameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_start_game_animation);
-        /**
-         * 以下是实现文本框渐变动画的代码
-         */
-        final AlphaAnimation myani = new AlphaAnimation(1,0.3f);
-        myani.setDuration(4000);
-        myani.setRepeatCount(0);
-        myani.setFillAfter(true);
-        findViewById(R.id.textInStartAnimation).setAnimation(myani);
-        myani.start();
-        myani.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                setContentView(R.layout.startgame);
-            }//当动画结束自动切换至下一个画面
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
+        setContentView(R.layout.startgame);
     }
 }
