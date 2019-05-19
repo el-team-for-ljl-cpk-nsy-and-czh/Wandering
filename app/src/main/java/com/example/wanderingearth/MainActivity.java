@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.StartGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,StartGameActivity.class);
+                Intent intent = new Intent(MainActivity.this,StartGameFlashActivity.class);
                 startActivity(intent);
             }
         });
