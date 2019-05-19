@@ -38,12 +38,6 @@ public class StartGameActivity extends AppCompatActivity {
         //
         LinearLayout layout = findViewById(R.id.LayoutInStartGame);
         layout.addView(earth);
-        findViewById(R.id.Move).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         //不会用
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
