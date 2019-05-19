@@ -8,10 +8,8 @@ import android.graphics.Path;
 import android.view.View;
 
 public class Earth extends View{
-    public Earth(Context context,float[] XDots, float[] YDots){
+    public Earth(Context context){
         super(context);
-        this.pathXDots = XDots;
-        this.pathYDots = YDots;
     }
 
     private float[] pathXDots;//一系列的点用来绘制路径；
@@ -35,16 +33,18 @@ public class Earth extends View{
     //绘制路径的代码
     @Override
     protected void onDraw(Canvas canvas){
+        super.onDraw(canvas);
+        canvas.drawColor(Color.TRANSPARENT);
         Paint mypaint = new Paint();
         Path path = new Path();
         mypaint.setColor(Color.BLACK);
         mypaint.setStyle(Paint.Style.STROKE);
         mypaint.setStrokeWidth(5);
-        path.moveTo(pathXDots[0],pathYDots[0]);
-        for(int i=1; i< pathXDots.length;i++){
-            path.lineTo(pathXDots[i],pathYDots[i]);
-            canvas.drawPath(path,mypaint);
+        path.moveTo(this.pathXDots[0],this.pathYDots[0]);
+        for(int i=1; i< this.pathXDots.length;i++){
+            path.lineTo(this.pathXDots[i],this.pathYDots[i]);
         }
+        canvas.drawPath(path,mypaint);
     }
 
 }
