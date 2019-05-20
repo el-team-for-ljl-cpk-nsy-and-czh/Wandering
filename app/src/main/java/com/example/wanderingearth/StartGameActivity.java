@@ -1,5 +1,6 @@
 package com.example.wanderingearth;
 
+import android.content.Intent;
 import android.drm.DrmStore;
 import android.graphics.Canvas;
 import android.animation.ValueAnimator;
@@ -11,16 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class StartGameActivity extends AppCompatActivity {
     //此处声明earth则在后续的所有方法中都可以使用earth；
     int WINDOWWIDTH,WINDOWHEIGHT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        int[] oriPosition = new int[]{findViewById(R.id.earth).getLeft(),findViewById(R.id.earth).getTop(),findViewById(R.id.earth).getRight(),findViewById(R.id.earth).getBottom()};//得到初始位置，用于重新开始游戏
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
@@ -51,6 +55,34 @@ public class StartGameActivity extends AppCompatActivity {
         WINDOWWIDTH = (int) (width / density);  // 屏幕高度(dp)横屏
         WINDOWHEIGHT = (int) (height / density);// 屏幕宽度(dp)横屏
         //不会用
+
+
+        /*
+        以下是返回按钮的方法，目前还缺少保存数据的代码
+         */
+        findViewById(R.id.goback).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartGameActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        /*
+        以下是重新开始游戏按钮方法，将路径设置为初始位置，将地球的位置放回原点
+         */
+        findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                earth.setXDots(XDots);
+                earth.setYDots(YDots);
+                earth.invalidate();
+                ViewGroup.MarginLayoutParams margin = new ViewGroup.MarginLayoutParams(findViewById(R.id.earth).getLayoutParams());
+                margin.setMargins(oriPosition[0],oriPosition[1],oriPosition[2],oriPosition[3]);
+                RelativeLayout.LayoutParams relativeLayout = new RelativeLayout.LayoutParams(margin);
+                findViewById(R.id.earth).setLayoutParams(relativeLayout);
+            }
+        });
     }
     public void propertyMove(View v) {
         AlertDialog.Builder boom=new AlertDialog.Builder(this);
