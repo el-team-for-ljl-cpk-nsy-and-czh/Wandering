@@ -43,7 +43,6 @@ public class StartGameActivity extends AppCompatActivity {
         //
         LinearLayout layout = findViewById(R.id.LayoutInStartGame);
         layout.addView(earth);
-        //不会用
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
@@ -88,7 +87,7 @@ public class StartGameActivity extends AppCompatActivity {
 
         final ValueAnimator animator = ValueAnimator.ofInt(0, 100);//横屏宽度
 
-        animator.setDuration(1000);
+        animator.setDuration(2000);
 
         animator.setInterpolator(new LinearInterpolator());
 
@@ -104,7 +103,7 @@ public class StartGameActivity extends AppCompatActivity {
         else {
             layoutParams.leftMargin = left + current;
 
-            layoutParams.topMargin =(int) (top - Math.sqrt(current/100));
+            layoutParams.topMargin =(int) top - (current/10);
 
             earth.setLayoutParams(layoutParams);
         }

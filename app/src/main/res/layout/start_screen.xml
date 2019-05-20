@@ -24,11 +24,12 @@
         <Button
             android:id="@+id/StartGame"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="48dp"
-            android:layout_height="52dp"
+            android:layout_width="46dp"
+            android:layout_height="48dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="232dp"
-            android:background="@drawable/start_button"
+            android:layout_marginTop="235dp"
+            android:alpha="0"
+            android:background="?android:attr/panelBackground"
             android:visibility="visible"
             app:layout_constraintStart_toEndOf="@+id/Continue"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,11 +37,13 @@
 
         <Button
             android:id="@+id/Setting"
-            android:layout_width="50dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/setting_button"
-            android:visibility="invisible"
+            android:layout_width="43dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
+            android:background="?android:attr/panelBackground"
+            android:visibility="visible"
             app:layout_constraintStart_toEndOf="@+id/StartGame"
             app:layout_constraintTop_toTopOf="@+id/setting_I" />
 
@@ -49,19 +52,21 @@
             android:layout_width="49dp"
             android:layout_height="42dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/exit_button"
-            android:visibility="invisible"
+            android:alpha="0"
+            android:background="?android:attr/panelBackground"
+            android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/Setting"
             app:layout_constraintStart_toEndOf="@+id/Continue"
             app:layout_constraintTop_toBottomOf="@+id/start_I" />
 
         <Button
             android:id="@+id/Continue"
-            android:layout_width="50dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="256dp"
-            android:background="@drawable/continue_button"
-            android:visibility="invisible"
+            android:layout_width="34dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="260dp"
+            android:alpha="0"
+            android:background="@color/colorAccent"
+            android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/start_I"
             app:layout_constraintTop_toTopOf="parent" />
 
