@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class StartGameActivity extends AppCompatActivity {
-    private Earth earth = new Earth(this);//此处声明earth则在后续的所有方法中都可以使用earth；
+    //此处声明earth则在后续的所有方法中都可以使用earth；
     int WINDOWWIDTH,WINDOWHEIGHT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,10 @@ public class StartGameActivity extends AppCompatActivity {
         /*
         以下是初始化earth轨迹的代码，仅供测试使用；
          */
+        Earth earth = new Earth(this);
         float[] XDots = new float[250];
         float[] YDots = new float[250];
-        for(int i = 1;i<= 250;i++){
+        for(int i = 0;i< 250;i++){
             XDots[i] = i;
             YDots[i] = i*i + 2*i + 2;
         }

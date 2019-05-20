@@ -5,11 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.AttributeSet;
 import android.view.View;
 
 public class Earth extends View{
     public Earth(Context context){
         super(context);
+    }
+    public Earth(Context context,AttributeSet attrs){
+        super(context,attrs);
     }
 
     private float[] pathXDots;//一系列的点用来绘制路径；
