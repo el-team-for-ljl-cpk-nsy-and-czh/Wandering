@@ -11,11 +11,4 @@
         "刘慈欣《流浪地球》</string>
     <string name="LearnMoreMessage">此游戏</string>
     <string name="MoveButton">开始</string>
-    <string name="Level1Button">第一关</string>
-    <string name="levelButton">第一关</string>
-    <string name="level2">第二关</string>
-    <string name="level3button">第三关</string>
-    <string name="level4button">第四关</string>
-    <string name="level5button">第五关</string>
-    <string name="ReturnHomeButton">返回</string>
 </resources>

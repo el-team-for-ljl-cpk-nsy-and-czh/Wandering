@@ -16,7 +16,7 @@ public class SettingActivity extends AppCompatActivity {
         /**
          * 按下“返回”按钮可以实现返回返主界面；
          */
-        findViewById(R.id.Return).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.ReturnInSetting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SettingActivity.this,MainActivity.class);

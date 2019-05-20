@@ -41,9 +41,9 @@ public class Earth extends View{
         canvas.drawColor(Color.TRANSPARENT);
         Paint mypaint = new Paint();
         Path path = new Path();
-        mypaint.setColor(Color.BLACK);
+        mypaint.setColor(Color.WHITE);
         mypaint.setStyle(Paint.Style.STROKE);
-        mypaint.setStrokeWidth(5);
+        mypaint.setStrokeWidth(8);
         path.moveTo(this.pathXDots[0],this.pathYDots[0]);
         for(int i=1; i< this.pathXDots.length;i++){
             path.lineTo(this.pathXDots[i],this.pathYDots[i]);

@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Return"
+        android:id="@+id/ReturnInSetting"
         android:layout_width="197dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
