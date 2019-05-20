@@ -12,6 +12,7 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+        ActivityContainer.getInstance().addActivity(this);
         /**
          * 按下“返回”按钮可以实现返回返主界面；
          */

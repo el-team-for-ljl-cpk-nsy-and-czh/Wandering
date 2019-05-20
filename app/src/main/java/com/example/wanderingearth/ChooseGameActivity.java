@@ -14,6 +14,7 @@ public class ChooseGameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityContainer.getInstance().addActivity(this);
         setContentView(R.layout.activity_choose);
         findViewById(R.id.level1).setOnClickListener(new View.OnClickListener() {
             @Override

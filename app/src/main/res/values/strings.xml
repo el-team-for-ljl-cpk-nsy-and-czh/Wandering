@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Wandering Earth</string>
+    <string name="app_name">流浪</string>
     <string name="StartGame">开始游戏</string>
     <string name="Settings">选项</string>
     <string name="ExitGame">退出游戏</string>
