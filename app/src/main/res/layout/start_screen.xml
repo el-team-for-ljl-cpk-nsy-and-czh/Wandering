@@ -11,46 +11,89 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/start_I"
+            android:layout_width="64dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="500dp"
+            android:layout_marginTop="232dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/start_button" />
+
         <Button
             android:id="@+id/StartGame"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="52dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/ic_launcher_foreground"
-            app:layout_constraintBottom_toBottomOf="@+id/Setting"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.757"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ExitGame"
-            app:layout_constraintVertical_bias="1.0" />
+            android:layout_marginTop="232dp"
+            android:background="@drawable/start_button"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/Continue"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/Setting"
-            android:layout_width="65dp"
-            android:layout_height="52dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/Settings"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_width="50dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/setting_button"
+            android:visibility="invisible"
             app:layout_constraintStart_toEndOf="@+id/StartGame"
-            app:layout_constraintTop_toBottomOf="@+id/ExitGame"
-            app:layout_constraintVertical_bias="0.256" />
+            app:layout_constraintTop_toTopOf="@+id/setting_I" />
 
         <Button
             android:id="@+id/ExitGame"
-            android:layout_width="65dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="228dp"
-            android:text="@string/ExitGame"
-            app:layout_constraintEnd_toEndOf="@+id/Setting"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/StartGame"
+            android:layout_width="49dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/exit_button"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/Setting"
+            app:layout_constraintStart_toEndOf="@+id/Continue"
+            app:layout_constraintTop_toBottomOf="@+id/start_I" />
+
+        <Button
+            android:id="@+id/Continue"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="256dp"
+            android:background="@drawable/continue_button"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/start_I"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/exit_I"
+            android:layout_width="64dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="500dp"
+            android:layout_marginTop="280dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/exit_button" />
+
+        <ImageView
+            android:id="@+id/continue_I"
+            android:layout_width="64dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="452dp"
+            android:layout_marginTop="255dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/continue_button" />
+
+        <ImageView
+            android:id="@+id/setting_I"
+            android:layout_width="64dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="548dp"
+            android:layout_marginTop="256dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/setting_button" />
+
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
