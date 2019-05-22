@@ -1,9 +1,12 @@
 package com.example.wanderingearth;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.View;
@@ -21,30 +24,30 @@ public class MainActivity extends AppCompatActivity {
         /*
         以下是用来改变activity切换效果的代码
          */
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        Transition explode = TransitionInflater.from(this).inflateTransition(R.transition.explode);
-        getWindow().setExitTransition(explode);
+        getWindow().setEnterTransition(new Slide().setDuration(300));
+        getWindow().setExitTransition(new Explode().setDuration(300));
+        getWindow().setReenterTransition(new Slide().setDuration(300));
 
         setContentView(R.layout.start_screen);
         findViewById(R.id.StartGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,StartGameFlashActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
             }
         });
         findViewById(R.id.Setting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,SettingActivity.class);
-                startActivity(intent);//启动设置页面；
+                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());//启动设置页面；
             }
         });
         findViewById(R.id.Continue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,ChooseGameActivity.class);
-                startActivity(intent);
+                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
             }
         });
         findViewById(R.id.ExitGame).setOnClickListener(new View.OnClickListener() {

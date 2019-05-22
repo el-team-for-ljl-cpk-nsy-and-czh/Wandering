@@ -1,9 +1,11 @@
 package com.example.wanderingearth;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.Fade;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -33,14 +35,15 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setExitTransition(new Fade().setDuration(1000));
         setContentView(R.layout.activity_splash);
         Thread mythread = new Thread(){
             @Override
             public void run(){
                 try{
-                    sleep(4000);
+                    sleep(2000);
                     Intent it = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(it);
+                    startActivity(it, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
                     finish();
                 } catch(Exception ex){
                     ex.printStackTrace();
