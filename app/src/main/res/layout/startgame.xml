@@ -90,6 +90,7 @@
         android:layout_marginStart="280dp"
         android:layout_marginTop="96dp"
         android:background="@drawable/minus"
+        android:onClick="minus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -111,7 +112,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="8dp"
-        android:text="400kt"
+        android:gravity="center"
+        android:text="318"
         android:textColor="#CCFFFFFF"
         android:textSize="25dp"
         app:layout_constraintEnd_toStartOf="@+id/plus"
