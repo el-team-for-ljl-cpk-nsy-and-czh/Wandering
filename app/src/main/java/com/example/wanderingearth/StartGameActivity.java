@@ -1,5 +1,6 @@
 package com.example.wanderingearth;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.drm.DrmStore;
 import android.graphics.Canvas;
@@ -9,7 +10,9 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Slide;
 import android.util.DisplayMetrics;
+import android.util.Pair;
 import android.view.View;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,7 @@ public class StartGameActivity extends AppCompatActivity {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
+        getWindow().setEnterTransition(new Slide().setDuration(300));
 //        ImageView earth_iView=findViewById(R.id.earth);
 //        int left=earth_iView.getLeft();
 //        int top=earth_iView.getTop();
@@ -87,7 +91,7 @@ public class StartGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StartGameActivity.this,MainActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(StartGameActivity.this,findViewById(R.id.start),"StartButton").toBundle());
                 finish();
             }
         });

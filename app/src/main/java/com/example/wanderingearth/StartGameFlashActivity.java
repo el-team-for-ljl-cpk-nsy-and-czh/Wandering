@@ -3,6 +3,7 @@ package com.example.wanderingearth;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -14,6 +15,7 @@ public class StartGameFlashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setExitTransition(new Fade().setDuration(300));
         setContentView(R.layout.activity_start_game_animation);
         /**
          * 以下是实现文本框渐变动画的代码

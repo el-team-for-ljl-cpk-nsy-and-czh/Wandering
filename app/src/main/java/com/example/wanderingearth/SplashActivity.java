@@ -35,7 +35,6 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().setExitTransition(new Fade().setDuration(1000));
         setContentView(R.layout.activity_splash);
         Thread mythread = new Thread(){
             @Override
@@ -43,7 +42,7 @@ public class SplashActivity extends Activity {
                 try{
                     sleep(2000);
                     Intent it = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(it, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                    startActivity(it);
                     finish();
                 } catch(Exception ex){
                     ex.printStackTrace();

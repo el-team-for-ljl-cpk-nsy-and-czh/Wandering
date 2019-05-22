@@ -33,7 +33,8 @@
             android:visibility="visible"
             app:layout_constraintStart_toEndOf="@+id/Continue"
             app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            android:transitionName="BeginButton"/>
 
         <Button
             android:id="@+id/Setting"
