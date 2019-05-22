@@ -23,6 +23,7 @@ public class SettingActivity extends AppCompatActivity {
         findViewById(R.id.ReturnInSetting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getWindow().setExitTransition(new Fade().setDuration(500).excludeChildren(R.drawable.background_paintstyle,true));
                 Intent intent = new Intent(SettingActivity.this,MainActivity.class);
                 startActivity(intent);
                 finish();

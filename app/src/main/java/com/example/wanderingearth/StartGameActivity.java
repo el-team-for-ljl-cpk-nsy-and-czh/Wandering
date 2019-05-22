@@ -37,28 +37,13 @@ public class StartGameActivity extends AppCompatActivity {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
-        getWindow().setEnterTransition(new Slide().setDuration(300));
-        getWindow().setExitTransition(new Fade().setDuration(500));
-//        ImageView earth_iView=findViewById(R.id.earth);
-//        int left=earth_iView.getLeft();
-//        int top=earth_iView.getTop();
-//        TextView textView=findViewById(R.id.textView2);
-//        textView.setText(left);
-//        /*
-//        以下是初始化earth轨迹的代码，仅供测试使用；
-//         */
-//        Earth earth = new Earth(this);
-//        float[] XDots = new float[250];
-//        float[] YDots = new float[250];
-//        for(int i = 0;i< 250;i++){
-//            XDots[i] = i;
-//            YDots[i] = i*i + 2*i + 2;
-//        }
-//        earth.setXDots(XDots);
-//        earth.setYDots(YDots);
-//        //
-//        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
-//        layout.addView(earth);
+        getWindow().setEnterTransition(new Fade().setDuration(500));
+        getWindow().setReenterTransition(new Slide().setDuration(300)
+                .excludeChildren(R.drawable.gamebackgound,true)
+                .excludeChildren(R.drawable.cute_jupiter,true)
+                .excludeChildren(R.id.goback,true)
+                .excludeChildren(R.id.restart,true)
+                .excludeChildren(R.id.start,true));
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
@@ -103,6 +88,12 @@ public class StartGameActivity extends AppCompatActivity {
         findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getWindow().setExitTransition(new Slide().setDuration(300)
+                        .excludeChildren(R.drawable.gamebackgound,true)
+                        .excludeChildren(R.drawable.cute_jupiter,true)
+                        .excludeChildren(R.id.goback,true)
+                        .excludeChildren(R.id.restart,true)
+                        .excludeChildren(R.id.start,true));
                 Intent intent = new Intent(StartGameActivity.this,StartGameActivity.class);
                 startActivity(intent);
                 finish();
