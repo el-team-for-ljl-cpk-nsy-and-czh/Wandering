@@ -14,10 +14,15 @@ import android.view.View;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class StartGameActivity extends AppCompatActivity {
     //此处声明earth则在后续的所有方法中都可以使用earth；
@@ -28,26 +33,51 @@ public class StartGameActivity extends AppCompatActivity {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
-        /*
-        以下是初始化earth轨迹的代码，仅供测试使用；
-         */
-        Earth earth = new Earth(this);
-        float[] XDots = new float[250];
-        float[] YDots = new float[250];
-        for(int i = 0;i< 250;i++){
-            XDots[i] = i;
-            YDots[i] = i*i + 2*i + 2;
-        }
-        earth.setXDots(XDots);
-        earth.setYDots(YDots);
-        //
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
-        layout.addView(earth);
+//        ImageView earth_iView=findViewById(R.id.earth);
+//        int left=earth_iView.getLeft();
+//        int top=earth_iView.getTop();
+//        TextView textView=findViewById(R.id.textView2);
+//        textView.setText(left);
+//        /*
+//        以下是初始化earth轨迹的代码，仅供测试使用；
+//         */
+//        Earth earth = new Earth(this);
+//        float[] XDots = new float[250];
+//        float[] YDots = new float[250];
+//        for(int i = 0;i< 250;i++){
+//            XDots[i] = i;
+//            YDots[i] = i*i + 2*i + 2;
+//        }
+//        earth.setXDots(XDots);
+//        earth.setYDots(YDots);
+//        //
+//        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+//        layout.addView(earth);
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
         WINDOWWIDTH = dm.widthPixels;//横屏宽度
         WINDOWHEIGHT = dm.heightPixels;//横屏高度
+        AnimationSet animation=new AnimationSet(true);
+        RotateAnimation rotateAnimation;
+        rotateAnimation = new RotateAnimation(0,7200, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        rotateAnimation.setDuration(80000);
+        rotateAnimation.setFillAfter(true);
+        rotateAnimation.setRepeatMode(Animation.RESTART);
+        //让旋转动画一直转，不停顿的重点
+        rotateAnimation.setInterpolator(new LinearInterpolator());
+        rotateAnimation.setRepeatCount(-1);
+        AlphaAnimation alphaAnimation;
+        alphaAnimation=new AlphaAnimation(0.7f,0.95f);
+        alphaAnimation.setDuration(800);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
+        alphaAnimation.setInterpolator(new LinearInterpolator());
+        alphaAnimation.setRepeatCount(-1);
+        animation.addAnimation(rotateAnimation);
+        animation.addAnimation(alphaAnimation);
+        ImageView door=findViewById(R.id.door);
+        door.startAnimation(animation);
+
 
 
         /*
@@ -85,7 +115,7 @@ public class StartGameActivity extends AppCompatActivity {
         final int earth_radius=earth.getHeight()/2;
 
 
-        final ValueAnimator animator = ValueAnimator.ofInt(0, 100);//横屏宽度
+        final ValueAnimator animator = ValueAnimator.ofInt(0, WINDOWWIDTH-earth_radius*2-left);//横屏宽度
 
         animator.setDuration(2000);
 
@@ -111,5 +141,28 @@ public class StartGameActivity extends AppCompatActivity {
     });
 
         animator.start();
+    }
+    double a=2;
+    public void plus(View v){
+        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+        layout.removeAllViews();
+        ImageView earth_iView=findViewById(R.id.earth);
+        int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
+        int top=earth_iView.getTop()+earth_iView.getWidth()/2;
+        a=a/2;
+        /*
+        以下是初始化earth轨迹的代码，仅供测试使用；
+         */
+        Earth earth = new Earth(this);
+        float[] XDots = new float[1000];
+        float[] YDots = new float[1000];
+        for(int i = 0;i< 1000;i++){
+            XDots[i] = i+left;
+            YDots[i] = (int)(a*i*i/100+top);
+        }
+        earth.setXDots(XDots);
+        earth.setYDots(YDots);
+        //
+        layout.addView(earth);
     }
 }
