@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Explode;
+import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -24,9 +25,8 @@ public class MainActivity extends AppCompatActivity {
         /*
         以下是用来改变activity切换效果的代码
          */
-        getWindow().setEnterTransition(new Slide().setDuration(300));
-        getWindow().setExitTransition(new Explode().setDuration(300));
-        getWindow().setReenterTransition(new Slide().setDuration(300));
+        getWindow().setEnterTransition(new Fade().setDuration(500));
+        getWindow().setReenterTransition(new Fade().setDuration(500));
 
         setContentView(R.layout.start_screen);
         findViewById(R.id.StartGame).setOnClickListener(new View.OnClickListener() {
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,SettingActivity.class);
+                getWindow().setExitTransition(new Fade().setDuration(300).excludeChildren(R.drawable.background_paintstyle,true));
                 startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());//启动设置页面；
             }
         });

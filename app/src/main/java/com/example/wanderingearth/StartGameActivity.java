@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Fade;
 import android.transition.Slide;
 import android.util.DisplayMetrics;
 import android.util.Pair;
@@ -37,6 +38,7 @@ public class StartGameActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
         getWindow().setEnterTransition(new Slide().setDuration(300));
+        getWindow().setExitTransition(new Fade().setDuration(500));
 //        ImageView earth_iView=findViewById(R.id.earth);
 //        int left=earth_iView.getLeft();
 //        int top=earth_iView.getTop();
@@ -91,7 +93,7 @@ public class StartGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StartGameActivity.this,MainActivity.class);
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(StartGameActivity.this,findViewById(R.id.start),"StartButton").toBundle());
+                startActivity(intent);
                 finish();
             }
         });
