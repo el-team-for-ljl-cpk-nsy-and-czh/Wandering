@@ -1,23 +1,16 @@
 package com.example.wanderingearth;
 
-import android.app.ActivityOptions;
-import android.content.Intent;
-import android.drm.DrmStore;
-import android.graphics.Canvas;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
-import android.transition.Slide;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.util.Pair;
 import android.view.View;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -26,13 +19,12 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import static java.lang.Math.floor;
 import static java.lang.Math.sin;
 
-public class StartGameActivity extends AppCompatActivity {
+public class StartGameActivity extends AppCompatActivity
+implements DialogInterface.OnClickListener {
     //此处声明earth则在后续的所有方法中都可以使用earth；
     int WINDOWWIDTH,WINDOWHEIGHT;
     final double PI=3.1415926;
@@ -77,6 +69,7 @@ public class StartGameActivity extends AppCompatActivity {
 
 
 
+
         /*
         以下是返回按钮的方法，目前还缺少保存数据的代码
          */
@@ -106,41 +99,87 @@ public class StartGameActivity extends AppCompatActivity {
             }
         });
     }
+    int i=1;
 
     @Override
-
     public void onWindowFocusChanged(boolean hasFocus){
 
         super.onWindowFocusChanged(hasFocus);
+        if (i == 1) {
 
-        //此处可以正常获取width、height等
-        jupiter.setMass(318);
-        TextView mass_text=findViewById(R.id.Mass_text);
-        mass_text.setText(String.valueOf(jupiter.getMass()));
-        ImageView earth_iView=findViewById(R.id.earth);
-        ImageView door_iView=findViewById(R.id.door);
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
-        int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
-        int top=earth_iView.getTop()+earth_iView.getWidth()/2;
-        Earth earth = new Earth(this);
-        float[] XDots = new float[WINDOWWIDTH-left];
-        float[] YDots = new float[WINDOWWIDTH-left];
-        for(int i = 0;i< WINDOWWIDTH-left;i++){
-            XDots[i] = i+left;
-            YDots[i] =(float) (-(jupiter.getMass()*sin((PI/(WINDOWWIDTH-left)*i))))+top;
+            //此处可以正常获取width、height等
+            jupiter.setMass(318);
+            TextView mass_text = findViewById(R.id.Mass_text);
+            mass_text.setText(String.valueOf(jupiter.getMass()));
+            ImageView earth_iView = findViewById(R.id.earth);
+            ImageView door_iView = findViewById(R.id.door);
+            LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+            int left = earth_iView.getLeft() + earth_iView.getWidth() / 2;
+            int top = earth_iView.getTop() + earth_iView.getWidth() / 2;
+            Earth earth = new Earth(this);
+            float[] XDots = new float[door_iView.getLeft() - left+door_iView.getWidth()/2];
+            float[] YDots = new float[door_iView.getLeft() - left+door_iView.getWidth()/2];
+            for (int i = 0; i < door_iView.getLeft() - left+door_iView.getWidth()/2; i++) {
+                XDots[i] = i + left;
+                YDots[i] = (float) (-(Math.pow(1.02, jupiter.getMass() - 80) * sin((PI / (WINDOWWIDTH - left) * i)))) + top;
+            }
+            earth.setXDots(XDots);
+            earth.setYDots(YDots);
+            //
+            layout.addView(earth);
+            AlphaAnimation alphaAnimation_path=new AlphaAnimation(0.95f,0.0f);
+            alphaAnimation_path.setDuration(800);
+            alphaAnimation_path.setRepeatMode(Animation.REVERSE);
+            alphaAnimation_path.setInterpolator(new LinearInterpolator());
+            alphaAnimation_path.setRepeatCount(-1);
+            layout.startAnimation(alphaAnimation_path);
         }
-        earth.setXDots(XDots);
-        earth.setYDots(YDots);
-        //
-        layout.addView(earth);
+        i=i+1;
 
     }
     public void propertyMove(View v) {
         AlertDialog.Builder boom=new AlertDialog.Builder(this);
         boom.setMessage("BOOM!");
-        ImageView jupiter_iView=findViewById(R.id.jupiter);
-        final int jupiter_radius=jupiter_iView.getHeight()/2;
+        boom.setCancelable(false);
+        boom.setNegativeButton("Select",new DialogInterface.OnClickListener() {
 
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(which==DialogInterface.BUTTON_NEGATIVE){
+                    //返回选关界面。
+                    startActivity(new Intent(StartGameActivity.this,ChooseGameActivity.class));
+                    finish();
+                }
+            }
+        });
+        boom.setPositiveButton("Restart!",new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == DialogInterface.BUTTON_POSITIVE) {
+                    //重新开始。
+                    getWindow().setExitTransition(new Fade().setDuration(300)
+                            .excludeChildren(R.drawable.gamebackgound,true)
+                            .excludeChildren(R.drawable.cute_jupiter,true)
+                            .excludeChildren(R.id.goback,true)
+                            .excludeChildren(R.id.restart,true)
+                            .excludeChildren(R.id.start,true));
+                    Intent intent = new Intent(StartGameActivity.this,StartGameActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+        AlertDialog.Builder complete=new AlertDialog.Builder(this);
+        complete.setTitle("Congratulation!");
+        complete.setMessage("Complete!!!");
+        complete.setCancelable(false);
+        complete.setPositiveButton("Go on！",this);
+        complete.setNegativeButton("Select",this);
+        ImageView jupiter_iView=findViewById(R.id.jupiter);
+        ImageView barrier_iView=findViewById(R.id.barrier_1);
+        ImageView door_iView=findViewById(R.id.door);
+        final int jupiter_radius=jupiter_iView.getHeight()/2,barrier_radius=barrier_iView.getHeight()/2,door_radius=door_iView.getHeight()/2;
         final ImageView earth = findViewById(R.id.earth);
         final int left = earth.getLeft();
         final int top = earth.getTop();
@@ -149,23 +188,32 @@ public class StartGameActivity extends AppCompatActivity {
 
         final ValueAnimator animator = ValueAnimator.ofInt(0, WINDOWWIDTH-earth_radius*2-left);//横屏宽度
 
-        animator.setDuration(2000);
+        animator.setDuration(3000);
 
         animator.setInterpolator(new LinearInterpolator());
 
         animator.addUpdateListener(animation -> {
         int xEarth=earth.getLeft()+earth_radius,xJupiter=jupiter_iView.getLeft()+jupiter_radius,yEarth=earth.getTop()+earth_radius,yJupiter=jupiter_iView.getTop()+jupiter_radius;
+        int xBarrier=barrier_iView.getLeft()+barrier_radius,yBarrier=barrier_iView.getTop()+barrier_radius;
+        int xDoor=door_iView.getLeft()+door_radius,yDoor=barrier_iView.getTop()+door_radius;
         double distence_e_j=Math.sqrt((xEarth-xJupiter)*(xEarth-xJupiter)+(yEarth-yJupiter)*(yEarth-yJupiter));
+        double distence_e_b=Math.sqrt((xEarth-xBarrier)*(xEarth-xBarrier)+(yEarth-yBarrier)*(yEarth-yBarrier));
+        double distence_e_door=Math.sqrt((xEarth-xDoor)*(xEarth-xDoor)+(yEarth-yDoor)*(yEarth-yDoor));
         int current = (int) animator.getAnimatedValue();
         ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) earth.getLayoutParams();
-        if(distence_e_j<jupiter_radius+earth_radius){
+        if(distence_e_j<=jupiter_radius+earth_radius||distence_e_b<=barrier_radius+earth_radius){
             animator.cancel();
             boom.show();
+        }
+        else if(distence_e_door<=earth_radius+door_radius){
+            animator.cancel();
+            complete.show();
+
         }
         else {
             layoutParams.leftMargin = left + current;
 
-            layoutParams.topMargin =(int) (top - ((jupiter.getMass()*sin((PI/(WINDOWWIDTH-left)*current)))));
+            layoutParams.topMargin =(int) (top - ((Math.pow(1.02,jupiter.getMass()-80)*sin((PI/(WINDOWWIDTH-left)*current)))));
 
             earth.setLayoutParams(layoutParams);
         }
@@ -183,20 +231,24 @@ public class StartGameActivity extends AppCompatActivity {
         ImageView earth_iView=findViewById(R.id.earth);
         int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
         int top=earth_iView.getTop()+earth_iView.getWidth()/2;
-        /*
-        以下是初始化earth轨迹的代码，仅供测试使用；
-         */
+        ImageView door=findViewById(R.id.door);
         Earth earth = new Earth(this);
-        float[] XDots = new float[WINDOWWIDTH-left];
-        float[] YDots = new float[WINDOWWIDTH-left];
-        for(int i = 0;i< WINDOWWIDTH-left;i++){
+        float[] XDots = new float[door.getLeft()-left+door.getWidth()/2];
+        float[] YDots = new float[door.getLeft()-left+door.getWidth()/2];
+        for(int i = 0;i< door.getLeft()-left+door.getWidth()/2;i++){
             XDots[i] = i+left;
-            YDots[i] =(float) (-(jupiter.getMass()*sin((PI/(WINDOWWIDTH-left)*i))))+top;
+            YDots[i] =(float) (-(Math.pow(1.02,jupiter.getMass()-80)*sin((PI/(WINDOWWIDTH-left)*i))))+top;
         }
         earth.setXDots(XDots);
         earth.setYDots(YDots);
         //
         layout.addView(earth);
+        AlphaAnimation alphaAnimation_path=new AlphaAnimation(0.95f,0.0f);
+        alphaAnimation_path.setDuration(800);
+        alphaAnimation_path.setRepeatMode(Animation.REVERSE);
+        alphaAnimation_path.setInterpolator(new LinearInterpolator());
+        alphaAnimation_path.setRepeatCount(-1);
+        layout.startAnimation(alphaAnimation_path);
     }
     public void minus(View v){
         jupiter.setMass(jupiter.getMass()-1);
@@ -207,19 +259,38 @@ public class StartGameActivity extends AppCompatActivity {
         ImageView earth_iView=findViewById(R.id.earth);
         int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
         int top=earth_iView.getTop()+earth_iView.getWidth()/2;
-        /*
-        以下是初始化earth轨迹的代码，仅供测试使用；
-         */
+        ImageView door=findViewById(R.id.door);
         Earth earth = new Earth(this);
-        float[] XDots = new float[WINDOWWIDTH-left];
-        float[] YDots = new float[WINDOWWIDTH-left];
-        for(int i = 0;i< WINDOWWIDTH-left;i++){
+        float[] XDots = new float[door.getLeft()-left+door.getWidth()/2];
+        float[] YDots = new float[door.getLeft()-left+door.getWidth()/2];
+        for(int i = 0;i< door.getLeft()-left+door.getWidth()/2;i++){
             XDots[i] = i+left;
-            YDots[i] =(float) (-(jupiter.getMass()*sin((PI/(WINDOWWIDTH-left)*i))))+top;
+            YDots[i] =(float) (-(Math.pow(1.02,jupiter.getMass()-100)*sin((PI/(WINDOWWIDTH-left)*i))))+top;
         }
         earth.setXDots(XDots);
         earth.setYDots(YDots);
         //
         layout.addView(earth);
+        AlphaAnimation alphaAnimation_path=new AlphaAnimation(0.95f,0.0f);
+        alphaAnimation_path.setDuration(800);
+        alphaAnimation_path.setRepeatMode(Animation.REVERSE);
+        alphaAnimation_path.setInterpolator(new LinearInterpolator());
+        alphaAnimation_path.setRepeatCount(-1);
+        layout.startAnimation(alphaAnimation_path);
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        if(which==DialogInterface.BUTTON_POSITIVE) {
+            //写跳转至下一关的代码。
+            startActivity(new Intent(StartGameActivity.this,Game2Activity.class));
+            finish();
+        }
+        else if(which==DialogInterface.BUTTON_NEGATIVE){
+            //写返回到选关界面的代码。
+            startActivity(new Intent(StartGameActivity.this,ChooseGameActivity.class));
+            finish();
+        }
+
     }
 }

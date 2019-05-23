@@ -9,8 +9,11 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChooseGameActivity"
+        <activity android:name=".Game2Activity"
             android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".ChooseGameActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".StartGameFlashActivity"
             android:screenOrientation="landscape" />
@@ -24,6 +27,7 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
