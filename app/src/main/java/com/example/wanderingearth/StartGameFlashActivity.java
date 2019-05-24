@@ -1,5 +1,6 @@
 package com.example.wanderingearth;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ public class StartGameFlashActivity extends AppCompatActivity {
          * 以下是实现文本框渐变动画的代码
          */
         final AlphaAnimation myani = new AlphaAnimation(1,0.3f);
-        myani.setDuration(4000);
+        myani.setDuration(3200);
         myani.setRepeatCount(0);
         myani.setFillAfter(true);
         findViewById(R.id.textInStartAnimation).setAnimation(myani);
@@ -35,7 +36,7 @@ public class StartGameFlashActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 Intent intent = new Intent(StartGameFlashActivity.this,StartGameActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(StartGameFlashActivity.this).toBundle());
                 finish();
             }//当动画结束自动切换至下一个画面
 

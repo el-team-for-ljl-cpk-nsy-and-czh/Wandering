@@ -1,6 +1,7 @@
 package com.example.wanderingearth;
 
 import android.animation.ValueAnimator;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,7 +36,12 @@ implements DialogInterface.OnClickListener {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
-        getWindow().setEnterTransition(new Fade().setDuration(500));
+        getWindow().setEnterTransition(new Fade().setDuration(500)
+                .excludeChildren(R.drawable.gamebackgound,true)
+                .excludeChildren(R.drawable.cute_jupiter,true)
+                .excludeChildren(R.id.goback,true)
+                .excludeChildren(R.id.restart,true)
+                .excludeChildren(R.id.start,true));
         getWindow().setReenterTransition(new Fade().setDuration(300)
                 .excludeChildren(R.drawable.gamebackgound,true)
                 .excludeChildren(R.drawable.cute_jupiter,true)
@@ -138,38 +144,8 @@ implements DialogInterface.OnClickListener {
 
     }
     public void propertyMove(View v) {
+        //以下是一种新的提示框的实现，代码移至184行，即boom.show之后
         AlertDialog.Builder boom=new AlertDialog.Builder(this);
-        boom.setMessage("BOOM!");
-        boom.setCancelable(false);
-        boom.setNegativeButton("Select",new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if(which==DialogInterface.BUTTON_NEGATIVE){
-                    //返回选关界面。
-                    startActivity(new Intent(StartGameActivity.this,ChooseGameActivity.class));
-                    finish();
-                }
-            }
-        });
-        boom.setPositiveButton("Restart!",new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (which == DialogInterface.BUTTON_POSITIVE) {
-                    //重新开始。
-                    getWindow().setExitTransition(new Fade().setDuration(300)
-                            .excludeChildren(R.drawable.gamebackgound,true)
-                            .excludeChildren(R.drawable.cute_jupiter,true)
-                            .excludeChildren(R.id.goback,true)
-                            .excludeChildren(R.id.restart,true)
-                            .excludeChildren(R.id.start,true));
-                    Intent intent = new Intent(StartGameActivity.this,StartGameActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
         AlertDialog.Builder complete=new AlertDialog.Builder(this);
         complete.setTitle("Congratulation!");
         complete.setMessage("Complete!!!");
@@ -203,7 +179,25 @@ implements DialogInterface.OnClickListener {
         ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) earth.getLayoutParams();
         if(distence_e_j<=jupiter_radius+earth_radius||distence_e_b<=barrier_radius+earth_radius){
             animator.cancel();
-            boom.show();
+            AlertDialog dialog = boom.show();
+            dialog.setContentView(R.layout.dailogue);
+            TextView textWhenBomm = findViewById(R.id.alertText);
+            textWhenBomm.setText(R.string.MessageWhenBoom);
+            boom.setCancelable(true);
+            boom.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    textWhenBomm.setText("");
+                    dialog.dismiss();
+                    getWindow().setExitTransition(new Fade().setDuration(500).
+                            excludeChildren(R.drawable.gamebackgound,true)
+                            .excludeChildren(R.drawable.cute_jupiter,true)
+                            .excludeChildren(R.drawable.door,true));
+                    startActivity(new Intent(StartGameActivity.this,StartGameActivity.class)
+                            ,ActivityOptions.makeSceneTransitionAnimation(StartGameActivity.this).toBundle());
+                    finish();
+                }
+            });
         }
         else if(distence_e_door<=earth_radius+door_radius){
             animator.cancel();
@@ -282,8 +276,13 @@ implements DialogInterface.OnClickListener {
     @Override
     public void onClick(DialogInterface dialog, int which) {
         if(which==DialogInterface.BUTTON_POSITIVE) {
+            //改变选关界面
+            findViewById(R.id.Level2).setVisibility(View.VISIBLE);
+            findViewById(R.id.Level2ViewLocked).setVisibility(View.GONE);
+            findViewById(R.id.Level2ViewUnlocked).setVisibility(View.VISIBLE);
             //写跳转至下一关的代码。
-            startActivity(new Intent(StartGameActivity.this,Game2Activity.class));
+            getWindow().setExitTransition(new Fade().setDuration(500).excludeChildren(R.drawable.gamebackgound,true));
+            startActivity(new Intent(StartGameActivity.this,Game2Activity.class), ActivityOptions.makeSceneTransitionAnimation(StartGameActivity.this).toBundle());
             finish();
         }
         else if(which==DialogInterface.BUTTON_NEGATIVE){
