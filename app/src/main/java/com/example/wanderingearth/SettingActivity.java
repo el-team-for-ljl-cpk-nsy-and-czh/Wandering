@@ -37,19 +37,15 @@ public class SettingActivity extends AppCompatActivity {
         findViewById(R.id.LearnMore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
-                builder.setCancelable(true);//用户按下手机上的返回键即可返回
-                final AlertDialog dialog = builder.show();
-                dialog.setContentView(R.layout.dailogue);
-                TextView mytext = findViewById(R.id.alertText);
-                mytext.setText(R.string.LearnMoreMessage);
-                builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                MyAlertDialogue myAlertDialogue = new MyAlertDialogue(SettingActivity.this);
+                myAlertDialogue.setText(R.string.LearnMoreMessage);
+                myAlertDialogue.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onCancel(DialogInterface dialog) {
-                        mytext.setText("");
-                        dialog.dismiss();
+                    public void onClick(View v) {
+                        myAlertDialogue.setText(R.string.empty);
+                        myAlertDialogue.dismiss();
                     }
-                });//按下返回即可退出此对话框
+                });
             }
         });
         /**

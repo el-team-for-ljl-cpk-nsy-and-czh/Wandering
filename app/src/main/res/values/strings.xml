@@ -13,4 +13,5 @@
     <string name="MessageWhenBoom">地球与行星间的距离小于洛希极限，在行星强大的引力下，地球会逐渐解体</string>
     <string name="MessageInChoose">"   "当有一天太阳系无法生存，人类最终选择带着地球离开扎根无数代的“故乡”，尽管没人能够预料到前方的道路到底是怎样的，但是我们最后还是选择了希望，选择了流浪</string>
     <string name="MoveButton">开始</string>
+    <string name="empty"></string>
 </resources>
