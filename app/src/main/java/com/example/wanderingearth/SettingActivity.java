@@ -37,13 +37,23 @@ public class SettingActivity extends AppCompatActivity {
         findViewById(R.id.LearnMore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyAlertDialogue myAlertDialogue = new MyAlertDialogue(SettingActivity.this);
-                myAlertDialogue.setText(R.string.LearnMoreMessage);
-                myAlertDialogue.setOnClickListener(new View.OnClickListener() {
+                findViewById(R.id.ChooseGame).setVisibility(View.INVISIBLE);
+                findViewById(R.id.LearnMore).setVisibility(View.INVISIBLE);
+                findViewById(R.id.ReturnInSetting).setVisibility(View.INVISIBLE);
+                findViewById(R.id.DialogueView).setVisibility(View.VISIBLE);
+                findViewById(R.id.Text).setVisibility(View.VISIBLE);
+                findViewById(R.id.cancelView).setVisibility(View.VISIBLE);
+                findViewById(R.id.cancelInSeting).setVisibility(View.VISIBLE);
+                findViewById(R.id.cancelInSeting).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        myAlertDialogue.setText(R.string.empty);
-                        myAlertDialogue.dismiss();
+                        findViewById(R.id.ChooseGame).setVisibility(View.VISIBLE);
+                        findViewById(R.id.LearnMore).setVisibility(View.VISIBLE);
+                        findViewById(R.id.ReturnInSetting).setVisibility(View.VISIBLE);
+                        findViewById(R.id.DialogueView).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.Text).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.cancelView).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.cancelInSeting).setVisibility(View.INVISIBLE);
                     }
                 });
             }
