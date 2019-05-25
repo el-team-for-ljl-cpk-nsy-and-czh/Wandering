@@ -58,6 +58,7 @@
                 android:layout_marginStart="156dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -183,7 +184,7 @@
                 android:layout_height="52dp"
                 android:text="2"
                 android:textAlignment="center"
-                android:textColor="white"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/Level2ViewLocked"
@@ -224,9 +225,9 @@
                 android:text="5"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/Level5ViewUnlocked"
-                app:layout_constraintEnd_toEndOf="@+id/Level5ViewUnlocked"
-                tools:visibility="invisible" />
+                app:layout_constraintEnd_toEndOf="@+id/Level5ViewUnlocked" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>

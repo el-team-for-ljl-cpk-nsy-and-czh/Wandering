@@ -55,9 +55,9 @@
 
     <ImageView
         android:id="@+id/door"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="600dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="612dp"
         android:layout_marginTop="164dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -65,8 +65,8 @@
 
     <ImageView
         android:id="@+id/earth"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="176dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,9 +75,9 @@
 
     <ImageView
         android:id="@+id/barrier_2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="168dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="200dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -85,88 +85,201 @@
 
     <Button
         android:id="@+id/minus_2"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="50dp"
         android:background="@drawable/minus_1"
         android:onClick="minus"
-        app:layout_constraintStart_toEndOf="@+id/barrier_2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/plus_2"
+        app:layout_constraintTop_toBottomOf="@+id/barrier_2" />
 
     <Button
         android:id="@+id/plus_2"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:alpha="1.0"
         android:background="@drawable/plus_1"
         android:onClick="plus"
-        app:layout_constraintStart_toEndOf="@+id/barrier_2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/barrier_2"
+        app:layout_constraintTop_toBottomOf="@+id/barrier_2" />
 
     <TextView
-        android:id="@+id/Mass_text_2"
+        android:id="@+id/m_text2"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="318"
         android:textColor="#CCFFFFFF"
-        android:textSize="25dp"
+        android:textSize="15dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/minus_2"
-        app:layout_constraintStart_toEndOf="@+id/barrier_2"
-        app:layout_constraintTop_toBottomOf="@+id/plus_2" />
+        app:layout_constraintEnd_toStartOf="@+id/minus_2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/plus_2"
+        app:layout_constraintTop_toBottomOf="@+id/barrier_2" />
 
     <ImageView
         android:id="@+id/barrier_1"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="304dp"
-        android:layout_marginEnd="268dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="436dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/LayoutInStartGame"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/blue_planet" />
 
     <Button
         android:id="@+id/plus_1"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="288dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:background="@drawable/plus_1"
-        app:layout_constraintStart_toEndOf="@+id/barrier_1"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:onClick="plus1"
+        app:layout_constraintBottom_toTopOf="@+id/barrier_1"
+        app:layout_constraintEnd_toStartOf="@+id/barrier_1" />
 
     <Button
         android:id="@+id/minus_1"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="45dp"
         android:background="@drawable/minus_1"
-        app:layout_constraintStart_toEndOf="@+id/barrier_1"
-        app:layout_constraintTop_toBottomOf="@+id/plus_1" />
+        android:onClick="minus1"
+        app:layout_constraintBottom_toTopOf="@+id/barrier_1"
+        app:layout_constraintStart_toEndOf="@+id/plus_1" />
 
     <TextView
-        android:id="@+id/Mass_text_1"
+        android:id="@+id/m_text1"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="318"
         android:textColor="#CCFFFFFF"
-        android:textSize="25dp"
+        android:textSize="15dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/minus_1"
-        app:layout_constraintStart_toEndOf="@+id/barrier_1"
-        app:layout_constraintTop_toBottomOf="@+id/plus_1" />
+        app:layout_constraintBottom_toTopOf="@+id/barrier_1"
+        app:layout_constraintEnd_toStartOf="@+id/minus_1"
+        app:layout_constraintStart_toEndOf="@+id/plus_1" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/dialogueView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/dialogue"
+            android:layout_width="429dp"
+            android:layout_height="314dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0.7"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.808"
+            app:srcCompat="@drawable/alertdialoguesmall" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="182dp"
+            android:layout_height="118dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="92dp"
+            android:background="@color/colorOfAlert"
+            android:text="@string/MessageWhenBoom"
+            android:textColor="@color/colorOfTextAlert"
+            android:textSize="19dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/dialogue"
+            app:layout_constraintTop_toTopOf="@+id/dialogue" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="89dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="192dp"
+            android:layout_marginEnd="48dp"
+            android:background="@color/colorOfAlert"
+            android:textColor="@color/colorOfTextAlert"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/dialogue"
+            app:layout_constraintTop_toTopOf="@+id/dialogue"
+            tools:text="再次尝试" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/congratulationView"
+        android:layout_width="715dp"
+        android:layout_height="395dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/LayoutInStartGame"
+        app:layout_constraintEnd_toStartOf="@+id/LayoutInStartGame"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Button
+            android:id="@+id/map"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="53dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="36dp"
+            android:background="@color/colorOfAlert"
+            android:text="钻研地图"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/nextLevel"
+            app:layout_constraintTop_toBottomOf="@+id/nextLevel" />
+
+        <Button
+            android:id="@+id/nextLevel"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="53dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="64dp"
+            android:background="@color/colorOfAlert"
+            android:text="继续旅程"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView10"
+            app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+        <TextView
+            android:id="@+id/congratulation"
+            android:layout_width="151dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="144dp"
+            android:layout_marginBottom="120dp"
+            android:alpha="1"
+            android:background="@color/colorOfAlert"
+            android:text="@string/congratulationMessage"
+            android:textColor="@android:color/white"
+            android:textSize="19dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+            app:layout_constraintEnd_toEndOf="@+id/imageView10" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="369dp"
+            android:layout_height="260dp"
+            android:layout_marginBottom="68dp"
+            android:alpha="0.65"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/alertdialoguesmall" />
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.constraint.ConstraintLayout>

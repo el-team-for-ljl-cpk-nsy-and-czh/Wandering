@@ -43,9 +43,9 @@ public class StartGameActivity extends AppCompatActivity {
             firstStart = false;
             int[] IDs = {R.id.Guide1,R.id.guide2,R.id.guide3,R.id.guide4,R.id.guide5,R.id.guide6};
             findViewById(R.id.guideView).setVisibility(View.VISIBLE);
-            findViewById(R.id.goback).setClickable(false);
-            findViewById(R.id.restart).setClickable(false);
-            findViewById(R.id.start).setClickable(false);
+            findViewById(R.id.goback).setVisibility(View.INVISIBLE);
+            findViewById(R.id.restart).setVisibility(View.INVISIBLE);
+            findViewById(R.id.start).setVisibility(View.INVISIBLE);
             findViewById(R.id.plus).setClickable(false);
             findViewById(R.id.minus).setClickable(false);
             findViewById(R.id.goOnButton).setOnClickListener(new View.OnClickListener() {
@@ -59,9 +59,9 @@ public class StartGameActivity extends AppCompatActivity {
                         findViewById(IDs[numberNeededInGuide]).setVisibility(View.INVISIBLE);
                         findViewById(IDs[0]).setVisibility(View.VISIBLE);
                         findViewById(R.id.guideView).setVisibility(View.GONE);
-                        findViewById(R.id.goback).setClickable(true);
-                        findViewById(R.id.restart).setClickable(true);
-                        findViewById(R.id.start).setClickable(true);
+                        findViewById(R.id.goback).setVisibility(View.VISIBLE);
+                        findViewById(R.id.restart).setVisibility(View.VISIBLE);
+                        findViewById(R.id.start).setVisibility(View.VISIBLE);
                         findViewById(R.id.minus).setClickable(true);
                         findViewById(R.id.plus).setClickable(true);
                     }
@@ -191,7 +191,7 @@ public class StartGameActivity extends AppCompatActivity {
          */
         int xEarth=earth.getLeft()+earth_radius,xJupiter=jupiter_iView.getLeft()+jupiter_radius,yEarth=earth.getTop()+earth_radius,yJupiter=jupiter_iView.getTop()+jupiter_radius;
         int xBarrier=barrier_iView.getLeft()+barrier_radius,yBarrier=barrier_iView.getTop()+barrier_radius;
-        int xDoor=door_iView.getLeft()+door_radius,yDoor=barrier_iView.getTop()+door_radius;
+        int xDoor=door_iView.getLeft()+door_radius,yDoor=door_iView.getTop()+door_radius;
         /*
          *获取距离
          */
@@ -309,7 +309,7 @@ public class StartGameActivity extends AppCompatActivity {
         else {
             layoutParams.leftMargin = left + current;
 
-            layoutParams.topMargin =(int) (top - ((Math.pow(1.03,jupiter.getMass()-a)*sin((PI/(WINDOWWIDTH-left)*current)))));
+            layoutParams.topMargin =(int) (top - (Math.pow(1.03,jupiter.getMass()-a)*sin(PI/(WINDOWWIDTH-left)*current)));
 
             earth.setLayoutParams(layoutParams);
         }
