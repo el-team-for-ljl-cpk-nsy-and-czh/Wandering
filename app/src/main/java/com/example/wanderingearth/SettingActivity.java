@@ -72,29 +72,29 @@ public class SettingActivity extends AppCompatActivity {
         findViewById(R.id.ChooseGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Animation alpha = new AlphaAnimation(0,1);
-                alpha.setDuration(700);
-                findViewById(R.id.LearnMore).setVisibility(View.INVISIBLE);
+                Animation alpha = new AlphaAnimation(0, 1);
+                alpha.setDuration(300);
                 findViewById(R.id.ChooseGame).setVisibility(View.INVISIBLE);
+                findViewById(R.id.LearnMore).setVisibility(View.INVISIBLE);
                 findViewById(R.id.ReturnInSetting).setVisibility(View.INVISIBLE);
-                findViewById(R.id.cancelButton).setVisibility(View.VISIBLE);
-                findViewById(R.id.cancelButton).startAnimation(alpha);
-                findViewById(R.id.cancelView).setVisibility(View.VISIBLE);
-                findViewById(R.id.cancelView).startAnimation(alpha);
+                findViewById(R.id.DialogueView).setVisibility(View.VISIBLE);
+                findViewById(R.id.DialogueView).startAnimation(alpha);
                 findViewById(R.id.TextAbout).setVisibility(View.VISIBLE);
                 findViewById(R.id.TextAbout).startAnimation(alpha);
-                findViewById(R.id.dialogueView).setVisibility(View.VISIBLE);
-                findViewById(R.id.dialogueView).startAnimation(alpha);
-                findViewById(R.id.cancelButton).setOnClickListener(new View.OnClickListener() {
+                findViewById(R.id.cancelView).setVisibility(View.VISIBLE);
+                findViewById(R.id.cancelView).startAnimation(alpha);
+                findViewById(R.id.cancelInSeting).setVisibility(View.VISIBLE);
+                findViewById(R.id.cancelInSeting).startAnimation(alpha);
+                findViewById(R.id.cancelInSeting).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        findViewById(R.id.LearnMore).setVisibility(View.VISIBLE);
                         findViewById(R.id.ChooseGame).setVisibility(View.VISIBLE);
+                        findViewById(R.id.LearnMore).setVisibility(View.VISIBLE);
                         findViewById(R.id.ReturnInSetting).setVisibility(View.VISIBLE);
-                        findViewById(R.id.dialogueView).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.DialogueView).setVisibility(View.INVISIBLE);
                         findViewById(R.id.TextAbout).setVisibility(View.INVISIBLE);
                         findViewById(R.id.cancelView).setVisibility(View.INVISIBLE);
-                        findViewById(R.id.cancelButton).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.cancelInSeting).setVisibility(View.INVISIBLE);
                     }
                 });
             }

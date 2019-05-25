@@ -21,7 +21,7 @@ public class StartGameFlashActivity extends AppCompatActivity {
          * 以下是实现文本框渐变动画的代码
          */
         final AlphaAnimation myani = new AlphaAnimation(1,0.3f);
-        myani.setDuration(3200);
+        myani.setDuration(2500);
         myani.setRepeatCount(0);
         myani.setFillAfter(true);
         findViewById(R.id.textInStartAnimation).setAnimation(myani);
