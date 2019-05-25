@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.WindowManager;
 
 public class ChooseGameActivity extends AppCompatActivity {
-    private int[] listOfButtons = {R.id.Level2,R.id.Level3};
-    private int[] listOfLockedViews = {R.id.Level2ViewLocked,R.id.Level3ViewLocked};
-    private int[] listOfUnlockedViews = {R.id.Level2ViewUnlocked,R.id.Level3ViewUnlocked};
+    private int[] listOfButtons = {R.id.Level2,R.id.Level3,R.id.Level4,R.id.Level5};
+    private int[] listOfLockedViews = {R.id.Level2ViewLocked,R.id.Level3ViewLocked,R.id.Level4ViewLocked,R.id.Level5ViewLocked};
+    private int[] listOfUnlockedViews = {R.id.Level2ViewUnlocked,R.id.Level3ViewUnlocked,R.id.Level4ViewUnlocked,R.id.Level5ViewUnlocked};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

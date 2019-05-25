@@ -65,7 +65,7 @@
                 app:srcCompat="@drawable/chooselock" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/Level4ViewLocked"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="16dp"
@@ -75,7 +75,7 @@
                 app:srcCompat="@drawable/chooselock" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/Level5ViewLocked"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="44dp"
@@ -90,8 +90,8 @@
                 android:layout_height="52dp"
                 android:layout_marginStart="52dp"
                 android:layout_marginTop="52dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/Level5ViewLocked"
+                app:layout_constraintTop_toBottomOf="@+id/Level4ViewLocked"
                 app:srcCompat="@drawable/chooselock" />
 
             <ImageView
@@ -113,38 +113,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView7"
                 app:srcCompat="@drawable/chooselock" />
-
-            <Button
-                android:id="@+id/Level1"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:background="@android:color/transparent"
-                android:visibility="visible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/Level2"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:textAlignment="center"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/Level2ViewLocked"
-                app:layout_constraintTop_toTopOf="@+id/Level2ViewLocked" />
-
-            <Button
-                android:id="@+id/Level3"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:background="@android:color/transparent"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/Level3ViewUnlocked"
-                app:layout_constraintTop_toTopOf="@+id/Level3ViewUnlocked" />
 
             <ImageView
                 android:id="@+id/Level1ViewUnlocked"
@@ -174,6 +142,92 @@
                 app:layout_constraintEnd_toEndOf="@+id/Level3ViewLocked"
                 app:layout_constraintTop_toTopOf="@+id/Level3ViewLocked"
                 app:srcCompat="@drawable/unlocked" />
+
+            <ImageView
+                android:id="@+id/Level4ViewUnlocked"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/Level4ViewLocked"
+                app:layout_constraintEnd_toEndOf="@+id/Level4ViewLocked"
+                app:srcCompat="@drawable/unlocked" />
+
+            <ImageView
+                android:id="@+id/Level5ViewUnlocked"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/Level5ViewLocked"
+                app:layout_constraintEnd_toEndOf="@+id/Level5ViewLocked"
+                app:srcCompat="@drawable/unlocked" />
+
+            <Button
+                android:id="@+id/Level1"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/transparent"
+                android:text="1"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/Level2"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:text="2"
+                android:textAlignment="center"
+                android:textColor="white"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/Level2ViewLocked"
+                app:layout_constraintTop_toTopOf="@+id/Level2ViewLocked" />
+
+            <Button
+                android:id="@+id/Level3"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@android:color/transparent"
+                android:text="3"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/Level3ViewUnlocked"
+                app:layout_constraintTop_toTopOf="@+id/Level3ViewUnlocked" />
+
+            <Button
+                android:id="@+id/Level4"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@android:color/transparent"
+                android:text="4"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/Level4ViewUnlocked"
+                app:layout_constraintEnd_toEndOf="@+id/Level4ViewUnlocked" />
+
+            <Button
+                android:id="@+id/Level5"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@android:color/transparent"
+                android:text="5"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/Level5ViewUnlocked"
+                app:layout_constraintEnd_toEndOf="@+id/Level5ViewUnlocked"
+                tools:visibility="invisible" />
+
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 
