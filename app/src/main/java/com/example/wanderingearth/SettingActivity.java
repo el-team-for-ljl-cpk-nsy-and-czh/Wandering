@@ -67,15 +67,36 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
         /*
-         * 以下是跳转到选关界面的代码
+         * 以下是跳转到关于我们的代码
          */
         findViewById(R.id.ChooseGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SettingActivity.this, ChooseGameActivity.class);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-                finish();
+                Animation alpha = new AlphaAnimation(0,1);
+                alpha.setDuration(700);
+                findViewById(R.id.LearnMore).setVisibility(View.INVISIBLE);
+                findViewById(R.id.ChooseGame).setVisibility(View.INVISIBLE);
+                findViewById(R.id.ReturnInSetting).setVisibility(View.INVISIBLE);
+                findViewById(R.id.cancelButton).setVisibility(View.VISIBLE);
+                findViewById(R.id.cancelButton).startAnimation(alpha);
+                findViewById(R.id.cancelView).setVisibility(View.VISIBLE);
+                findViewById(R.id.cancelView).startAnimation(alpha);
+                findViewById(R.id.TextAbout).setVisibility(View.VISIBLE);
+                findViewById(R.id.TextAbout).startAnimation(alpha);
+                findViewById(R.id.dialogueView).setVisibility(View.VISIBLE);
+                findViewById(R.id.dialogueView).startAnimation(alpha);
+                findViewById(R.id.cancelButton).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        findViewById(R.id.LearnMore).setVisibility(View.VISIBLE);
+                        findViewById(R.id.ChooseGame).setVisibility(View.VISIBLE);
+                        findViewById(R.id.ReturnInSetting).setVisibility(View.VISIBLE);
+                        findViewById(R.id.dialogueView).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.TextAbout).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.cancelView).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.cancelButton).setVisibility(View.INVISIBLE);
+                    }
+                });
             }
         });
     }

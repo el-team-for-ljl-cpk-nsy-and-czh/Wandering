@@ -63,6 +63,18 @@
         app:srcCompat="@drawable/alertdialoguesmall" />
 
     <TextView
+        android:id="@+id/TextAbout"
+        android:layout_width="181dp"
+        android:layout_height="117dp"
+        android:background="@color/colorOfAlert"
+        android:text="@string/AboutUs"
+        android:textColor="@color/colorOfTextAlert"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/Text"
+        app:layout_constraintEnd_toEndOf="@+id/Text" />
+
+    <TextView
         android:id="@+id/Text"
         android:layout_width="181dp"
         android:layout_height="117dp"

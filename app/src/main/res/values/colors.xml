@@ -3,9 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorOfAlert">#6A74D4FF</color>
+    <color name="colorOfAlert">#6574D4FF</color>
     <color name="colorOfTextAlert">#A2C4C4</color>
-    <color name="textInGame">#FADBA4</color>
+    <color name="textInGame">#F4F7FA</color>
     <color name="transparentBlack">#6B000000</color>
     <color name="dangerosColor">#FD674F</color>
+    <color name="colorOfButtonInGame">#B8FDFF</color>
 </resources>
