@@ -20,9 +20,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import static java.lang.Math.sin;
 
 public class StartGameActivity extends AppCompatActivity {
+    private static boolean firstStart = true;
+    private int numberNeededInGuide=0;
     //此处声明earth则在后续的所有方法中都可以使用earth；
     int WINDOWWIDTH,WINDOWHEIGHT;
     final double PI=3.1415926;
@@ -34,6 +38,36 @@ public class StartGameActivity extends AppCompatActivity {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
+        if(firstStart){
+            firstStart = false;
+            int[] IDs = {R.id.Guide1,R.id.guide2,R.id.guide3,R.id.guide4,R.id.guide5,R.id.guide6};
+            findViewById(R.id.guideView).setVisibility(View.VISIBLE);
+            findViewById(R.id.goback).setClickable(false);
+            findViewById(R.id.restart).setClickable(false);
+            findViewById(R.id.start).setClickable(false);
+            findViewById(R.id.plus).setClickable(false);
+            findViewById(R.id.minus).setClickable(false);
+            findViewById(R.id.goOnButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(numberNeededInGuide<5){
+                        findViewById(IDs[numberNeededInGuide]).setVisibility(View.INVISIBLE);
+                        findViewById(IDs[numberNeededInGuide+1]).setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        findViewById(IDs[numberNeededInGuide]).setVisibility(View.INVISIBLE);
+                        findViewById(IDs[0]).setVisibility(View.VISIBLE);
+                        findViewById(R.id.guideView).setVisibility(View.GONE);
+                        findViewById(R.id.goback).setClickable(true);
+                        findViewById(R.id.restart).setClickable(true);
+                        findViewById(R.id.start).setClickable(true);
+                        findViewById(R.id.minus).setClickable(true);
+                        findViewById(R.id.plus).setClickable(true);
+                    }
+                    numberNeededInGuide++;
+                }
+            });
+        }
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
@@ -181,6 +215,10 @@ public class StartGameActivity extends AppCompatActivity {
             animator.cancel();
             findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
             findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
+            findViewById(R.id.earth).setVisibility(View.INVISIBLE);
+            findViewById(R.id.plus).setVisibility(View.INVISIBLE);
+            findViewById(R.id.minus).setVisibility(View.INVISIBLE);
+            findViewById(R.id.Mass_text).setVisibility(View.INVISIBLE);
             findViewById(R.id.restart).setClickable(false);
             findViewById(R.id.start).setClickable(false);
             findViewById(R.id.goback).setClickable(false);
@@ -192,13 +230,13 @@ public class StartGameActivity extends AppCompatActivity {
                     findViewById(R.id.dialogueView).setVisibility(View.GONE);
                     findViewById(R.id.jupiter).setVisibility(View.VISIBLE);
                     findViewById(R.id.barrier_1).setVisibility(View.VISIBLE);
+                    findViewById(R.id.earth).setVisibility(View.VISIBLE);
+                    findViewById(R.id.plus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.Mass_text).setVisibility(View.VISIBLE);
                     findViewById(R.id.restart).setClickable(true);
                     findViewById(R.id.start).setClickable(true);
                     findViewById(R.id.goback).setClickable(true);
-                    getWindow().setExitTransition(new Fade().setDuration(300)
-                            .excludeChildren(R.id.jupiter,true)
-                            .excludeChildren(R.id.door,true)
-                            .excludeChildren(R.id.barrier_1,true));
                     startActivity(new Intent(StartGameActivity.this,StartGameActivity.class));
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     finish();
@@ -214,9 +252,13 @@ public class StartGameActivity extends AppCompatActivity {
             animator.cancel();
             findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
             findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
+            findViewById(R.id.earth).setVisibility(View.INVISIBLE);
             findViewById(R.id.goback).setClickable(false);
             findViewById(R.id.restart).setClickable(false);
             findViewById(R.id.start).setClickable(false);
+            findViewById(R.id.Mass_text).setVisibility(View.INVISIBLE);
+            findViewById(R.id.minus).setVisibility(View.INVISIBLE);
+            findViewById(R.id.plus).setVisibility(View.INVISIBLE);
             findViewById(R.id.congratulationView).setVisibility(View.VISIBLE);
             findViewById(R.id.congratulationView).setAnimation(alpha);
             findViewById(R.id.map).setOnClickListener(new View.OnClickListener() {
@@ -225,6 +267,10 @@ public class StartGameActivity extends AppCompatActivity {
                     findViewById(R.id.congratulationView).setVisibility(View.GONE);
                     findViewById(R.id.jupiter).setVisibility(View.VISIBLE);
                     findViewById(R.id.barrier_1).setVisibility(View.VISIBLE);
+                    findViewById(R.id.earth).setVisibility(View.VISIBLE);
+                    findViewById(R.id.plus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.Mass_text).setVisibility(View.VISIBLE);
                     findViewById(R.id.goback).setClickable(true);
                     findViewById(R.id.restart).setClickable(true);
                     findViewById(R.id.start).setClickable(true);
@@ -237,9 +283,13 @@ public class StartGameActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     findViewById(R.id.congratulationView).setVisibility(View.GONE);
+                    findViewById(R.id.earth).setVisibility(View.VISIBLE);
                     findViewById(R.id.goback).setClickable(true);
                     findViewById(R.id.restart).setClickable(true);
                     findViewById(R.id.start).setClickable(true);
+                    findViewById(R.id.plus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.Mass_text).setVisibility(View.VISIBLE);
                     findViewById(R.id.jupiter).setVisibility(View.VISIBLE);
                     findViewById(R.id.barrier_1).setVisibility(View.VISIBLE);
                     getWindow().setExitTransition(new Fade().setDuration(300).excludeChildren(R.drawable.gamebackgound,true));

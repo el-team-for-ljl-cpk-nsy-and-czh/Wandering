@@ -6,4 +6,6 @@
     <color name="colorOfAlert">#6A74D4FF</color>
     <color name="colorOfTextAlert">#A2C4C4</color>
     <color name="textInGame">#FADBA4</color>
+    <color name="transparentBlack">#6B000000</color>
+    <color name="dangerosColor">#FD674F</color>
 </resources>

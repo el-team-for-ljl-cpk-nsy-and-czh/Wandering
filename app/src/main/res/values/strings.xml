@@ -15,4 +15,5 @@
     <string name="MoveButton">开始</string>
     <string name="empty"></string>
     <string name="congratulationMessage">恭喜你！带领着地球渡过了难关</string>
+    <string name="guideString1">指挥官，欢迎参与流浪地球计划。你面前的正是本次计划的航行图。</string>
 </resources>

@@ -21,129 +21,6 @@
 
     </LinearLayout>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/congratulationView"
-        android:layout_width="715dp"
-        android:layout_height="395dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/LayoutInStartGame"
-        app:layout_constraintEnd_toStartOf="@+id/LayoutInStartGame"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <Button
-            android:id="@+id/map"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="53dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="36dp"
-            android:background="@color/colorOfAlert"
-            android:text="钻研地图"
-            android:textColor="@android:color/white"
-            android:textSize="12dp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="@+id/nextLevel"
-            app:layout_constraintTop_toBottomOf="@+id/nextLevel" />
-
-        <Button
-            android:id="@+id/nextLevel"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="53dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="64dp"
-            android:background="@color/colorOfAlert"
-            android:text="继续旅程"
-            android:textColor="@android:color/white"
-            android:textSize="12dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView10"
-            app:layout_constraintTop_toTopOf="@+id/imageView10" />
-
-        <TextView
-            android:id="@+id/congratulation"
-            android:layout_width="151dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="144dp"
-            android:layout_marginBottom="120dp"
-            android:alpha="1"
-            android:background="@color/colorOfAlert"
-            android:text="@string/congratulationMessage"
-            android:textColor="@android:color/white"
-            android:textSize="19dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-            app:layout_constraintEnd_toEndOf="@+id/imageView10" />
-
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="369dp"
-            android:layout_height="260dp"
-            android:layout_marginBottom="68dp"
-            android:alpha="0.65"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.523"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/alertdialoguesmall" />
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/dialogueView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/dialogue"
-            android:layout_width="429dp"
-            android:layout_height="314dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="8dp"
-            android:alpha="0.7"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/alertdialoguesmall" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="182dp"
-            android:layout_height="118dp"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="92dp"
-            android:background="@color/colorOfAlert"
-            android:text="@string/MessageWhenBoom"
-            android:textColor="@color/colorOfTextAlert"
-            android:textSize="19dp"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/dialogue"
-            app:layout_constraintTop_toTopOf="@+id/dialogue" />
-
-        <ImageView
-            android:id="@+id/cancelView"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="64dp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="@+id/dialogue"
-            app:layout_constraintTop_toTopOf="@+id/dialogue"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
-
-        <Button
-            android:id="@+id/cancelButton"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@android:color/transparent"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="@+id/cancelView"
-            app:layout_constraintTop_toTopOf="@+id/cancelView" />
-    </android.support.constraint.ConstraintLayout>
-
     <Button
         android:id="@+id/goback"
         android:layout_width="40dp"
@@ -252,6 +129,227 @@
         app:layout_constraintEnd_toEndOf="@+id/dialogueView"
         app:layout_constraintTop_toBottomOf="@+id/jupiter"
         app:srcCompat="@drawable/barrier_1" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/dialogueView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/dialogue"
+            android:layout_width="429dp"
+            android:layout_height="314dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0.7"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.808"
+            app:srcCompat="@drawable/alertdialoguesmall" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="182dp"
+            android:layout_height="118dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="92dp"
+            android:background="@color/colorOfAlert"
+            android:text="@string/MessageWhenBoom"
+            android:textColor="@color/colorOfTextAlert"
+            android:textSize="19dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/dialogue"
+            app:layout_constraintTop_toTopOf="@+id/dialogue" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="89dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="192dp"
+            android:layout_marginEnd="48dp"
+            android:background="@color/colorOfAlert"
+            android:textColor="@color/colorOfTextAlert"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/dialogue"
+            app:layout_constraintTop_toTopOf="@+id/dialogue"
+            tools:text="再次尝试" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/congratulationView"
+        android:layout_width="715dp"
+        android:layout_height="395dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/LayoutInStartGame"
+        app:layout_constraintEnd_toStartOf="@+id/LayoutInStartGame"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Button
+            android:id="@+id/map"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="53dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="36dp"
+            android:background="@color/colorOfAlert"
+            android:text="钻研地图"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/nextLevel"
+            app:layout_constraintTop_toBottomOf="@+id/nextLevel" />
+
+        <Button
+            android:id="@+id/nextLevel"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="53dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="64dp"
+            android:background="@color/colorOfAlert"
+            android:text="继续旅程"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView10"
+            app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+        <TextView
+            android:id="@+id/congratulation"
+            android:layout_width="151dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="144dp"
+            android:layout_marginBottom="120dp"
+            android:alpha="1"
+            android:background="@color/colorOfAlert"
+            android:text="@string/congratulationMessage"
+            android:textColor="@android:color/white"
+            android:textSize="19dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+            app:layout_constraintEnd_toEndOf="@+id/imageView10" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="369dp"
+            android:layout_height="260dp"
+            android:layout_marginBottom="68dp"
+            android:alpha="0.65"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/alertdialoguesmall" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/guideView"
+        android:layout_width="733dp"
+        android:layout_height="411dp"
+        android:background="@color/transparentBlack"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/LayoutInStartGame"
+        app:layout_constraintTop_toTopOf="@+id/jupiter"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/goOnButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="79dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="552dp"
+            android:layout_marginBottom="28dp"
+            android:background="@color/colorOfAlert"
+            android:text="明白"
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/Guide1"
+            android:layout_width="187dp"
+            android:layout_height="107dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="436dp"
+            android:background="@color/colorOfAlert"
+            android:fontFamily="@font/text_font"
+            android:text="@string/guideString1"
+            android:textColor="@color/colorOfTextAlert"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/guide2"
+            android:layout_width="150dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="112dp"
+            android:text="这是地球目前所在的位置，虚线即是地球目前的轨道"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/guide3"
+            android:layout_width="127dp"
+            android:layout_height="29dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="140dp"
+            android:text="这是地球的目的地"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/guide4"
+            android:layout_width="126dp"
+            android:layout_height="57dp"
+            android:layout_marginEnd="304dp"
+            android:layout_marginBottom="100dp"
+            android:text="不好！地球的轨道出现了一个巨大的障碍物"
+            android:textColor="@color/dangerosColor"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/guide5"
+            android:layout_width="159dp"
+            android:layout_height="104dp"
+            android:layout_marginEnd="112dp"
+            android:layout_marginBottom="288dp"
+            android:text="所幸我们可以利用木星的强大引力来改变地球的运动轨迹，这里显示着木星相对于地球的质量，按下按钮来改变它从而影响地球的轨道"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/guide6"
+            android:layout_width="187dp"
+            android:layout_height="107dp"
+            android:fontFamily="@font/text_font"
+            android:text="指挥官，祝你好运，相信你一定可以带领地球重新找回希望"
+            android:textColor="@color/colorOfTextAlert"
+            android:textSize="20dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/Guide1"
+            app:layout_constraintEnd_toEndOf="@+id/Guide1" />
+
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.constraint.ConstraintLayout>
