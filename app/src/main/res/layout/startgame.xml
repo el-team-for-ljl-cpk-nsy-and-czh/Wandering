@@ -253,7 +253,7 @@
         android:layout_width="733dp"
         android:layout_height="411dp"
         android:background="@color/transparentBlack"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -327,10 +327,10 @@
 
         <TextView
             android:id="@+id/guide5"
-            android:layout_width="159dp"
-            android:layout_height="104dp"
-            android:layout_marginEnd="112dp"
-            android:layout_marginBottom="288dp"
+            android:layout_width="172dp"
+            android:layout_height="101dp"
+            android:layout_marginEnd="108dp"
+            android:layout_marginBottom="292dp"
             android:text="所幸我们可以利用木星的强大引力来改变地球的运动轨迹，这里显示着木星相对于地球的质量，按下按钮来改变它从而影响地球的轨道"
             android:textColor="@android:color/white"
             android:visibility="invisible"

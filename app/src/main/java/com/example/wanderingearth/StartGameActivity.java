@@ -38,6 +38,7 @@ public class StartGameActivity extends AppCompatActivity {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
+        //第一次进行游戏出现指导
         if(firstStart){
             firstStart = false;
             int[] IDs = {R.id.Guide1,R.id.guide2,R.id.guide3,R.id.guide4,R.id.guide5,R.id.guide6};
@@ -92,17 +93,13 @@ public class StartGameActivity extends AppCompatActivity {
         animation.addAnimation(alphaAnimation);
         ImageView door=findViewById(R.id.door);
         door.startAnimation(animation);
-
-
-
-
         /*
-        以下是返回按钮的方法，目前还缺少保存数据的代码
+        以下是返回按钮的方法，按下按钮返回选关界面；
          */
         findViewById(R.id.goback).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartGameActivity.this,MainActivity.class);
+                Intent intent = new Intent(StartGameActivity.this,ChooseGameActivity.class).putExtra("UnlockedGame",1);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
@@ -167,7 +164,6 @@ public class StartGameActivity extends AppCompatActivity {
     public void propertyMove(View v) {
         Animation alpha = new AlphaAnimation(0,1);
         alpha.setDuration(700);
-        //以下是一种新的提示框的实现，代码移至184行，即boom.show之后
         ImageView jupiter_iView=findViewById(R.id.jupiter);
         ImageView barrier_iView=findViewById(R.id.barrier_1);
         ImageView door_iView=findViewById(R.id.door);
@@ -274,7 +270,7 @@ public class StartGameActivity extends AppCompatActivity {
                     findViewById(R.id.goback).setClickable(true);
                     findViewById(R.id.restart).setClickable(true);
                     findViewById(R.id.start).setClickable(true);
-                    startActivity(new Intent(StartGameActivity.this,ChooseGameActivity.class));
+                    startActivity(new Intent(StartGameActivity.this,ChooseGameActivity.class).putExtra("UnlockedGame",2));
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     finish();
                 }

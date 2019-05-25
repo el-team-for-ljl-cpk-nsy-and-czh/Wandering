@@ -42,6 +42,16 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/Level2ViewLocked"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginTop="28dp"
+                app:layout_constraintStart_toEndOf="@+id/Level3ViewLocked"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/chooselock" />
+
+            <ImageView
                 android:id="@+id/Level3ViewLocked"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
@@ -52,16 +62,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.246"
-                app:srcCompat="@drawable/chooselock" />
-
-            <ImageView
-                android:id="@+id/Level2ViewLocked"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="84dp"
-                android:layout_marginTop="28dp"
-                app:layout_constraintStart_toEndOf="@+id/Level3ViewLocked"
-                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/chooselock" />
 
             <ImageView
@@ -114,16 +114,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView7"
                 app:srcCompat="@drawable/chooselock" />
 
-            <ImageView
-                android:id="@+id/Level1ViewUnlocked"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginBottom="40dp"
-                app:layout_constraintBottom_toTopOf="@+id/Level3ViewLocked"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/unlocked" />
-
             <Button
                 android:id="@+id/Level1"
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -132,6 +122,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:background="@android:color/transparent"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -145,6 +136,27 @@
                 app:layout_constraintEnd_toEndOf="@+id/Level2ViewLocked"
                 app:layout_constraintTop_toTopOf="@+id/Level2ViewLocked" />
 
+            <Button
+                android:id="@+id/Level3"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@android:color/transparent"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/Level3ViewUnlocked"
+                app:layout_constraintTop_toTopOf="@+id/Level3ViewUnlocked" />
+
+            <ImageView
+                android:id="@+id/Level1ViewUnlocked"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="40dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/Level3ViewLocked"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/unlocked" />
+
             <ImageView
                 android:id="@+id/Level2ViewUnlocked"
                 android:layout_width="52dp"
@@ -152,6 +164,15 @@
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/Level2"
                 app:layout_constraintTop_toTopOf="@+id/Level2"
+                app:srcCompat="@drawable/unlocked" />
+
+            <ImageView
+                android:id="@+id/Level3ViewUnlocked"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/Level3ViewLocked"
+                app:layout_constraintTop_toTopOf="@+id/Level3ViewLocked"
                 app:srcCompat="@drawable/unlocked" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
