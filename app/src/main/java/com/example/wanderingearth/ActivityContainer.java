@@ -33,4 +33,8 @@ public class ActivityContainer {
         }
         activityStack.clear();
     }
+    public Activity getActivity(int i){
+        return activityStack.get(i);
+    }
+
 }

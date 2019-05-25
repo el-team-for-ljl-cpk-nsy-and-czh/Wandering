@@ -3,6 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorOfAlert">#9C62CAF8</color>
-    <color name="colorOfTextAlert">#D5D3D3</color>
+    <color name="colorOfAlert">#6A74D4FF</color>
+    <color name="colorOfTextAlert">#A2C4C4</color>
+    <color name="textInGame">#FADBA4</color>
 </resources>

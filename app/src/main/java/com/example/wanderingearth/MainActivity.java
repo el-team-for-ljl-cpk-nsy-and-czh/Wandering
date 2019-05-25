@@ -25,15 +25,15 @@ public class MainActivity extends AppCompatActivity {
         /*
         以下是用来改变activity切换效果的代码
          */
-        getWindow().setEnterTransition(new Fade().setDuration(500));
-        getWindow().setReenterTransition(new Fade().setDuration(500));
+        getWindow().setEnterTransition(new Fade().setDuration(300));
+        getWindow().setReenterTransition(new Fade().setDuration(300));
 
         setContentView(R.layout.start_screen);
         findViewById(R.id.StartGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,StartGameFlashActivity.class);
-                getWindow().setExitTransition(new Fade().setDuration(500));
+                getWindow().setExitTransition(new Fade().setDuration(300));
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
                 finish();
             }
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,SettingActivity.class);
                 getWindow().setExitTransition(new Fade().setDuration(300).excludeChildren(R.drawable.background_paintstyle,true));
                 startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());//启动设置页面；
-                finish();
             }
         });
         findViewById(R.id.Continue).setOnClickListener(new View.OnClickListener() {
@@ -53,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,ChooseGameActivity.class);
                 getWindow().setExitTransition(new Fade().setDuration(500));
                 startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
-                finish();
             }
         });
         findViewById(R.id.ExitGame).setOnClickListener(new View.OnClickListener() {

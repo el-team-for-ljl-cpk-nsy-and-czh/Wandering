@@ -24,8 +24,7 @@ import android.widget.TextView;
 
 import static java.lang.Math.sin;
 
-public class StartGameActivity extends AppCompatActivity
-implements DialogInterface.OnClickListener {
+public class StartGameActivity extends AppCompatActivity {
     //此处声明earth则在后续的所有方法中都可以使用earth；
     int WINDOWWIDTH,WINDOWHEIGHT;
     final double PI=3.1415926;
@@ -144,14 +143,9 @@ implements DialogInterface.OnClickListener {
 
     }
     public void propertyMove(View v) {
+        Animation alpha = new AlphaAnimation(0,1);
+        alpha.setDuration(700);
         //以下是一种新的提示框的实现，代码移至184行，即boom.show之后
-        AlertDialog.Builder boom=new AlertDialog.Builder(this);
-        AlertDialog.Builder complete=new AlertDialog.Builder(this);
-        complete.setTitle("Congratulation!");
-        complete.setMessage("Complete!!!");
-        complete.setCancelable(false);
-        complete.setPositiveButton("Go on！",this);
-        complete.setNegativeButton("Select",this);
         ImageView jupiter_iView=findViewById(R.id.jupiter);
         ImageView barrier_iView=findViewById(R.id.barrier_1);
         ImageView door_iView=findViewById(R.id.door);
@@ -177,31 +171,75 @@ implements DialogInterface.OnClickListener {
         double distence_e_door=Math.sqrt((xEarth-xDoor)*(xEarth-xDoor)+(yEarth-yDoor)*(yEarth-yDoor));
         int current = (int) animator.getAnimatedValue();
         ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) earth.getLayoutParams();
+        //下面是距离小于洛希极限所显示的提示框
         if(distence_e_j<=jupiter_radius+earth_radius||distence_e_b<=barrier_radius+earth_radius){
             animator.cancel();
-            AlertDialog dialog = boom.show();
-            dialog.setContentView(R.layout.dailogue);
-            TextView textWhenBomm = findViewById(R.id.alertText);
-            textWhenBomm.setText(R.string.MessageWhenBoom);
-            boom.setCancelable(true);
-            boom.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
+            findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
+            findViewById(R.id.restart).setClickable(false);
+            findViewById(R.id.start).setClickable(false);
+            findViewById(R.id.goback).setClickable(false);
+            findViewById(R.id.dialogueView).setVisibility(View.VISIBLE);
+            findViewById(R.id.dialogueView).setAnimation(alpha);
+            findViewById(R.id.cancelButton).setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCancel(DialogInterface dialog) {
-                    textWhenBomm.setText("");
-                    dialog.dismiss();
-                    getWindow().setExitTransition(new Fade().setDuration(500).
-                            excludeChildren(R.drawable.gamebackgound,true)
-                            .excludeChildren(R.drawable.cute_jupiter,true)
-                            .excludeChildren(R.drawable.door,true));
-                    startActivity(new Intent(StartGameActivity.this,StartGameActivity.class)
-                            ,ActivityOptions.makeSceneTransitionAnimation(StartGameActivity.this).toBundle());
+                public void onClick(View v) {
+                    findViewById(R.id.dialogueView).setVisibility(View.GONE);
+                    findViewById(R.id.jupiter).setVisibility(View.VISIBLE);
+                    findViewById(R.id.barrier_1).setVisibility(View.VISIBLE);
+                    findViewById(R.id.restart).setClickable(true);
+                    findViewById(R.id.start).setClickable(true);
+                    findViewById(R.id.goback).setClickable(true);
+                    getWindow().setExitTransition(new Fade().setDuration(300)
+                            .excludeChildren(R.id.jupiter,true)
+                            .excludeChildren(R.id.door,true)
+                            .excludeChildren(R.id.barrier_1,true));
+                    startActivity(new Intent(StartGameActivity.this,StartGameActivity.class));
+                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     finish();
                 }
             });
+
         }
+        //下面是结束所显示的提示框
         else if(distence_e_door<=earth_radius+door_radius){
             animator.cancel();
-            complete.show();
+            findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
+            findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
+            findViewById(R.id.goback).setClickable(false);
+            findViewById(R.id.restart).setClickable(false);
+            findViewById(R.id.start).setClickable(false);
+            findViewById(R.id.congratulationView).setVisibility(View.VISIBLE);
+            findViewById(R.id.congratulationView).setAnimation(alpha);
+            findViewById(R.id.map).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    findViewById(R.id.congratulationView).setVisibility(View.GONE);
+                    findViewById(R.id.jupiter).setVisibility(View.VISIBLE);
+                    findViewById(R.id.barrier_1).setVisibility(View.VISIBLE);
+                    findViewById(R.id.goback).setClickable(true);
+                    findViewById(R.id.restart).setClickable(true);
+                    findViewById(R.id.start).setClickable(true);
+                    startActivity(new Intent(StartGameActivity.this,ChooseGameActivity.class));
+                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                    finish();
+                }
+            });//跳转到选关界面；
+            findViewById(R.id.nextLevel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    findViewById(R.id.congratulationView).setVisibility(View.GONE);
+                    findViewById(R.id.goback).setClickable(true);
+                    findViewById(R.id.restart).setClickable(true);
+                    findViewById(R.id.start).setClickable(true);
+                    findViewById(R.id.jupiter).setVisibility(View.VISIBLE);
+                    findViewById(R.id.barrier_1).setVisibility(View.VISIBLE);
+                    getWindow().setExitTransition(new Fade().setDuration(300).excludeChildren(R.drawable.gamebackgound,true));
+                    startActivity(new Intent(StartGameActivity.this,Game2Activity.class));
+                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                    finish();
+                }
+            });
 
         }
         else {
@@ -271,25 +309,5 @@ implements DialogInterface.OnClickListener {
         alphaAnimation_path.setInterpolator(new LinearInterpolator());
         alphaAnimation_path.setRepeatCount(-1);
         layout.startAnimation(alphaAnimation_path);
-    }
-
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        if(which==DialogInterface.BUTTON_POSITIVE) {
-            //改变选关界面
-            findViewById(R.id.Level2).setVisibility(View.VISIBLE);
-            findViewById(R.id.Level2ViewLocked).setVisibility(View.GONE);
-            findViewById(R.id.Level2ViewUnlocked).setVisibility(View.VISIBLE);
-            //写跳转至下一关的代码。
-            getWindow().setExitTransition(new Fade().setDuration(500).excludeChildren(R.drawable.gamebackgound,true));
-            startActivity(new Intent(StartGameActivity.this,Game2Activity.class), ActivityOptions.makeSceneTransitionAnimation(StartGameActivity.this).toBundle());
-            finish();
-        }
-        else if(which==DialogInterface.BUTTON_NEGATIVE){
-            //写返回到选关界面的代码。
-            startActivity(new Intent(StartGameActivity.this,ChooseGameActivity.class));
-            finish();
-        }
-
     }
 }
