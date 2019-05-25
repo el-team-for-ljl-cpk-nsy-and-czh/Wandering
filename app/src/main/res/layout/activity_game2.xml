@@ -2,18 +2,171 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Game2Activity">
+    android:background="@drawable/gamebackgound">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="104dp"
-        android:text="敬请期待！！！\n爱你们哟！！！"
-        android:textSize="80sp"
+    <LinearLayout
+        android:id="@+id/LayoutInStartGame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/goback"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/ic_menu_revert"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/ic_menu_rotate"
+        app:layout_constraintStart_toEndOf="@+id/goback"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/ic_media_play"
+        android:onClick="propertyMove"
+        android:transitionName="BeginButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/door"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="600dp"
+        android:layout_marginTop="164dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/door" />
+
+    <ImageView
+        android:id="@+id/earth"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="176dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cute_earth" />
+
+    <ImageView
+        android:id="@+id/barrier_2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mark" />
+
+    <Button
+        android:id="@+id/minus_2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/minus_1"
+        android:onClick="minus"
+        app:layout_constraintStart_toEndOf="@+id/barrier_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/plus_2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:alpha="1.0"
+        android:background="@drawable/plus_1"
+        android:onClick="plus"
+        app:layout_constraintStart_toEndOf="@+id/barrier_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Mass_text_2"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="318"
+        android:textColor="#CCFFFFFF"
+        android:textSize="25dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/minus_2"
+        app:layout_constraintStart_toEndOf="@+id/barrier_2"
+        app:layout_constraintTop_toBottomOf="@+id/plus_2" />
+
+    <ImageView
+        android:id="@+id/barrier_1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="304dp"
+        android:layout_marginEnd="268dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/blue_planet" />
+
+    <Button
+        android:id="@+id/plus_1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="288dp"
+        android:background="@drawable/plus_1"
+        app:layout_constraintStart_toEndOf="@+id/barrier_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/minus_1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/minus_1"
+        app:layout_constraintStart_toEndOf="@+id/barrier_1"
+        app:layout_constraintTop_toBottomOf="@+id/plus_1" />
+
+    <TextView
+        android:id="@+id/Mass_text_1"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="318"
+        android:textColor="#CCFFFFFF"
+        android:textSize="25dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/minus_1"
+        app:layout_constraintStart_toEndOf="@+id/barrier_1"
+        app:layout_constraintTop_toBottomOf="@+id/plus_1" />
+
+
 </android.support.constraint.ConstraintLayout>

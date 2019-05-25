@@ -16,7 +16,6 @@ public class StartGameFlashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().setExitTransition(new Fade().setDuration(300));
         setContentView(R.layout.activity_start_game_animation);
         /**
          * 以下是实现文本框渐变动画的代码
@@ -36,7 +35,8 @@ public class StartGameFlashActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 Intent intent = new Intent(StartGameFlashActivity.this,StartGameActivity.class);
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(StartGameFlashActivity.this).toBundle());
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }//当动画结束自动切换至下一个画面
 

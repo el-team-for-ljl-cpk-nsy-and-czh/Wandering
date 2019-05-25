@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/gamebackgound">
 
+    <LinearLayout
+        android:id="@+id/LayoutInStartGame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </LinearLayout>
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/congratulationView"
         android:layout_width="715dp"
@@ -74,14 +88,6 @@
             app:srcCompat="@drawable/alertdialoguesmall" />
     </android.support.constraint.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/LayoutInStartGame"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/congratulationView"></LinearLayout>
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/dialogueView"
         android:layout_width="match_parent"
@@ -142,7 +148,7 @@
         android:id="@+id/goback"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@android:drawable/ic_menu_revert"
         app:layout_constraintStart_toStartOf="parent"
@@ -206,7 +212,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="296dp"
-        android:background="@drawable/minus"
+        android:background="@drawable/minus_1"
         android:onClick="minus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -217,7 +223,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="296dp"
-        android:background="@drawable/plus"
+        android:background="@drawable/plus_1"
         android:onClick="plus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -241,7 +247,7 @@
         android:id="@+id/barrier_1"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="336dp"
         app:layout_constraintEnd_toEndOf="@+id/dialogueView"
         app:layout_constraintTop_toBottomOf="@+id/jupiter"

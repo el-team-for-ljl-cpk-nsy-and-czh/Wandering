@@ -1,13 +1,10 @@
 package com.example.wanderingearth;
 
 import android.animation.ValueAnimator;
-import android.app.ActivityOptions;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
 import android.util.DisplayMetrics;
@@ -18,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,24 +27,13 @@ public class StartGameActivity extends AppCompatActivity {
     int WINDOWWIDTH,WINDOWHEIGHT;
     final double PI=3.1415926;
     Barrier jupiter=new Barrier();
+    int a=150;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
-        getWindow().setEnterTransition(new Fade().setDuration(500)
-                .excludeChildren(R.drawable.gamebackgound,true)
-                .excludeChildren(R.drawable.cute_jupiter,true)
-                .excludeChildren(R.id.goback,true)
-                .excludeChildren(R.id.restart,true)
-                .excludeChildren(R.id.start,true));
-        getWindow().setReenterTransition(new Fade().setDuration(300)
-                .excludeChildren(R.drawable.gamebackgound,true)
-                .excludeChildren(R.drawable.cute_jupiter,true)
-                .excludeChildren(R.id.goback,true)
-                .excludeChildren(R.id.restart,true)
-                .excludeChildren(R.id.start,true));
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
@@ -83,6 +70,7 @@ public class StartGameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(StartGameActivity.this,MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
         });
@@ -92,20 +80,17 @@ public class StartGameActivity extends AppCompatActivity {
         findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getWindow().setExitTransition(new Fade().setDuration(300)
-                        .excludeChildren(R.drawable.gamebackgound,true)
-                        .excludeChildren(R.drawable.cute_jupiter,true)
-                        .excludeChildren(R.id.goback,true)
-                        .excludeChildren(R.id.restart,true)
-                        .excludeChildren(R.id.start,true));
                 Intent intent = new Intent(StartGameActivity.this,StartGameActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
         });
     }
+    /*
+     *画出初始路径 且令其在屏幕改变焦点时不执行该方法
+     */
     int i=1;
-
     @Override
     public void onWindowFocusChanged(boolean hasFocus){
 
@@ -126,7 +111,7 @@ public class StartGameActivity extends AppCompatActivity {
             float[] YDots = new float[door_iView.getLeft() - left+door_iView.getWidth()/2];
             for (int i = 0; i < door_iView.getLeft() - left+door_iView.getWidth()/2; i++) {
                 XDots[i] = i + left;
-                YDots[i] = (float) (-(Math.pow(1.02, jupiter.getMass() - 80) * sin((PI / (WINDOWWIDTH - left) * i)))) + top;
+                YDots[i] = (float) (-(Math.pow(1.03, jupiter.getMass() - a) * sin((PI / (WINDOWWIDTH - left) * i)))) + top;
             }
             earth.setXDots(XDots);
             earth.setYDots(YDots);
@@ -140,8 +125,11 @@ public class StartGameActivity extends AppCompatActivity {
             layout.startAnimation(alphaAnimation_path);
         }
         i=i+1;
-
     }
+
+    /*
+     *按开始按钮的代码
+     */
     public void propertyMove(View v) {
         Animation alpha = new AlphaAnimation(0,1);
         alpha.setDuration(700);
@@ -149,6 +137,14 @@ public class StartGameActivity extends AppCompatActivity {
         ImageView jupiter_iView=findViewById(R.id.jupiter);
         ImageView barrier_iView=findViewById(R.id.barrier_1);
         ImageView door_iView=findViewById(R.id.door);
+        Button start=findViewById(R.id.start);
+        Button plus=findViewById(R.id.plus);
+        Button minus=findViewById(R.id.minus);
+        TextView mass_text=findViewById(R.id.Mass_text);
+        start.setVisibility(View.GONE);
+        plus.setVisibility(View.GONE);
+        minus.setVisibility(View.GONE);
+        mass_text.setVisibility(View.GONE);
         final int jupiter_radius=jupiter_iView.getHeight()/2,barrier_radius=barrier_iView.getHeight()/2,door_radius=door_iView.getHeight()/2;
         final ImageView earth = findViewById(R.id.earth);
         final int left = earth.getLeft();
@@ -157,21 +153,30 @@ public class StartGameActivity extends AppCompatActivity {
 
 
         final ValueAnimator animator = ValueAnimator.ofInt(0, WINDOWWIDTH-earth_radius*2-left);//横屏宽度
-
         animator.setDuration(3000);
-
         animator.setInterpolator(new LinearInterpolator());
-
         animator.addUpdateListener(animation -> {
+        /*
+         *获取坐标
+         */
         int xEarth=earth.getLeft()+earth_radius,xJupiter=jupiter_iView.getLeft()+jupiter_radius,yEarth=earth.getTop()+earth_radius,yJupiter=jupiter_iView.getTop()+jupiter_radius;
         int xBarrier=barrier_iView.getLeft()+barrier_radius,yBarrier=barrier_iView.getTop()+barrier_radius;
         int xDoor=door_iView.getLeft()+door_radius,yDoor=barrier_iView.getTop()+door_radius;
+        /*
+         *获取距离
+         */
         double distence_e_j=Math.sqrt((xEarth-xJupiter)*(xEarth-xJupiter)+(yEarth-yJupiter)*(yEarth-yJupiter));
         double distence_e_b=Math.sqrt((xEarth-xBarrier)*(xEarth-xBarrier)+(yEarth-yBarrier)*(yEarth-yBarrier));
         double distence_e_door=Math.sqrt((xEarth-xDoor)*(xEarth-xDoor)+(yEarth-yDoor)*(yEarth-yDoor));
+        /*
+         *实现地球移动的代码的一部分
+         */
         int current = (int) animator.getAnimatedValue();
         ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) earth.getLayoutParams();
         //下面是距离小于洛希极限所显示的提示框
+        /*
+         *地球碰撞了星球
+         */
         if(distence_e_j<=jupiter_radius+earth_radius||distence_e_b<=barrier_radius+earth_radius){
             animator.cancel();
             findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
@@ -201,6 +206,9 @@ public class StartGameActivity extends AppCompatActivity {
             });
 
         }
+        /*
+         *任务完成
+         */
         //下面是结束所显示的提示框
         else if(distence_e_door<=earth_radius+door_radius){
             animator.cancel();
@@ -242,18 +250,30 @@ public class StartGameActivity extends AppCompatActivity {
             });
 
         }
+        /*
+         *地球到达屏幕边界
+         */
+        else if(earth.getTop()>=WINDOWHEIGHT-earth_radius*2||earth.getLeft()>=WINDOWWIDTH-earth_radius*2||earth.getTop()==0||earth.getLeft()==0){
+            animator.cancel();
+
+        }
+        /*
+         *地球正常移动
+         */
         else {
             layoutParams.leftMargin = left + current;
 
-            layoutParams.topMargin =(int) (top - ((Math.pow(1.02,jupiter.getMass()-80)*sin((PI/(WINDOWWIDTH-left)*current)))));
+            layoutParams.topMargin =(int) (top - ((Math.pow(1.03,jupiter.getMass()-a)*sin((PI/(WINDOWWIDTH-left)*current)))));
 
             earth.setLayoutParams(layoutParams);
         }
-
-    });
+        });
 
         animator.start();
     }
+    /*
+     *加质量
+     */
     public void plus(View v){
         jupiter.setMass(jupiter.getMass()+1);
         TextView mass=findViewById(R.id.Mass_text);
@@ -269,7 +289,7 @@ public class StartGameActivity extends AppCompatActivity {
         float[] YDots = new float[door.getLeft()-left+door.getWidth()/2];
         for(int i = 0;i< door.getLeft()-left+door.getWidth()/2;i++){
             XDots[i] = i+left;
-            YDots[i] =(float) (-(Math.pow(1.02,jupiter.getMass()-80)*sin((PI/(WINDOWWIDTH-left)*i))))+top;
+            YDots[i] =(float) (-(Math.pow(1.03,jupiter.getMass()-a)*sin((PI/(WINDOWWIDTH-left)*i))))+top;
         }
         earth.setXDots(XDots);
         earth.setYDots(YDots);
@@ -282,6 +302,9 @@ public class StartGameActivity extends AppCompatActivity {
         alphaAnimation_path.setRepeatCount(-1);
         layout.startAnimation(alphaAnimation_path);
     }
+    /*
+     *减质量
+     */
     public void minus(View v){
         jupiter.setMass(jupiter.getMass()-1);
         TextView mass=findViewById(R.id.Mass_text);
@@ -297,7 +320,7 @@ public class StartGameActivity extends AppCompatActivity {
         float[] YDots = new float[door.getLeft()-left+door.getWidth()/2];
         for(int i = 0;i< door.getLeft()-left+door.getWidth()/2;i++){
             XDots[i] = i+left;
-            YDots[i] =(float) (-(Math.pow(1.02,jupiter.getMass()-100)*sin((PI/(WINDOWWIDTH-left)*i))))+top;
+            YDots[i] =(float) (-(Math.pow(1.03,jupiter.getMass()-a)*sin((PI/(WINDOWWIDTH-left)*i))))+top;
         }
         earth.setXDots(XDots);
         earth.setYDots(YDots);

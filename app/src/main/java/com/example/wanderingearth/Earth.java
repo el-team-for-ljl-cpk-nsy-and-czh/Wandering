@@ -45,8 +45,19 @@ public class Earth extends View{
         mypaint.setStyle(Paint.Style.STROKE);
         mypaint.setStrokeWidth(8);
         path.moveTo(this.pathXDots[0],this.pathYDots[0]);
+        int j=0;
         for(int i=1; i< this.pathXDots.length;i++){
-            path.lineTo(this.pathXDots[i],this.pathYDots[i]);
+            if(i%16!=0&&j%2==0) {
+                path.lineTo(this.pathXDots[i], this.pathYDots[i]);
+            }
+            else if(i%16==0&&j%2==0){
+                path.lineTo(this.pathXDots[i], this.pathYDots[i]);
+                j=j+1;
+            }
+            else if(((i%16)==0)&&(j%2!=0)){
+                path.moveTo(this.pathXDots[i],this.pathYDots[i]);
+                j=j+1;
+            }
         }
         canvas.drawPath(path,mypaint);
     }

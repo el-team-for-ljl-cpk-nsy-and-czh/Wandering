@@ -15,15 +15,14 @@ public class ChooseGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
-        getWindow().setEnterTransition(new Fade().setDuration(500));
-        getWindow().setExitTransition(new Fade().setDuration(500));
         setContentView(R.layout.activity_choose);
         findViewById(R.id.Level1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getWindow().setExitTransition(new Fade().setDuration(500));
                 Intent intent = new Intent(ChooseGameActivity.this,StartGameActivity.class);
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ChooseGameActivity.this).toBundle());
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
         });
@@ -33,17 +32,17 @@ public class ChooseGameActivity extends AppCompatActivity {
         findViewById(R.id.Level2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getWindow().setExitTransition(new Fade().setDuration(500));
-                startActivity(new Intent(ChooseGameActivity.this,Game2Activity.class),ActivityOptions.makeSceneTransitionAnimation(ChooseGameActivity.this).toBundle());
+                startActivity(new Intent(ChooseGameActivity.this,Game2Activity.class));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
         });
         findViewById(R.id.ReturnInChoose).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getWindow().setExitTransition(new Fade().setDuration(500));
                 Intent intent = new Intent(ChooseGameActivity.this,MainActivity.class);
-                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(ChooseGameActivity.this).toBundle());
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
         });

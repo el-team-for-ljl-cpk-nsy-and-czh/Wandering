@@ -9,6 +9,8 @@ import android.transition.Fade;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 /**
  * Skeleton of an Android Things activity.
@@ -36,6 +38,13 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
+        ImageView liulang=findViewById(R.id.imageView2);
+        Animation alphaAnimation=new AlphaAnimation(1,0);
+        alphaAnimation.setDuration(1000);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
+        alphaAnimation.setInterpolator(new LinearInterpolator());
+        alphaAnimation.setRepeatCount(1);
+        liulang.startAnimation(alphaAnimation);
         Thread mythread = new Thread(){
             @Override
             public void run(){
@@ -43,6 +52,7 @@ public class SplashActivity extends Activity {
                     sleep(2000);
                     Intent it = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(it);
+                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     finish();
                 } catch(Exception ex){
                     ex.printStackTrace();
@@ -50,5 +60,6 @@ public class SplashActivity extends Activity {
             }
         };
         mythread.start();
+
     }
 }

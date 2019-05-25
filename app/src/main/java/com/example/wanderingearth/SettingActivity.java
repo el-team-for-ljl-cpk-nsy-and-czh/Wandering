@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 public class SettingActivity extends AppCompatActivity {
@@ -25,25 +27,31 @@ public class SettingActivity extends AppCompatActivity {
         findViewById(R.id.ReturnInSetting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getWindow().setExitTransition(new Fade().setDuration(100).excludeChildren(R.drawable.background_paintstyle,true));
                 Intent intent = new Intent(SettingActivity.this,MainActivity.class);
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
         });
-        /**
+        /*
          * 以下是点击“了解更多”所显示的代码；
          */
         findViewById(R.id.LearnMore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation alpha=new AlphaAnimation(0,1);
+                alpha.setDuration(300);
                 findViewById(R.id.ChooseGame).setVisibility(View.INVISIBLE);
                 findViewById(R.id.LearnMore).setVisibility(View.INVISIBLE);
                 findViewById(R.id.ReturnInSetting).setVisibility(View.INVISIBLE);
                 findViewById(R.id.DialogueView).setVisibility(View.VISIBLE);
+                findViewById(R.id.DialogueView).startAnimation(alpha);
                 findViewById(R.id.Text).setVisibility(View.VISIBLE);
+                findViewById(R.id.Text).startAnimation(alpha);
                 findViewById(R.id.cancelView).setVisibility(View.VISIBLE);
+                findViewById(R.id.cancelView).startAnimation(alpha);
                 findViewById(R.id.cancelInSeting).setVisibility(View.VISIBLE);
+                findViewById(R.id.cancelInSeting).startAnimation(alpha);
                 findViewById(R.id.cancelInSeting).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -58,14 +66,15 @@ public class SettingActivity extends AppCompatActivity {
                 });
             }
         });
-        /**
+        /*
          * 以下是跳转到选关界面的代码
          */
         findViewById(R.id.ChooseGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SettingActivity.this, ChooseGameActivity.class);
-                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
         });
