@@ -54,7 +54,8 @@ public class SplashActivity extends Activity {
             @Override
             public void run(){
                 try{
-                    sleep(3000);
+                    sleep(2500);
+                    mediaPlayer.stop();
                     Intent it = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(it);
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
