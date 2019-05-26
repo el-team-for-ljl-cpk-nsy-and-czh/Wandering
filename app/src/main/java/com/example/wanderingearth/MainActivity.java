@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,12 +19,13 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
-    private SoundPool soundPool = new SoundPool(10, AudioManager.STREAM_SYSTEM,5);
-    public int music = soundPool.load(this,R.raw.disound,1);
+    private MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
         ActivityContainer.getInstance().addActivity(this);
+        mediaPlayer = MediaPlayer.create(this,R.raw.disound);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         /*
         以下是用来改变activity切换效果的代码
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                Intent intent = new Intent(MainActivity.this,StartGameFlashActivity.class);
+                Intent intent = new Intent(MainActivity.this,StartGameFlashActivity.class).putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                Intent intent = new Intent(MainActivity.this,ChooseGameActivity.class);
+                Intent intent = new Intent(MainActivity.this,ChooseGameActivity.class).putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
@@ -73,6 +75,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void playMusic(){
-        soundPool.play(music,1,1,0,0,1);
+        mediaPlayer.start();
     }
 }

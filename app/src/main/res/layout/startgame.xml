@@ -134,7 +134,9 @@
         android:id="@+id/congratulationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:background="@color/transparentBlack"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <Button
             android:id="@+id/map"
@@ -191,7 +193,9 @@
         android:id="@+id/dialogueView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:background="@color/transparentBlack"
+        android:visibility="gone"
+        tools:visibility="gone">
 
         <ImageView
             android:id="@+id/dialogue"
@@ -250,7 +254,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <Button
             android:id="@+id/goOnButton"

@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
@@ -14,9 +15,11 @@ import android.view.animation.Animation;
 import android.widget.TextView;
 
 public class SettingActivity extends AppCompatActivity {
+    private MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        mediaPlayer.create(this,R.raw.disound);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         getWindow().setEnterTransition(new Fade().setDuration(300).excludeChildren(R.drawable.background_paintstyle,true));
         setContentView(R.layout.settings);
@@ -27,6 +30,7 @@ public class SettingActivity extends AppCompatActivity {
         findViewById(R.id.ReturnInSetting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.start();
                 Intent intent = new Intent(SettingActivity.this,MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -39,6 +43,7 @@ public class SettingActivity extends AppCompatActivity {
         findViewById(R.id.LearnMore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.start();
                 Animation alpha=new AlphaAnimation(0,1);
                 alpha.setDuration(300);
                 findViewById(R.id.ChooseGame).setVisibility(View.INVISIBLE);
@@ -72,6 +77,7 @@ public class SettingActivity extends AppCompatActivity {
         findViewById(R.id.ChooseGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.start();
                 Animation alpha = new AlphaAnimation(0, 1);
                 alpha.setDuration(300);
                 findViewById(R.id.ChooseGame).setVisibility(View.INVISIBLE);

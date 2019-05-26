@@ -85,7 +85,7 @@ public void onClick(View v) {
         findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
 @Override
 public void onClick(View v) {
-        Intent intent = new Intent(Game2Activity.this,Game2Activity.class);
+        Intent intent = new Intent(Game2Activity.this,Game2Activity.class).putExtra("UnlockedGame",unlockedGames);
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         finish();

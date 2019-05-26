@@ -38,7 +38,7 @@ public class StartGameActivity extends AppCompatActivity {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
-        int unlockedGames = getIntent().getIntExtra("UnlockedGames",1);
+        int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
         //第一次进行游戏出现指导
         if(firstStart){
             firstStart = false;
@@ -112,7 +112,7 @@ public class StartGameActivity extends AppCompatActivity {
         findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartGameActivity.this,StartGameActivity.class);
+                Intent intent = new Intent(StartGameActivity.this,StartGameActivity.class).putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
