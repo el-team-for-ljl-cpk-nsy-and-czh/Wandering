@@ -3,8 +3,10 @@ package com.example.wanderingearth;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.transition.Fade;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -32,10 +34,13 @@ import android.widget.ImageView;
  * @see <a href="https://github.com/androidthings/contrib-drivers#readme">https://github.com/androidthings/contrib-drivers#readme</a>
  */
 public class SplashActivity extends Activity {
-
+    private MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mediaPlayer = MediaPlayer.create(this,R.raw.splash3sec);
+        mediaPlayer.seekTo(0);
+        mediaPlayer.start();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         ImageView liulang=findViewById(R.id.imageView2);
@@ -49,7 +54,7 @@ public class SplashActivity extends Activity {
             @Override
             public void run(){
                 try{
-                    sleep(2000);
+                    sleep(3000);
                     Intent it = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(it);
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -61,5 +66,10 @@ public class SplashActivity extends Activity {
         };
         mythread.start();
 
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mediaPlayer.release();
     }
 }

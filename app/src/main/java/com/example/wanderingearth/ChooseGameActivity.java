@@ -76,17 +76,17 @@ public class ChooseGameActivity extends AppCompatActivity {
     }
     private void playMusic(){
         mediaPlayer1.start();
-        mediaPlayer1.reset();;
-    }
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
         mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 mp.seekTo(0);
             }
         });
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mediaPlayer1.release();
     }
 
 }
