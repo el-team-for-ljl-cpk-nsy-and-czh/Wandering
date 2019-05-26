@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
         ActivityContainer.getInstance().addActivity(this);
-        mediaPlayer = MediaPlayer.create(this,R.raw.disound);
+        mediaPlayer =MediaPlayer.create(this,R.raw.disound);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         /*
         以下是用来改变activity切换效果的代码
@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                mediaPlayer.release();
                 Intent intent = new Intent(MainActivity.this,StartGameFlashActivity.class).putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                mediaPlayer.release();
                 Intent intent = new Intent(MainActivity.this,SettingActivity.class);getWindow().setExitTransition(new Fade().setDuration(300).excludeChildren(R.drawable.background_paintstyle,true));
                 startActivity(intent);//启动设置页面；
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -61,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                mediaPlayer.release();
                 Intent intent = new Intent(MainActivity.this,ChooseGameActivity.class).putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -72,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                mediaPlayer.release();
                 getWindow().setExitTransition(new Fade().setDuration(200));
                 ActivityContainer.getInstance().finishAllActivity();
             }
@@ -81,5 +77,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void playMusic() {
         mediaPlayer.start();
+        mediaPlayer.reset();
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mediaPlayer.release();
     }
 }

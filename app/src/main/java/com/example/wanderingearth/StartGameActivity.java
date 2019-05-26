@@ -38,7 +38,7 @@ public class StartGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityContainer.getInstance().addActivity(this);
-        mediaPlayerAlert = new MediaPlayer().create(this,R.raw.alertvoice);
+        mediaPlayerAlert = MediaPlayer.create(this,R.raw.alertvoice);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
         int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
@@ -413,5 +413,10 @@ public class StartGameActivity extends AppCompatActivity {
         alphaAnimation_path.setInterpolator(new LinearInterpolator());
         alphaAnimation_path.setRepeatCount(-1);
         layout.startAnimation(alphaAnimation_path);
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mediaPlayerAlert.release();
     }
 }

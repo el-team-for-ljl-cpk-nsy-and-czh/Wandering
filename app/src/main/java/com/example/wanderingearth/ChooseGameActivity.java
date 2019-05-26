@@ -16,6 +16,7 @@ public class ChooseGameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mediaPlayer1 = MediaPlayer.create(this,R.raw.disound);
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.activity_choose);
@@ -73,8 +74,12 @@ public class ChooseGameActivity extends AppCompatActivity {
         });
     }
     private void playMusic(){
-        mediaPlayer1 = new MediaPlayer().create(ChooseGameActivity.this,R.raw.disound);
         mediaPlayer1.start();
+        mediaPlayer1.reset();;
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
         mediaPlayer1.release();
     }
 

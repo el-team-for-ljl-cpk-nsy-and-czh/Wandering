@@ -19,6 +19,7 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        mediaPlayer = MediaPlayer.create(this,R.raw.disound);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         getWindow().setEnterTransition(new Fade().setDuration(300).excludeChildren(R.drawable.background_paintstyle,true));
         setContentView(R.layout.settings);
@@ -106,8 +107,13 @@ public class SettingActivity extends AppCompatActivity {
         });
     }
     private void playMusic(){
-        mediaPlayer = new MediaPlayer().create(SettingActivity.this,R.raw.disound);
         mediaPlayer.start();
+        mediaPlayer.reset();
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
         mediaPlayer.release();
     }
+
 }
