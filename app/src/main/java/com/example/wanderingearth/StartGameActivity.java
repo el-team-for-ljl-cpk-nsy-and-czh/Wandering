@@ -39,6 +39,7 @@ public class StartGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityContainer.getInstance().addActivity(this);
         mediaPlayerAlert = MediaPlayer.create(this,R.raw.alertvoice);
+        mediaPlayerAlert.seekTo(0);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
         int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
@@ -214,7 +215,12 @@ public class StartGameActivity extends AppCompatActivity {
         if(distence_e_j<=jupiter_radius*1.22+earth_radius||distence_e_b<=barrier_radius*1.22+earth_radius){
             animator.cancel();
             mediaPlayerAlert.start();
-            mediaPlayerAlert.release();
+            mediaPlayerAlert.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+            });
             findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
             findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
             findViewById(R.id.earth).setVisibility(View.INVISIBLE);

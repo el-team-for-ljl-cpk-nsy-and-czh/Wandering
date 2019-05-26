@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
         ActivityContainer.getInstance().addActivity(this);
         mediaPlayer =MediaPlayer.create(this,R.raw.disound);
+        mediaPlayer.seekTo(0);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         /*
         以下是用来改变activity切换效果的代码
@@ -77,7 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void playMusic() {
         mediaPlayer.start();
-        mediaPlayer.reset();
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.seekTo(0);
+            }
+        });
     }
     @Override
     protected void onDestroy(){
