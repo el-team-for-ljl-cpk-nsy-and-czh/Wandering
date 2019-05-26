@@ -44,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 playMusic();
                 Intent intent;
                 switch (unlockedGames){
-                    case 1:{intent = new Intent(MainActivity.this,StartGameActivity.class) ;break;}
+                    case 1:{intent = new Intent(MainActivity.this,StartGameFlashActivity.class) ;break;}
                     case 2:{intent = new Intent(MainActivity.this,Game2Activity.class);break;}
                     case 3:{intent = new Intent(MainActivity.this,Game3Activity.class);break;}
-                    default:{intent = new Intent(MainActivity.this,StartGameActivity.class);}
+                    default:{intent = new Intent(MainActivity.this,StartGameFlashActivity.class);}
                 }
                 startActivity(intent.putExtra("UnlockedGame",unlockedGames));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
@@ -38,7 +37,7 @@ protected void onCreate(Bundle savedInstanceState) {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.activity_game2);
-        int unlockedGames = getIntent().getIntExtra("UnlockedGame",2);
+        int unlockedGames = getIntent().getIntExtra( "UnlockedGame",2);
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
@@ -98,12 +97,12 @@ public void onClick(View v) {
         /*
          *画出初始路径 且令其在屏幕改变焦点时不执行该方法
          */
-        int i=1;
+        int j=1;
 @Override
 public void onWindowFocusChanged(boolean hasFocus){
         super.onWindowFocusChanged(hasFocus);
         mediaPlayer = MediaPlayer.create(this,R.raw.alertvoice);
-        if (i == 1) {
+        if (j== 1) {
         //此处可以正常获取width、height等
         barrier_2.setMass(350);
         barrier_1.setMass(310);
@@ -115,7 +114,7 @@ public void onWindowFocusChanged(boolean hasFocus){
         ImageView door_iView = findViewById(R.id.door);
         ImageView barrier1_iView=findViewById(R.id.barrier_1);
         ImageView barrier2_iView=findViewById(R.id.barrier_2);
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+        LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
         int left = earth_iView.getLeft() + earth_iView.getWidth() / 2;
         int top = earth_iView.getTop() + earth_iView.getWidth() / 2;
         ConstraintLayout.LayoutParams layoutParams2 = (ConstraintLayout.LayoutParams) barrier2_iView.getLayoutParams();
@@ -148,7 +147,7 @@ public void onWindowFocusChanged(boolean hasFocus){
         alphaAnimation_path.setRepeatCount(-1);
         layout.startAnimation(alphaAnimation_path);
         }
-        i=i+1;
+        j=j+1;
         }
 
 /*
@@ -223,7 +222,7 @@ public void propertyMove(View v) {
                 });
                 findViewById(R.id.barrier_2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
-                findViewById(R.id.LayoutInStartGame).setVisibility(View.INVISIBLE);
+                findViewById(R.id.LayoutInStartGame1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.earth).setVisibility(View.INVISIBLE);
                 findViewById(R.id.plus_1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.plus_2).setVisibility(View.INVISIBLE);
@@ -240,7 +239,7 @@ public void propertyMove(View v) {
                         @Override
                         public void onClick(View v) {
                                 findViewById(R.id.dialogueView).setVisibility(View.GONE);
-                                findViewById(R.id.LayoutInStartGame).setVisibility(View.VISIBLE);
+                                findViewById(R.id.LayoutInStartGame1).setVisibility(View.VISIBLE);
                                 findViewById(R.id.barrier_2).setVisibility(View.VISIBLE);
                                 findViewById(R.id.barrier_1).setVisibility(View.VISIBLE);
                                 findViewById(R.id.earth).setVisibility(View.VISIBLE);
@@ -289,7 +288,7 @@ public void propertyMove(View v) {
          */
         else if(distence_e_door<=earth_radius+door_radius){
                 animator.cancel();
-                findViewById(R.id.LayoutInStartGame).setVisibility(View.INVISIBLE);
+                findViewById(R.id.LayoutInStartGame1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.barrier_2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.earth).setVisibility(View.INVISIBLE);
@@ -308,7 +307,7 @@ public void propertyMove(View v) {
                         @Override
                         public void onClick(View v) {
                                 findViewById(R.id.congratulationView).setVisibility(View.GONE);
-                                findViewById(R.id.LayoutInStartGame).setVisibility(View.VISIBLE);
+                                findViewById(R.id.LayoutInStartGame1).setVisibility(View.VISIBLE);
                                 findViewById(R.id.barrier_2).setVisibility(View.VISIBLE);
                                 findViewById(R.id.barrier_1).setVisibility(View.VISIBLE);
                                 findViewById(R.id.earth).setVisibility(View.VISIBLE);
@@ -334,7 +333,7 @@ public void propertyMove(View v) {
                                 findViewById(R.id.goback).setClickable(true);
                                 findViewById(R.id.restart).setClickable(true);
                                 findViewById(R.id.start).setClickable(true);
-                                findViewById(R.id.LayoutInStartGame).setVisibility(View.VISIBLE);
+                                findViewById(R.id.LayoutInStartGame1).setVisibility(View.VISIBLE);
                                 findViewById(R.id.plus_2).setVisibility(View.VISIBLE);
                                 findViewById(R.id.plus_1).setVisibility(View.VISIBLE);
                                 findViewById(R.id.minus_1).setVisibility(View.VISIBLE);
@@ -382,7 +381,7 @@ public void plus(View v){
         barrier_2.setMass(barrier_2.getMass()+1);
         TextView mass=findViewById(R.id.m_text2);
         mass.setText(String.valueOf(barrier_2.getMass()));
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+        LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
         layout.removeAllViews();
         ImageView earth_iView=findViewById(R.id.earth);
         int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
@@ -416,7 +415,7 @@ public void plus1(View v){
         barrier_1.setMass(barrier_1.getMass()+1);
         TextView mass=findViewById(R.id.m_text1);
         mass.setText(String.valueOf(barrier_1.getMass()));
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+        LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
         layout.removeAllViews();
         ImageView earth_iView=findViewById(R.id.earth);
         int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
@@ -454,7 +453,7 @@ public void minus(View v){
         barrier_2.setMass(barrier_2.getMass()-1);
         TextView mass=findViewById(R.id.m_text2);
         mass.setText(String.valueOf(barrier_2.getMass()));
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+        LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
         layout.removeAllViews();
         ImageView earth_iView=findViewById(R.id.earth);
         int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
@@ -488,7 +487,7 @@ public void minus(View v){
                 barrier_1.setMass(barrier_1.getMass()-1);
                 TextView mass=findViewById(R.id.m_text1);
                 mass.setText(String.valueOf(barrier_1.getMass()));
-                LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+                LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
                 layout.removeAllViews();
                 ImageView earth_iView=findViewById(R.id.earth);
                 int left=earth_iView.getLeft()+earth_iView.getWidth()/2;

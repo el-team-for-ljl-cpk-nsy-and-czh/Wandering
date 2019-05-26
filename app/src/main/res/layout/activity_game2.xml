@@ -8,7 +8,7 @@
     android:background="@drawable/gamebackgound">
 
     <LinearLayout
-        android:id="@+id/LayoutInStartGame"
+        android:id="@+id/LayoutInStartGame1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -57,9 +57,9 @@
         android:id="@+id/door"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="612dp"
-        android:layout_marginTop="164dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constraintEnd_toEndOf="@+id/LayoutInStartGame1"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/door1" />
 
@@ -67,8 +67,8 @@
         android:id="@+id/earth"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="196dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cute_earth" />
@@ -86,7 +86,7 @@
         android:id="@+id/barrier_2"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="168dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -133,8 +133,8 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="436dp"
-        android:layout_marginBottom="36dp"
-        app:layout_constraintBottom_toBottomOf="@+id/LayoutInStartGame"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/LayoutInStartGame1"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/blue_planet" />
 
@@ -176,26 +176,29 @@
         android:id="@+id/congratulationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="436dp"
-            android:layout_height="298dp"
-            android:layout_marginTop="68dp"
-            android:layout_marginEnd="160dp"
+            android:layout_width="429dp"
+            android:layout_height="314dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:alpha="0.7"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/newest_dialog" />
 
         <TextView
             android:id="@+id/congratulation"
-            android:layout_width="152dp"
-            android:layout_height="67dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="96dp"
+            android:layout_width="149dp"
+            android:layout_height="91dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="72dp"
             android:background="@color/colorOfAlert"
             android:text="@string/congratulationMessage"
             android:textColor="@android:color/white"
@@ -209,10 +212,12 @@
             android:layout_width="82dp"
             android:layout_height="33dp"
             android:layout_marginTop="36dp"
+            android:layout_marginBottom="96dp"
             android:alpha="1"
             android:background="@color/colorOfAlert"
             android:text="钻研地图"
             android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
             app:layout_constraintEnd_toEndOf="@+id/nextLevel"
             app:layout_constraintTop_toBottomOf="@+id/nextLevel" />
 
@@ -221,8 +226,8 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="82dp"
             android:layout_height="33dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="96dp"
             android:background="#6574D4FF"
             android:text="继续旅程"
             android:textColor="@android:color/white"
@@ -252,7 +257,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.808"
             app:srcCompat="@drawable/alertwarning" />
 
         <TextView

@@ -143,7 +143,7 @@ public class StartGameActivity extends AppCompatActivity {
             mass_text.setText(String.valueOf(jupiter.getMass()));
             ImageView earth_iView = findViewById(R.id.earth);
             ImageView door_iView = findViewById(R.id.door);
-            LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+            LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
             int left = earth_iView.getLeft() + earth_iView.getWidth() / 2;
             int top = earth_iView.getTop() + earth_iView.getWidth() / 2;
             Earth earth = new Earth(this);
@@ -151,7 +151,7 @@ public class StartGameActivity extends AppCompatActivity {
             float[] YDots = new float[door_iView.getLeft() - left+door_iView.getWidth()/2];
             for (int i = 0; i < door_iView.getLeft() - left+door_iView.getWidth()/2; i++) {
                 XDots[i] = i + left;
-                YDots[i] = (float) (-(Math.pow(1.03, jupiter.getMass() - a) * sin((PI / (WINDOWWIDTH - left) * i)))) + top;
+                YDots[i] = (float) (-(Math.pow(1.03, jupiter.getMass() - a) * sin((PI / (door_iView.getLeft() - left+door_iView.getWidth()/2.0) * i)))) + top;
             }
             earth.setXDots(XDots);
             earth.setYDots(YDots);
@@ -163,6 +163,7 @@ public class StartGameActivity extends AppCompatActivity {
             alphaAnimation_path.setInterpolator(new LinearInterpolator());
             alphaAnimation_path.setRepeatCount(-1);
             layout.startAnimation(alphaAnimation_path);
+            layout.setVisibility(View.VISIBLE);
         }
         i=i+1;
     }
@@ -225,13 +226,13 @@ public class StartGameActivity extends AppCompatActivity {
                     mp.release();
                 }
             });
-            findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
+            findViewById(R.id.LayoutInStartGame1).setVisibility(View.INVISIBLE);
+            findViewById(R.id.jupiter).setVisibility(View.VISIBLE);
             findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
             findViewById(R.id.earth).setVisibility(View.INVISIBLE);
             findViewById(R.id.plus).setVisibility(View.INVISIBLE);
             findViewById(R.id.minus).setVisibility(View.INVISIBLE);
             findViewById(R.id.Mass_text).setVisibility(View.INVISIBLE);
-            findViewById(R.id.LayoutInStartGame).setVisibility(View.INVISIBLE);
             findViewById(R.id.restart).setClickable(false);
             findViewById(R.id.start).setClickable(false);
             findViewById(R.id.goback).setClickable(false);
@@ -246,8 +247,8 @@ public class StartGameActivity extends AppCompatActivity {
                     findViewById(R.id.earth).setVisibility(View.VISIBLE);
                     findViewById(R.id.plus).setVisibility(View.VISIBLE);
                     findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.LayoutInStartGame1).setVisibility(View.VISIBLE);
                     findViewById(R.id.Mass_text).setVisibility(View.VISIBLE);
-                    findViewById(R.id.LayoutInStartGame).setVisibility(View.VISIBLE);
                     findViewById(R.id.restart).setClickable(true);
                     findViewById(R.id.start).setClickable(true);
                     findViewById(R.id.goback).setClickable(true);
@@ -292,7 +293,8 @@ public class StartGameActivity extends AppCompatActivity {
             findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
             findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
             findViewById(R.id.earth).setVisibility(View.INVISIBLE);
-            findViewById(R.id.LayoutInStartGame).setVisibility(View.INVISIBLE);
+            findViewById(R.id.LayoutInStartGame1).setVisibility(View.INVISIBLE);
+
             findViewById(R.id.goback).setClickable(false);
             findViewById(R.id.restart).setClickable(false);
             findViewById(R.id.start).setClickable(false);
@@ -310,7 +312,7 @@ public class StartGameActivity extends AppCompatActivity {
                     findViewById(R.id.earth).setVisibility(View.VISIBLE);
                     findViewById(R.id.plus).setVisibility(View.VISIBLE);
                     findViewById(R.id.minus).setVisibility(View.VISIBLE);
-                    findViewById(R.id.LayoutInStartGame).setVisibility(View.VISIBLE);
+                    findViewById(R.id.LayoutInStartGame1).setVisibility(View.VISIBLE);
                     findViewById(R.id.Mass_text).setVisibility(View.VISIBLE);
                     findViewById(R.id.goback).setClickable(true);
                     findViewById(R.id.restart).setClickable(true);
@@ -354,7 +356,7 @@ public class StartGameActivity extends AppCompatActivity {
         else {
             layoutParams.leftMargin = left + current;
 
-            layoutParams.topMargin =(int) (top - (Math.pow(1.03,jupiter.getMass()-a)*sin(PI/(WINDOWWIDTH-left)*current)));
+            layoutParams.topMargin =(int) (top - (Math.pow(1.03,jupiter.getMass()-a)*sin( PI / (door_iView.getLeft() - left+door_iView.getWidth()/2.0) * current)));
 
             earth.setLayoutParams(layoutParams);
         }
@@ -369,7 +371,7 @@ public class StartGameActivity extends AppCompatActivity {
         jupiter.setMass(jupiter.getMass()+1);
         TextView mass=findViewById(R.id.Mass_text);
         mass.setText(String.valueOf(jupiter.getMass()));
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+        LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
         layout.removeAllViews();
         ImageView earth_iView=findViewById(R.id.earth);
         int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
@@ -380,7 +382,7 @@ public class StartGameActivity extends AppCompatActivity {
         float[] YDots = new float[door.getLeft()-left+door.getWidth()/2];
         for(int i = 0;i< door.getLeft()-left+door.getWidth()/2;i++){
             XDots[i] = i+left;
-            YDots[i] =(float) (-(Math.pow(1.03,jupiter.getMass()-a)*sin((PI/(WINDOWWIDTH-left)*i))))+top;
+            YDots[i] =(float) (-(Math.pow(1.03,jupiter.getMass()-a)*sin((PI / (door.getLeft() - left+door.getWidth()/2.0) * i))))+top;
         }
         earth.setXDots(XDots);
         earth.setYDots(YDots);
@@ -400,7 +402,7 @@ public class StartGameActivity extends AppCompatActivity {
         jupiter.setMass(jupiter.getMass()-1);
         TextView mass=findViewById(R.id.Mass_text);
         mass.setText(String.valueOf(jupiter.getMass()));
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame);
+        LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
         layout.removeAllViews();
         ImageView earth_iView=findViewById(R.id.earth);
         int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
@@ -411,7 +413,7 @@ public class StartGameActivity extends AppCompatActivity {
         float[] YDots = new float[door.getLeft()-left+door.getWidth()/2];
         for(int i = 0;i< door.getLeft()-left+door.getWidth()/2;i++){
             XDots[i] = i+left;
-            YDots[i] =(float) (-(Math.pow(1.03,jupiter.getMass()-a)*sin((PI/(WINDOWWIDTH-left)*i))))+top;
+            YDots[i] =(float) (-(Math.pow(1.03,jupiter.getMass()-a)*sin((PI / (door.getLeft() - left+door.getWidth()/2.0) * i))))+top;
         }
         earth.setXDots(XDots);
         earth.setYDots(YDots);

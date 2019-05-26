@@ -45,7 +45,7 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
         ImageView liulang=findViewById(R.id.imageView2);
         Animation alphaAnimation=new AlphaAnimation(1,0);
-        alphaAnimation.setDuration(1000);
+        alphaAnimation.setDuration(1250);
         alphaAnimation.setRepeatMode(Animation.REVERSE);
         alphaAnimation.setInterpolator(new LinearInterpolator());
         alphaAnimation.setRepeatCount(1);

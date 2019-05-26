@@ -14,7 +14,7 @@
     <string name="MessageInChoose">"   "当有一天太阳系无法生存,人类最终选择带着地球离开扎根无数代的“故乡”,尽管没人能够预料到前方的道路到底是怎样的,但是我们最后还是选择了希望,选择了流浪。</string>
     <string name="MoveButton">开始</string>
     <string name="empty"></string>
-    <string name="congratulationMessage">恭喜你！带领着地球渡过了难关！</string>
+    <string name="congratulationMessage">恭喜你！\n带领着地球渡过了难关！</string>
     <string name="guideString1">指挥官，欢迎参与流浪地球计划。你面前的正是本次计划的航行图。</string>
     <string name="AboutUs">如果您对此游戏有任何疑问或者改进意见，欢迎致信jasperchan999@gmail.com,\n谢谢！\ncreated by:ψ(｀∇´)ψ团队</string>
     <string name="got_it">学到了！</string>
