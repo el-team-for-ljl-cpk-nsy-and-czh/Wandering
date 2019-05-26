@@ -9,13 +9,14 @@
     <string name="TextSplash">"     "我出生在刹车时代，地球刚刚停止转动，地球发动机安装在亚洲和美洲大陆上，共有12000台，地球发动机产生的切线推力分量杀住了地球的自转，我们把人类以前的历史叫作前太阳时代，那真是个让人神往的黄金时代啊。"
 
         "刘慈欣《流浪地球》</string>
-    <string name="LearnMoreMessage">此游戏旨在引导大家对于宇宙，对于天体运动有初步了解，部分方面可能不符合科学原理，请见谅</string>
-    <string name="MessageWhenBoom">地球与行星间的距离小于洛希极限(Roche limit)，在行星强大的引力下，地球会逐渐解体</string>
+    <string name="LearnMoreMessage">此游戏旨在让大家对宇宙、天体运动和洛希极限等天文知识有初步了解，部分方面可能不符合科学原理，请见谅。</string>
+    <string name="MessageWhenBoom">不好了！地球与行星间的距离小于洛希极限(Roche limit)，在行星强大的引力下，地球会逐渐解体。</string>
     <string name="MessageInChoose">"   "当有一天太阳系无法生存,人类最终选择带着地球离开扎根无数代的“故乡”,尽管没人能够预料到前方的道路到底是怎样的,但是我们最后还是选择了希望,选择了流浪。</string>
     <string name="MoveButton">开始</string>
     <string name="empty"></string>
-    <string name="congratulationMessage">恭喜你！带领着地球渡过了难关</string>
+    <string name="congratulationMessage">恭喜你！带领着地球渡过了难关！</string>
     <string name="guideString1">指挥官，欢迎参与流浪地球计划。你面前的正是本次计划的航行图。</string>
-    <string name="AboutUs">如果你对此游戏有任何人疑问或者改进意见，欢迎致信jasperchan999@gmail.com</string>
+    <string name="AboutUs">如果您对此游戏有任何疑问或者改进意见，欢迎致信jasperchan999@gmail.com,\n谢谢！\ncreated by:ψ(｀∇´)ψ团队</string>
     <string name="got_it">学到了！</string>
+    <string name="change_mass">所幸我们可以利用神秘力量去改变星球的质量从而影响地球的运动轨迹，这里显示着木星相对于地球的质量，尝试按下按钮来改变它从而改变地球的运动轨迹吧。</string>
 </resources>

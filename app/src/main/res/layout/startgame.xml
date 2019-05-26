@@ -49,7 +49,7 @@
         android:layout_marginTop="164dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/door" />
+        app:srcCompat="@drawable/door1" />
 
     <ImageView
         android:id="@+id/earth"
@@ -80,6 +80,7 @@
         android:background="@android:drawable/ic_media_play"
         android:onClick="propertyMove"
         android:transitionName="BeginButton"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -195,7 +196,7 @@
         android:layout_height="match_parent"
         android:background="@color/transparentBlack"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="invisible">
 
         <ImageView
             android:id="@+id/dialogue"
@@ -249,7 +250,7 @@
             android:id="@+id/Rlimit_text"
             android:layout_width="275dp"
             android:layout_height="135dp"
-            android:background="@color/alertRed"
+            android:background="@color/colorOfAlert"
             android:fontFamily="sans-serif"
             android:text="          在天体力学中，一个大质量天体对一个小质量天体进行引力作用时，小质量天体可以被大质量天体引力撕裂的最大距离即为洛希极限。(摘自《百度百科》)\n\nTips : 地球流浪时，要注意控制好与星球之间的距离，不要小于洛希极限哦！"
             android:textColor="@android:color/white"
@@ -260,7 +261,7 @@
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="@+id/dialogue"
             app:layout_constraintTop_toTopOf="@+id/dialogue"
-            app:layout_constraintVertical_bias="0.229"
+            app:layout_constraintVertical_bias="0.402"
             tools:visibility="invisible" />
 
         <Button
@@ -305,7 +306,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <Button
             android:id="@+id/goOnButton"
@@ -365,7 +366,7 @@
             android:layout_height="57dp"
             android:layout_marginTop="192dp"
             android:layout_marginEnd="304dp"
-            android:text="不好！地球的轨道出现了一个巨大的障碍物"
+            android:text="不好！地球的轨道中出现了一个巨大的障碍物"
             android:textColor="@color/dangerosColor"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -374,10 +375,10 @@
         <TextView
             android:id="@+id/guide5"
             android:layout_width="172dp"
-            android:layout_height="101dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="112dp"
-            android:text="所幸我们可以利用木星的强大引力来改变地球的运动轨迹，这里显示着木星相对于地球的质量，按下按钮来改变它从而影响地球的轨道"
+            android:layout_height="134dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="104dp"
+            android:text="@string/change_mass"
             android:textColor="@android:color/white"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -386,6 +387,18 @@
 
         <TextView
             android:id="@+id/guide6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="92dp"
+            android:layout_marginBottom="96dp"
+            android:text="改好质量后，按此按钮\n让地球动起来吧！"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/guide7"
             android:layout_width="187dp"
             android:layout_height="107dp"
             android:layout_marginBottom="4dp"
@@ -396,6 +409,17 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/Guide1"
             app:layout_constraintEnd_toEndOf="@+id/Guide1" />
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/guide6"
+            app:layout_constraintTop_toBottomOf="@+id/guide6"
+            app:srcCompat="@drawable/arrow" />
 
     </android.support.constraint.ConstraintLayout>
 

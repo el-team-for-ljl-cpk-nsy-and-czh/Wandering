@@ -246,6 +246,31 @@ public void propertyMove(View v) {
                                 finish();
                         }
                 });
+                findViewById(R.id.R_limit).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                                findViewById(R.id.R_limit).setVisibility(View.GONE);
+                                findViewById(R.id.cancelButton).setVisibility(View.GONE);
+                                findViewById(R.id.textView3).setVisibility(View.GONE);
+                                findViewById(R.id.Rlimit_text).setVisibility(View.VISIBLE);
+                                findViewById(R.id.Rlimit_text).startAnimation(alpha);
+                                findViewById(R.id.gotIt).setVisibility(View.VISIBLE);
+                                findViewById(R.id.gotIt).setAnimation(alpha);
+                        }
+                });
+                findViewById(R.id.gotIt).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                                findViewById(R.id.R_limit).setVisibility(View.VISIBLE);
+                                findViewById(R.id.R_limit).startAnimation(alpha);
+                                findViewById(R.id.cancelButton).setVisibility(View.VISIBLE);
+                                findViewById(R.id.cancelButton).setAnimation(alpha);
+                                findViewById(R.id.textView3).setVisibility(View.VISIBLE);
+                                findViewById(R.id.textView3).setAnimation(alpha);
+                                findViewById(R.id.Rlimit_text).setVisibility(View.GONE);
+                                findViewById(R.id.gotIt).setVisibility(View.GONE);
+                        }
+                });
         }
         /*
          *任务完成

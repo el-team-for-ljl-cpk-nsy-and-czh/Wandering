@@ -21,8 +21,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import static java.lang.Math.sin;
 
 public class StartGameActivity extends AppCompatActivity {
@@ -46,17 +44,23 @@ public class StartGameActivity extends AppCompatActivity {
         //第一次进行游戏出现指导
         if(firstStart){
             firstStart = false;
-            int[] IDs = {R.id.Guide1,R.id.guide2,R.id.guide3,R.id.guide4,R.id.guide5,R.id.guide6};
+            int[] IDs = {R.id.Guide1,R.id.guide2,R.id.guide3,R.id.guide4,R.id.guide5,R.id.guide6,R.id.guide7};
             findViewById(R.id.guideView).setVisibility(View.VISIBLE);
             findViewById(R.id.goback).setVisibility(View.INVISIBLE);
             findViewById(R.id.restart).setVisibility(View.INVISIBLE);
-            findViewById(R.id.start).setVisibility(View.INVISIBLE);
+            findViewById(R.id.start).setClickable(false);
             findViewById(R.id.plus).setClickable(false);
             findViewById(R.id.minus).setClickable(false);
             findViewById(R.id.goOnButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(numberNeededInGuide<5){
+                    if(numberNeededInGuide<6){
+                        if(numberNeededInGuide==4){
+                            findViewById(R.id.arrow).setVisibility(View.VISIBLE);
+                        }
+                        if(numberNeededInGuide==5){
+                            findViewById(R.id.arrow).setVisibility(View.INVISIBLE);
+                        }
                         findViewById(IDs[numberNeededInGuide]).setVisibility(View.INVISIBLE);
                         findViewById(IDs[numberNeededInGuide+1]).setVisibility(View.VISIBLE);
                     }
@@ -66,7 +70,7 @@ public class StartGameActivity extends AppCompatActivity {
                         findViewById(R.id.guideView).setVisibility(View.GONE);
                         findViewById(R.id.goback).setVisibility(View.VISIBLE);
                         findViewById(R.id.restart).setVisibility(View.VISIBLE);
-                        findViewById(R.id.start).setVisibility(View.VISIBLE);
+                        findViewById(R.id.start).setClickable(true);
                         findViewById(R.id.minus).setClickable(true);
                         findViewById(R.id.plus).setClickable(true);
                     }

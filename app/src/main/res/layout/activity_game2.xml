@@ -61,7 +61,7 @@
         android:layout_marginTop="164dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/door" />
+        app:srcCompat="@drawable/door1" />
 
     <ImageView
         android:id="@+id/earth"
@@ -173,10 +173,71 @@
         app:layout_constraintStart_toEndOf="@+id/plus_1" />
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/congratulationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="436dp"
+            android:layout_height="298dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="160dp"
+            android:alpha="0.7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/alertdialoguesmall" />
+
+        <TextView
+            android:id="@+id/congratulation"
+            android:layout_width="152dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="96dp"
+            android:background="@color/colorOfAlert"
+            android:text="@string/congratulationMessage"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+        <Button
+            android:id="@+id/map"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="82dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="36dp"
+            android:alpha="1"
+            android:background="@color/colorOfAlert"
+            android:text="钻研地图"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/nextLevel"
+            app:layout_constraintTop_toBottomOf="@+id/nextLevel" />
+
+        <Button
+            android:id="@+id/nextLevel"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="82dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="68dp"
+            android:background="#6574D4FF"
+            android:text="继续旅程"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/congratulation"
+            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/dialogueView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:background="@color/transparentBlack"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/dialogue"
@@ -192,104 +253,86 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.808"
-            app:srcCompat="@drawable/alertdialoguesmall" />
+            app:srcCompat="@drawable/alertwarning" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="182dp"
-            android:layout_height="118dp"
+            android:layout_height="130dp"
             android:layout_marginStart="76dp"
-            android:layout_marginTop="92dp"
-            android:background="@color/colorOfAlert"
+            android:layout_marginTop="72dp"
+            android:background="@color/alertRed"
+            android:fontFamily="sans-serif"
             android:text="@string/MessageWhenBoom"
             android:textColor="@android:color/white"
             android:textSize="19dp"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/dialogue"
-            app:layout_constraintTop_toTopOf="@+id/dialogue" />
+            app:layout_constraintTop_toTopOf="@+id/dialogue"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/cancelButton"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="89dp"
             android:layout_height="36dp"
-            android:layout_marginTop="192dp"
+            android:layout_marginTop="172dp"
             android:layout_marginEnd="48dp"
-            android:background="@color/colorOfAlert"
+            android:background="@color/alertRed"
             android:text="再次尝试"
             android:textColor="@android:color/white"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/dialogue"
             app:layout_constraintTop_toTopOf="@+id/dialogue"
-            tools:text="再次尝试" />
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/congratulationView"
-        android:layout_width="715dp"
-        android:layout_height="395dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/LayoutInStartGame"
-        app:layout_constraintEnd_toStartOf="@+id/LayoutInStartGame"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
+            tools:text="再次尝试"
+            tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/congratulation"
-            android:layout_width="151dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="144dp"
-            android:layout_marginBottom="120dp"
-            android:alpha="1"
+            android:id="@+id/Rlimit_text"
+            android:layout_width="275dp"
+            android:layout_height="135dp"
             android:background="@color/colorOfAlert"
-            android:text="@string/congratulationMessage"
+            android:fontFamily="sans-serif"
+            android:text="          在天体力学中，一个大质量天体对一个小质量天体进行引力作用时，小质量天体可以被大质量天体引力撕裂的最大距离即为洛希极限。(摘自《百度百科》)\n\nTips : 地球流浪时，要注意控制好与星球之间的距离，不要小于洛希极限哦！"
             android:textColor="@android:color/white"
-            android:textSize="19dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-            app:layout_constraintEnd_toEndOf="@+id/imageView10" />
-
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="369dp"
-            android:layout_height="260dp"
-            android:layout_marginBottom="68dp"
-            android:alpha="0.65"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.523"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/alertdialoguesmall" />
+            android:textSize="14dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogue"
+            app:layout_constraintEnd_toEndOf="@+id/dialogue"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="@+id/dialogue"
+            app:layout_constraintTop_toTopOf="@+id/dialogue"
+            app:layout_constraintVertical_bias="0.402"
+            tools:visibility="invisible" />
 
         <Button
-            android:id="@+id/map"
+            android:id="@+id/R_limit"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="53dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="36dp"
-            android:background="@color/colorOfAlert"
-            android:text="钻研地图"
+            android:layout_width="89dp"
+            android:layout_height="36dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/alertRed"
+            android:text="洛希极限？"
             android:textColor="@android:color/white"
-            android:textSize="12dp"
             android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="@+id/nextLevel"
-            app:layout_constraintTop_toBottomOf="@+id/nextLevel" />
+            app:layout_constraintBottom_toTopOf="@+id/cancelButton"
+            app:layout_constraintStart_toStartOf="@+id/cancelButton"
+            tools:visibility="visible" />
 
         <Button
-            android:id="@+id/nextLevel"
+            android:id="@+id/gotIt"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="53dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="64dp"
+            android:layout_width="72dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="228dp"
+            android:layout_marginTop="12dp"
             android:background="@color/colorOfAlert"
-            android:text="继续旅程"
+            android:text="@string/got_it"
             android:textColor="@android:color/white"
-            android:textSize="12dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView10"
-            app:layout_constraintTop_toTopOf="@+id/imageView10" />
+            android:textSize="16dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/Rlimit_text"
+            app:layout_constraintTop_toBottomOf="@+id/Rlimit_text" />
     </android.support.constraint.ConstraintLayout>
 
 
