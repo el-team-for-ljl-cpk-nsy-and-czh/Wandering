@@ -19,6 +19,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     @Override
@@ -40,8 +42,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                Intent intent = new Intent(MainActivity.this,StartGameFlashActivity.class).putExtra("UnlockedGame",unlockedGames);
-                startActivity(intent);
+                Intent intent;
+                switch (unlockedGames){
+                    case 1:{intent = new Intent(MainActivity.this,StartGameActivity.class) ;break;}
+                    case 2:{intent = new Intent(MainActivity.this,Game2Activity.class);break;}
+                    case 3:{intent = new Intent(MainActivity.this,Game3Activity.class);break;}
+                    default:{intent = new Intent(MainActivity.this,StartGameActivity.class);}
+                }
+                startActivity(intent.putExtra("UnlockedGame",unlockedGames));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
