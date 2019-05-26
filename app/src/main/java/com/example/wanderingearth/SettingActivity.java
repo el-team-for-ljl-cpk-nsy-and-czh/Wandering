@@ -16,13 +16,12 @@ import android.widget.TextView;
 
 public class SettingActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer ;
-    private int unlockedGames;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         mediaPlayer = MediaPlayer.create(this,R.raw.disound);
         mediaPlayer.seekTo(0);
-        unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
+        int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         getWindow().setEnterTransition(new Fade().setDuration(300).excludeChildren(R.drawable.background_paintstyle,true));
         setContentView(R.layout.settings);

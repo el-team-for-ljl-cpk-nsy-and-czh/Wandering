@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                Intent intent = new Intent(MainActivity.this,SettingActivity.class).putExtra("UnlockedGames",unlockedGames);
+                Intent intent = new Intent(MainActivity.this,SettingActivity.class).putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);//启动设置页面；
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
