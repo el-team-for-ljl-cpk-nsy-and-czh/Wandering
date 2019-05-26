@@ -3,6 +3,8 @@ package com.example.wanderingearth;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Explode;
@@ -16,7 +18,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
-
+    private SoundPool soundPool = new SoundPool(10, AudioManager.STREAM_SYSTEM,5);
+    public int music = soundPool.load(this,R.raw.disound,1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.StartGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playMusic();
                 Intent intent = new Intent(MainActivity.this,StartGameFlashActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Setting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playMusic();
                 Intent intent = new Intent(MainActivity.this,SettingActivity.class);getWindow().setExitTransition(new Fade().setDuration(300).excludeChildren(R.drawable.background_paintstyle,true));
                 startActivity(intent);//启动设置页面；
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -50,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Continue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playMusic();
                 Intent intent = new Intent(MainActivity.this,ChooseGameActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -59,9 +65,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.ExitGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playMusic();
                 getWindow().setExitTransition(new Fade().setDuration(200));
                 ActivityContainer.getInstance().finishAllActivity();
             }
         });
+    }
+
+    private void playMusic(){
+        soundPool.play(music,1,1,0,0,1);
     }
 }

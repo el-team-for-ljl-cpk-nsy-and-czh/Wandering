@@ -35,6 +35,7 @@ protected void onCreate(Bundle savedInstanceState) {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.activity_game2);
+        int unlockedGames = getIntent().getIntExtra("UnlockedGame",2);
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
@@ -72,7 +73,7 @@ protected void onCreate(Bundle savedInstanceState) {
         findViewById(R.id.goback).setOnClickListener(new View.OnClickListener() {
 @Override
 public void onClick(View v) {
-        Intent intent = new Intent(Game2Activity.this,ChooseGameActivity.class).putExtra("UnlockedGame",2);
+        Intent intent = new Intent(Game2Activity.this,ChooseGameActivity.class).putExtra("UnlockedGame",unlockedGames);
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         finish();

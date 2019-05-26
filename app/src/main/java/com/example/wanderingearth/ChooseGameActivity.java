@@ -29,7 +29,8 @@ public class ChooseGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getWindow().setExitTransition(new Fade().setDuration(500));
-                Intent intent = new Intent(ChooseGameActivity.this,StartGameActivity.class);
+                Intent intent = new Intent(ChooseGameActivity.this,StartGameActivity.class)
+                        .putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
@@ -41,7 +42,8 @@ public class ChooseGameActivity extends AppCompatActivity {
         findViewById(R.id.Level2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ChooseGameActivity.this,Game2Activity.class));
+                startActivity(new Intent(ChooseGameActivity.this,Game2Activity.class)
+                        .putExtra("UnlockedGame",unlockedGames));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
@@ -49,7 +51,8 @@ public class ChooseGameActivity extends AppCompatActivity {
         findViewById(R.id.Level3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ChooseGameActivity.this,Game3Activity.class));
+                startActivity(new Intent(ChooseGameActivity.this,Game3Activity.class)
+                        .putExtra("UnlockedGame",unlockedGames));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
