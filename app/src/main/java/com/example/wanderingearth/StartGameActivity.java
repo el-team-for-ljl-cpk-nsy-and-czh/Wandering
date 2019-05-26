@@ -3,6 +3,7 @@ package com.example.wanderingearth;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import static java.lang.Math.sin;
 
 public class StartGameActivity extends AppCompatActivity {
+    private MediaPlayer mediaPlayerAlert;
     private static boolean firstStart = true;
     private int numberNeededInGuide=0;
     //此处声明earth则在后续的所有方法中都可以使用earth；
@@ -36,6 +38,7 @@ public class StartGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityContainer.getInstance().addActivity(this);
+        mediaPlayerAlert = new MediaPlayer().create(this,R.raw.alertvoice);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
         int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
@@ -210,12 +213,15 @@ public class StartGameActivity extends AppCompatActivity {
          */
         if(distence_e_j<=jupiter_radius*1.22+earth_radius||distence_e_b<=barrier_radius*1.22+earth_radius){
             animator.cancel();
+            mediaPlayerAlert.start();
+            mediaPlayerAlert.release();
             findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
             findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
             findViewById(R.id.earth).setVisibility(View.INVISIBLE);
             findViewById(R.id.plus).setVisibility(View.INVISIBLE);
             findViewById(R.id.minus).setVisibility(View.INVISIBLE);
             findViewById(R.id.Mass_text).setVisibility(View.INVISIBLE);
+            findViewById(R.id.LayoutInStartGame).setVisibility(View.INVISIBLE);
             findViewById(R.id.restart).setClickable(false);
             findViewById(R.id.start).setClickable(false);
             findViewById(R.id.goback).setClickable(false);
@@ -231,6 +237,7 @@ public class StartGameActivity extends AppCompatActivity {
                     findViewById(R.id.plus).setVisibility(View.VISIBLE);
                     findViewById(R.id.minus).setVisibility(View.VISIBLE);
                     findViewById(R.id.Mass_text).setVisibility(View.VISIBLE);
+                    findViewById(R.id.LayoutInStartGame).setVisibility(View.VISIBLE);
                     findViewById(R.id.restart).setClickable(true);
                     findViewById(R.id.start).setClickable(true);
                     findViewById(R.id.goback).setClickable(true);
@@ -275,6 +282,7 @@ public class StartGameActivity extends AppCompatActivity {
             findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
             findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
             findViewById(R.id.earth).setVisibility(View.INVISIBLE);
+            findViewById(R.id.LayoutInStartGame).setVisibility(View.INVISIBLE);
             findViewById(R.id.goback).setClickable(false);
             findViewById(R.id.restart).setClickable(false);
             findViewById(R.id.start).setClickable(false);
@@ -292,6 +300,7 @@ public class StartGameActivity extends AppCompatActivity {
                     findViewById(R.id.earth).setVisibility(View.VISIBLE);
                     findViewById(R.id.plus).setVisibility(View.VISIBLE);
                     findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.LayoutInStartGame).setVisibility(View.VISIBLE);
                     findViewById(R.id.Mass_text).setVisibility(View.VISIBLE);
                     findViewById(R.id.goback).setClickable(true);
                     findViewById(R.id.restart).setClickable(true);

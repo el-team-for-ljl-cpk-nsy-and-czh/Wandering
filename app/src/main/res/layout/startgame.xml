@@ -211,7 +211,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.808"
-            app:srcCompat="@drawable/alertdialoguesmall" />
+            app:srcCompat="@drawable/alertwarning" />
 
         <TextView
             android:id="@+id/textView3"
@@ -219,7 +219,7 @@
             android:layout_height="130dp"
             android:layout_marginStart="76dp"
             android:layout_marginTop="72dp"
-            android:background="@color/colorOfAlert"
+            android:background="@color/alertRed"
             android:fontFamily="sans-serif"
             android:text="@string/MessageWhenBoom"
             android:textColor="@android:color/white"
@@ -227,7 +227,7 @@
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/dialogue"
             app:layout_constraintTop_toTopOf="@+id/dialogue"
-            tools:visibility="invisible" />
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/cancelButton"
@@ -236,20 +236,20 @@
             android:layout_height="36dp"
             android:layout_marginTop="172dp"
             android:layout_marginEnd="48dp"
-            android:background="@color/colorOfAlert"
+            android:background="@color/alertRed"
             android:text="再次尝试"
             android:textColor="@android:color/white"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/dialogue"
             app:layout_constraintTop_toTopOf="@+id/dialogue"
             tools:text="再次尝试"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/Rlimit_text"
             android:layout_width="275dp"
             android:layout_height="135dp"
-            android:background="@color/colorOfAlert"
+            android:background="@color/alertRed"
             android:fontFamily="sans-serif"
             android:text="          在天体力学中，一个大质量天体对一个小质量天体进行引力作用时，小质量天体可以被大质量天体引力撕裂的最大距离即为洛希极限。(摘自《百度百科》)\n\nTips : 地球流浪时，要注意控制好与星球之间的距离，不要小于洛希极限哦！"
             android:textColor="@android:color/white"
@@ -260,7 +260,8 @@
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="@+id/dialogue"
             app:layout_constraintTop_toTopOf="@+id/dialogue"
-            app:layout_constraintVertical_bias="0.229" />
+            app:layout_constraintVertical_bias="0.229"
+            tools:visibility="invisible" />
 
         <Button
             android:id="@+id/R_limit"
@@ -268,13 +269,13 @@
             android:layout_width="89dp"
             android:layout_height="36dp"
             android:layout_marginBottom="32dp"
-            android:background="@color/colorOfAlert"
+            android:background="@color/alertRed"
             android:text="洛希极限？"
             android:textColor="@android:color/white"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/cancelButton"
             app:layout_constraintStart_toStartOf="@+id/cancelButton"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/gotIt"

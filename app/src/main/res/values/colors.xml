@@ -9,4 +9,5 @@
     <color name="transparentBlack">#6B000000</color>
     <color name="dangerosColor">#FD674F</color>
     <color name="colorOfButtonInGame">#B8FDFF</color>
+    <color name="alertRed">#77F89E83</color>
 </resources>

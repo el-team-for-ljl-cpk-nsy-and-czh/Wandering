@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
+                mediaPlayer.release();
                 Intent intent = new Intent(MainActivity.this,StartGameFlashActivity.class).putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
+                mediaPlayer.release();
                 Intent intent = new Intent(MainActivity.this,SettingActivity.class);getWindow().setExitTransition(new Fade().setDuration(300).excludeChildren(R.drawable.background_paintstyle,true));
                 startActivity(intent);//启动设置页面；
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
+                mediaPlayer.release();
                 Intent intent = new Intent(MainActivity.this,ChooseGameActivity.class).putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
+                mediaPlayer.release();
                 getWindow().setExitTransition(new Fade().setDuration(200));
                 ActivityContainer.getInstance().finishAllActivity();
             }
