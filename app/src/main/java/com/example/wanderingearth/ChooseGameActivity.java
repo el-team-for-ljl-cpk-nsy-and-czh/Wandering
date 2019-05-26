@@ -67,7 +67,7 @@ public class ChooseGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                Intent intent = new Intent(ChooseGameActivity.this,MainActivity.class).putExtra("UnlcokedGame",unlockedGames);
+                Intent intent = new Intent(ChooseGameActivity.this,MainActivity.class).putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
