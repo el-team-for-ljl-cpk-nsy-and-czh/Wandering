@@ -32,7 +32,7 @@ public class Game3Activity extends AppCompatActivity {
         findViewById(R.id.select).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Game3Activity.this,ChooseGameActivity.class));
+                startActivity(new Intent(Game3Activity.this,ChooseGameActivity.class).putExtra("UnlockedGame",3));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
@@ -40,7 +40,7 @@ public class Game3Activity extends AppCompatActivity {
         findViewById(R.id.main).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Game3Activity.this,MainActivity.class));
+                startActivity(new Intent(Game3Activity.this,MainActivity.class).putExtra("UnlockedGame",3));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
