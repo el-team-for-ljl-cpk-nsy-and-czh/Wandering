@@ -102,7 +102,7 @@ public void onWindowFocusChanged(boolean hasFocus){
         if (i == 1) {
         //此处可以正常获取width、height等
         barrier_2.setMass(350);
-        barrier_1.setMass(330);
+        barrier_1.setMass(310);
         TextView m_text2 = findViewById(R.id.m_text2);
         TextView m_text1=findViewById(R.id.m_text1);
         m_text2.setText(String.valueOf(barrier_2.getMass()));
@@ -168,10 +168,11 @@ public void propertyMove(View v) {
         TextView m_text2=findViewById(R.id.m_text2);
         m_text1.setVisibility(View.GONE);
         m_text2.setVisibility(View.GONE);
+        ImageView barrier_iView3=findViewById(R.id.barrier_3);
         ImageView barrier_iView2=findViewById(R.id.barrier_2);
         ImageView barrier_iView1=findViewById(R.id.barrier_1);
         ImageView door_iView=findViewById(R.id.door);
-        final int barrier1_radius=barrier_iView1.getHeight()/2,barrier2_radius=barrier_iView2.getHeight()/2,door_radius=door_iView.getHeight()/2;
+        final int barrier1_radius=barrier_iView1.getHeight()/2,barrier2_radius=barrier_iView2.getHeight()/2,barrier3_radius=barrier_iView3.getHeight()/2,door_radius=door_iView.getHeight()/2;
         final ImageView earth = findViewById(R.id.earth);
         final int left = earth.getLeft();
         final int top = earth.getTop();
@@ -179,7 +180,7 @@ public void propertyMove(View v) {
 
 
         final ValueAnimator animator = ValueAnimator.ofInt(0, WINDOWWIDTH-earth_radius*2-left);//横屏宽度
-        animator.setDuration(3000);
+        animator.setDuration(5000);
         animator.setInterpolator(new LinearInterpolator());
         animator.addUpdateListener(animation -> {
         /*
@@ -188,12 +189,15 @@ public void propertyMove(View v) {
         int xEarth=earth.getLeft()+earth_radius,yEarth=earth.getTop()+earth_radius;
         int xBarrier1=barrier_iView1.getLeft()+barrier1_radius,yBarrier1=barrier_iView1.getTop()+barrier1_radius;
         int xBarrier2=barrier_iView2.getLeft()+barrier2_radius,yBarrier2=barrier_iView2.getTop()+barrier2_radius;
+        int xBarrier3=barrier_iView3.getLeft()+barrier3_radius,yBarrier3=barrier_iView3.getTop()+barrier3_radius;
+
         int xDoor=door_iView.getLeft()+door_radius,yDoor=door_iView.getTop()+door_radius;
         /*
          *获取距离
          */
         double distence_e_b2=Math.sqrt((xEarth-xBarrier2)*(xEarth-xBarrier2)+(yEarth-yBarrier2)*(yEarth-yBarrier2));
         double distence_e_b1=Math.sqrt((xEarth-xBarrier1)*(xEarth-xBarrier1)+(yEarth-yBarrier1)*(yEarth-yBarrier1));
+        double distence_e_b3=Math.sqrt((xEarth-xBarrier3)*(xEarth-xBarrier3)+(yEarth-yBarrier3)*(yEarth-yBarrier3));
         double distence_e_door=Math.sqrt((xEarth-xDoor)*(xEarth-xDoor)+(yEarth-yDoor)*(yEarth-yDoor));
         /*
          *实现地球移动的代码的一部分
@@ -203,7 +207,7 @@ public void propertyMove(View v) {
         /*
          *地球碰撞了星球
          */
-        if(distence_e_b1<=barrier1_radius+earth_radius||distence_e_b2<=barrier2_radius+earth_radius){
+        if(distence_e_b1<=barrier1_radius*1.22+earth_radius||distence_e_b2<=barrier2_radius*1.22+earth_radius||distence_e_b3<=barrier3_radius*1.22+earth_radius){
                 animator.cancel();
                 findViewById(R.id.barrier_2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);

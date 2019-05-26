@@ -134,35 +134,8 @@
         android:id="@+id/congratulationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparentBlack"
         android:visibility="gone"
         tools:visibility="visible">
-
-        <Button
-            android:id="@+id/map"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="82dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="36dp"
-            android:background="@color/colorOfButtonInGame"
-            android:text="钻研地图"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="@+id/nextLevel"
-            app:layout_constraintTop_toBottomOf="@+id/nextLevel" />
-
-        <Button
-            android:id="@+id/nextLevel"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="82dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="68dp"
-            android:background="@color/colorOfButtonInGame"
-            android:text="继续旅程"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/congratulation"
-            app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -186,6 +159,33 @@
             android:textColor="@color/colorOfTextAlert"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+        <Button
+            android:id="@+id/map"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="82dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="36dp"
+            android:alpha="1"
+            android:background="@color/colorOfAlert"
+            android:text="钻研地图"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/nextLevel"
+            app:layout_constraintTop_toBottomOf="@+id/nextLevel" />
+
+        <Button
+            android:id="@+id/nextLevel"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="82dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="68dp"
+            android:background="#6574D4FF"
+            android:text="继续旅程"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/congratulation"
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
     </android.support.constraint.ConstraintLayout>
 
@@ -216,12 +216,13 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="182dp"
-            android:layout_height="118dp"
+            android:layout_height="130dp"
             android:layout_marginStart="76dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="72dp"
             android:background="@color/colorOfAlert"
+            android:fontFamily="sans-serif"
             android:text="@string/MessageWhenBoom"
-            android:textColor="@color/colorOfTextAlert"
+            android:textColor="@android:color/white"
             android:textSize="19dp"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/dialogue"
@@ -235,7 +236,8 @@
             android:layout_marginTop="192dp"
             android:layout_marginEnd="48dp"
             android:background="@color/colorOfAlert"
-            android:textColor="@color/colorOfTextAlert"
+            android:text="再次尝试"
+            android:textColor="@android:color/white"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/dialogue"
             app:layout_constraintTop_toTopOf="@+id/dialogue"

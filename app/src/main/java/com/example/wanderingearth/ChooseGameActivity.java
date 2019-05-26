@@ -9,14 +9,14 @@ import android.view.View;
 import android.view.WindowManager;
 
 public class ChooseGameActivity extends AppCompatActivity {
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer1;
     private int[] listOfButtons = {R.id.Level2,R.id.Level3,R.id.Level4,R.id.Level5};
     private int[] listOfLockedViews = {R.id.Level2ViewLocked,R.id.Level3ViewLocked,R.id.Level4ViewLocked,R.id.Level5ViewLocked};
     private int[] listOfUnlockedViews = {R.id.Level2ViewUnlocked,R.id.Level3ViewUnlocked,R.id.Level4ViewUnlocked,R.id.Level5ViewUnlocked};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mediaPlayer.create(this,R.raw.disound);
+        mediaPlayer1.create(this,R.raw.disound);
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.activity_choose);
@@ -31,7 +31,7 @@ public class ChooseGameActivity extends AppCompatActivity {
         findViewById(R.id.Level1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.start();
+                playMusic();
                 Intent intent = new Intent(ChooseGameActivity.this,StartGameActivity.class)
                         .putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
@@ -45,7 +45,7 @@ public class ChooseGameActivity extends AppCompatActivity {
         findViewById(R.id.Level2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.start();
+                playMusic();
                 startActivity(new Intent(ChooseGameActivity.this,Game2Activity.class)
                         .putExtra("UnlockedGame",unlockedGames));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -55,7 +55,7 @@ public class ChooseGameActivity extends AppCompatActivity {
         findViewById(R.id.Level3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.start();
+                playMusic();
                 startActivity(new Intent(ChooseGameActivity.this,Game3Activity.class)
                         .putExtra("UnlockedGame",unlockedGames));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -65,7 +65,7 @@ public class ChooseGameActivity extends AppCompatActivity {
         findViewById(R.id.ReturnInChoose).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.start();
+                playMusic();
                 Intent intent = new Intent(ChooseGameActivity.this,MainActivity.class).putExtra("UnlcokedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -73,4 +73,8 @@ public class ChooseGameActivity extends AppCompatActivity {
             }
         });
     }
+    private void playMusic(){
+        mediaPlayer1.start();
+    }
+
 }

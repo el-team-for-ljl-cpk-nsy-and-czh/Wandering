@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Explode;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void playMusic(){
+    private void playMusic() {
         mediaPlayer.start();
     }
 }

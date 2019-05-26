@@ -208,7 +208,7 @@ public class StartGameActivity extends AppCompatActivity {
         /*
          *地球碰撞了星球
          */
-        if(distence_e_j<=jupiter_radius+earth_radius||distence_e_b<=barrier_radius+earth_radius){
+        if(distence_e_j<=jupiter_radius*1.22+earth_radius||distence_e_b<=barrier_radius*1.22+earth_radius){
             animator.cancel();
             findViewById(R.id.jupiter).setVisibility(View.INVISIBLE);
             findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);

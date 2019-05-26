@@ -19,7 +19,7 @@
             android:layout_marginTop="232dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/start_button" />
+            app:srcCompat="@drawable/play" />
 
         <Button
             android:id="@+id/StartGame"
@@ -89,7 +89,7 @@
             android:layout_marginTop="255dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/continue_button" />
+            app:srcCompat="@drawable/select" />
 
         <ImageView
             android:id="@+id/setting_I"
