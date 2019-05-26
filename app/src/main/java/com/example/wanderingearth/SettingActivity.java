@@ -16,23 +16,25 @@ import android.widget.TextView;
 
 public class SettingActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer ;
+    private int unlockedGames;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         mediaPlayer = MediaPlayer.create(this,R.raw.disound);
         mediaPlayer.seekTo(0);
+        unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         getWindow().setEnterTransition(new Fade().setDuration(300).excludeChildren(R.drawable.background_paintstyle,true));
         setContentView(R.layout.settings);
         ActivityContainer.getInstance().addActivity(this);
-        /**
+        /*
          * 按下“返回”按钮可以实现返回返主界面；
          */
         findViewById(R.id.ReturnInSetting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 playMusic();
-                Intent intent = new Intent(SettingActivity.this,MainActivity.class);
+                Intent intent = new Intent(SettingActivity.this,MainActivity.class).putExtra("UnlockedGame",unlockedGames);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();

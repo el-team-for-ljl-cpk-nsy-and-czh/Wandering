@@ -4,7 +4,9 @@ package com.example.wanderingearth;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 import static java.lang.Math.sin;
 
 public class Game2Activity extends AppCompatActivity {
+        private MediaPlayer mediaPlayer;
         int WINDOWWIDTH,WINDOWHEIGHT;
         final double PI=3.1415926;
         Barrier barrier_1=new Barrier();
@@ -99,6 +102,7 @@ public void onClick(View v) {
 @Override
 public void onWindowFocusChanged(boolean hasFocus){
         super.onWindowFocusChanged(hasFocus);
+        mediaPlayer = MediaPlayer.create(this,R.raw.alertvoice);
         if (i == 1) {
         //此处可以正常获取width、height等
         barrier_2.setMass(350);
@@ -209,6 +213,14 @@ public void propertyMove(View v) {
          */
         if(distence_e_b1<=barrier1_radius*1.22+earth_radius||distence_e_b2<=barrier2_radius*1.22+earth_radius||distence_e_b3<=barrier3_radius*1.22+earth_radius){
                 animator.cancel();
+                mediaPlayer.seekTo(0);
+                mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                                mp.release();
+                        }
+                });
                 findViewById(R.id.barrier_2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.barrier_1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.LayoutInStartGame).setVisibility(View.INVISIBLE);
@@ -505,6 +517,11 @@ public void minus(View v){
                 alphaAnimation_path.setInterpolator(new LinearInterpolator());
                 alphaAnimation_path.setRepeatCount(-1);
                 layout.startAnimation(alphaAnimation_path);
+        }
+        @Override
+        protected void onDestroy(){
+            super.onDestroy();
+            mediaPlayer.release();
         }
 
 }
