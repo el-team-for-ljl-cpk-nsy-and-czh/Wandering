@@ -77,7 +77,6 @@
         android:id="@+id/barrier_3"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/door"
         app:layout_constraintStart_toStartOf="@+id/barrier_1"
         app:srcCompat="@drawable/black_planet" />
@@ -87,7 +86,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="168dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mark" />
@@ -133,7 +132,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="436dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/LayoutInStartGame1"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/blue_planet" />
@@ -241,8 +240,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transparentBlack"
-        android:visibility="gone"
-        tools:visibility="gone">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/dialogue"

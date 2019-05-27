@@ -17,9 +17,10 @@ public class ChooseGameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int unlockedGames = getIntent().getExtras().getInt("UnlockedGame",1);
-        int musicTime = getIntent().getExtras().getInt("musicTime",0);
+        int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
+        int musicTime = getIntent().getIntExtra("musicTime",0);
         backgroungPlayer = MediaPlayer.create(this,R.raw.backgroundmusic);
+        backgroungPlayer.setLooping(true);
         backgroungPlayer.seekTo(musicTime);
         backgroungPlayer.start();
         mediaPlayer1 = MediaPlayer.create(this,R.raw.disound);

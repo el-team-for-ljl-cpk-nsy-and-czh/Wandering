@@ -30,8 +30,8 @@ public class Game3Activity extends AppCompatActivity {
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
-        int musicTime = getIntent().getExtras().getInt("musicTime",0);
-        gamebackPlayer = MediaPlayer.create(this,R.raw.musicingame);
+        int musicTime = getIntent().getIntExtra("musicTime",0);
+        gamebackPlayer = MediaPlayer.create(this,R.raw.mtets);
         gamebackPlayer.seekTo(musicTime);
         gamebackPlayer.setLooping(true);
         gamebackPlayer.start();;

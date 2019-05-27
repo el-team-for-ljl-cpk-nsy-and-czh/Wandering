@@ -17,7 +17,7 @@ public class StartGameFlashActivity extends AppCompatActivity {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_start_game_animation);
-        /**
+        /*
          * 以下是实现文本框渐变动画的代码
          */
         final AlphaAnimation myani = new AlphaAnimation(1,0.3f);

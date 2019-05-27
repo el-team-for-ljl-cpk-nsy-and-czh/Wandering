@@ -27,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int unlockedGames = getIntent().getExtras().getInt("UnlcokedGame",1);
-        int musicTime = getIntent().getExtras().getInt("musicTime",0);
+        int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
+        int musicTime = getIntent().getIntExtra("musicTime",0);
         ActivityContainer.getInstance().addActivity(this);
+        backgroundPlayer = MediaPlayer.create(this,R.raw.backgroundmusic);
         backgroundPlayer.seekTo(musicTime);
         backgroundPlayer.setLooping(true);
         backgroundPlayer.start();
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putInt("UnlockedGame",unlockedGames);
                 bundle.putInt("musicTime",backgroundPlayer.getCurrentPosition());
                 backgroundPlayer.release();
-                Intent intent = new Intent(MainActivity.this,SettingActivity.class).putExtras(bundle);
+                Intent intent = new Intent(MainActivity.this,ChooseGameActivity.class).putExtras(bundle);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();

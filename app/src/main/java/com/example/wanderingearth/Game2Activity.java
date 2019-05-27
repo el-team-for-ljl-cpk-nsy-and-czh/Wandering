@@ -39,9 +39,9 @@ protected void onCreate(Bundle savedInstanceState) {
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.activity_game2);
-        unlockedGames = getIntent().getExtras().getInt("UnlockedGame",2);
-        int musicTime = getIntent().getExtras().getInt("musicTime",0);
-        gamebackPlayer = MediaPlayer.create(this,R.raw.musicingame);
+        unlockedGames = getIntent().getIntExtra("UnlockedGame",2);
+        int musicTime = getIntent().getIntExtra("musicTime",0);
+        gamebackPlayer = MediaPlayer.create(this,R.raw.mtets);
         gamebackPlayer.seekTo(musicTime);
         gamebackPlayer.setLooping(true);
         gamebackPlayer.start();
@@ -84,7 +84,7 @@ protected void onCreate(Bundle savedInstanceState) {
 public void onClick(View v) {
         gamebackPlayer.pause();
         Bundle bundle = new Bundle();
-        bundle.putInt("UnlockedGames",unlockedGames);
+        bundle.putInt("UnlockedGame",unlockedGames);
         Intent intent = new Intent(Game2Activity.this,ChooseGameActivity.class).putExtras(bundle);
         gamebackPlayer.release();
         startActivity(intent);
@@ -96,17 +96,21 @@ public void onClick(View v) {
         以下是重新开始游戏按钮方法，将路径设置为初始位置，将地球的位置放回原点
          */
         findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
+                int l=1;
 @Override
 public void onClick(View v) {
-        gamebackPlayer.pause();
-        Bundle bundle = new Bundle();
-        bundle.putInt("UnlockedGame",unlockedGames);
-        bundle.putInt("musicTime",gamebackPlayer.getCurrentPosition());
-        Intent intent = new Intent(Game2Activity.this,Game2Activity.class).putExtras(bundle);
-        gamebackPlayer.release();
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-        finish();
+        if(l==1) {
+                gamebackPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame", unlockedGames);
+                bundle.putInt("musicTime", gamebackPlayer.getCurrentPosition());
+                Intent intent = new Intent(Game2Activity.this, Game2Activity.class).putExtras(bundle);
+                gamebackPlayer.release();
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
+                l=l+1;
+        }
         }
         });
         }
@@ -405,144 +409,148 @@ public void propertyMove(View v) {
  *加质量
  */
 public void plus(View v){
-        barrier_2.setMass(barrier_2.getMass()+1);
-        TextView mass=findViewById(R.id.m_text2);
-        mass.setText(String.valueOf(barrier_2.getMass()));
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
-        layout.removeAllViews();
-        ImageView earth_iView=findViewById(R.id.earth);
-        int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
-        int top=earth_iView.getTop()+earth_iView.getWidth()/2;
-        ImageView door=findViewById(R.id.door);
-        Earth earth = new Earth(this);
-        float[] XDots = new float[door.getLeft()-left+door.getWidth()/2];
-        float[] YDots = new float[door.getLeft()-left+door.getWidth()/2];
-        for (int i = 0; i < door.getLeft() - left+door.getWidth()/2; i++) {
-                if(i<=(door.getLeft() - left+door.getWidth()/2)/2) {
-                        XDots[i] = i + left;
-                        YDots[i] = (float) (-(Math.pow(1.03, barrier_2.getMass() - a) * sin((2 * PI / (door.getLeft() - left+door.getWidth()/2.0) * i)))) + top;
-                }
-                else {
-                        XDots[i] = i + left;
-                        YDots[i] = (float) (-(Math.pow(1.03, barrier_1.getMass() - a) * sin((2 * PI / (door.getLeft() - left+door.getWidth()/2.0) * i)))) + top;
-                }
-        }
-        earth.setXDots(XDots);
-        earth.setYDots(YDots);
-        //
-        layout.addView(earth);
-        AlphaAnimation alphaAnimation_path=new AlphaAnimation(0.95f,0.0f);
-        alphaAnimation_path.setDuration(800);
-        alphaAnimation_path.setRepeatMode(Animation.REVERSE);
-        alphaAnimation_path.setInterpolator(new LinearInterpolator());
-        alphaAnimation_path.setRepeatCount(-1);
-        layout.startAnimation(alphaAnimation_path);
-        }
-public void plus1(View v){
-        barrier_1.setMass(barrier_1.getMass()+1);
-        TextView mass=findViewById(R.id.m_text1);
-        mass.setText(String.valueOf(barrier_1.getMass()));
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
-        layout.removeAllViews();
-        ImageView earth_iView=findViewById(R.id.earth);
-        int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
-        int top=earth_iView.getTop()+earth_iView.getWidth()/2;
-        ImageView door=findViewById(R.id.door);
-        Earth earth = new Earth(this);
-        float[] XDots = new float[door.getLeft()-left+door.getWidth()/2];
-        float[] YDots = new float[door.getLeft()-left+door.getWidth()/2];
-        for (int i = 0; i < door.getLeft() - left+door.getWidth()/2; i++) {
-                if(i<=(door.getLeft() - left+door.getWidth()/2)/2) {
-                        XDots[i] = i + left;
-                        YDots[i] = (float) (-(Math.pow(1.03, barrier_2.getMass() - a) * sin((2 * PI / (door.getLeft() - left+door.getWidth()/2.0) * i)))) + top;
-                }
-                else {
-                        XDots[i] = i + left;
-                        YDots[i] = (float) (-(Math.pow(1.03, barrier_1.getMass() - a) * sin((2 * PI / (door.getLeft() - left+door.getWidth()/2.0) * i)))) + top;
-                }
-        }
-        earth.setXDots(XDots);
-        earth.setYDots(YDots);
-        //
-        layout.addView(earth);
-        AlphaAnimation alphaAnimation_path=new AlphaAnimation(0.95f,0.0f);
-        alphaAnimation_path.setDuration(800);
-        alphaAnimation_path.setRepeatMode(Animation.REVERSE);
-        alphaAnimation_path.setInterpolator(new LinearInterpolator());
-        alphaAnimation_path.setRepeatCount(-1);
-        layout.startAnimation(alphaAnimation_path);
-}
-
-/*
- *减质量
- */
-public void minus(View v){
-        barrier_2.setMass(barrier_2.getMass()-1);
-        TextView mass=findViewById(R.id.m_text2);
-        mass.setText(String.valueOf(barrier_2.getMass()));
-        LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
-        layout.removeAllViews();
-        ImageView earth_iView=findViewById(R.id.earth);
-        int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
-        int top=earth_iView.getTop()+earth_iView.getWidth()/2;
-        ImageView door=findViewById(R.id.door);
-        Earth earth = new Earth(this);
-        float[] XDots = new float[door.getLeft()-left+door.getWidth()/2];
-        float[] YDots = new float[door.getLeft()-left+door.getWidth()/2];
-        for (int i = 0; i < door.getLeft() - left+door.getWidth()/2; i++) {
-                if(i<=(door.getLeft() - left+door.getWidth()/2)/2) {
-                        XDots[i] = i + left;
-                        YDots[i] = (float) (-(Math.pow(1.03, barrier_2.getMass() - a) * sin((2 * PI / (door.getLeft() - left+door.getWidth()/2.0) * i)))) + top;
-                }
-                else {
-                        XDots[i] = i + left;
-                        YDots[i] = (float) (-(Math.pow(1.03, barrier_1.getMass() - a) * sin((2 * PI / (door.getLeft() - left+door.getWidth()/2.0) * i)))) + top;
-                }
-        }
-        earth.setXDots(XDots);
-        earth.setYDots(YDots);
-        //
-        layout.addView(earth);
-        AlphaAnimation alphaAnimation_path=new AlphaAnimation(0.95f,0.0f);
-        alphaAnimation_path.setDuration(800);
-        alphaAnimation_path.setRepeatMode(Animation.REVERSE);
-        alphaAnimation_path.setInterpolator(new LinearInterpolator());
-        alphaAnimation_path.setRepeatCount(-1);
-        layout.startAnimation(alphaAnimation_path);
-        }
-        public void minus1(View v){
-                barrier_1.setMass(barrier_1.getMass()-1);
-                TextView mass=findViewById(R.id.m_text1);
-                mass.setText(String.valueOf(barrier_1.getMass()));
+        if(barrier_2.getMass()<=363) {
+                barrier_2.setMass(barrier_2.getMass() + 1);
+                TextView mass = findViewById(R.id.m_text2);
+                mass.setText(String.valueOf(barrier_2.getMass()));
                 LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
                 layout.removeAllViews();
-                ImageView earth_iView=findViewById(R.id.earth);
-                int left=earth_iView.getLeft()+earth_iView.getWidth()/2;
-                int top=earth_iView.getTop()+earth_iView.getWidth()/2;
-                ImageView door=findViewById(R.id.door);
+                ImageView earth_iView = findViewById(R.id.earth);
+                int left = earth_iView.getLeft() + earth_iView.getWidth() / 2;
+                int top = earth_iView.getTop() + earth_iView.getWidth() / 2;
+                ImageView door = findViewById(R.id.door);
                 Earth earth = new Earth(this);
-                float[] XDots = new float[door.getLeft()-left+door.getWidth()/2];
-                float[] YDots = new float[door.getLeft()-left+door.getWidth()/2];
-                for (int i = 0; i < door.getLeft() - left+door.getWidth()/2; i++) {
-                        if(i<=(door.getLeft() - left+door.getWidth()/2)/2) {
+                float[] XDots = new float[door.getLeft() - left + door.getWidth() / 2];
+                float[] YDots = new float[door.getLeft() - left + door.getWidth() / 2];
+                for (int i = 0; i < door.getLeft() - left + door.getWidth() / 2; i++) {
+                        if (i <= (door.getLeft() - left + door.getWidth() / 2) / 2) {
                                 XDots[i] = i + left;
-                                YDots[i] = (float) (-(Math.pow(1.03, barrier_2.getMass() - a) * sin((2 * PI / (door.getLeft() - left+door.getWidth()/2.0) * i)))) + top;
-                        }
-                        else {
+                                YDots[i] = (float) (-(Math.pow(1.03, barrier_2.getMass() - a) * sin((2 * PI / (door.getLeft() - left + door.getWidth() / 2.0) * i)))) + top;
+                        } else {
                                 XDots[i] = i + left;
-                                YDots[i] = (float) (-(Math.pow(1.03, barrier_1.getMass() - a) * sin((2 * PI / (door.getLeft() - left+door.getWidth()/2.0) * i)))) + top;
+                                YDots[i] = (float) (-(Math.pow(1.03, barrier_1.getMass() - a) * sin((2 * PI / (door.getLeft() - left + door.getWidth() / 2.0) * i)))) + top;
                         }
                 }
                 earth.setXDots(XDots);
                 earth.setYDots(YDots);
                 //
                 layout.addView(earth);
-                AlphaAnimation alphaAnimation_path=new AlphaAnimation(0.95f,0.0f);
+                AlphaAnimation alphaAnimation_path = new AlphaAnimation(0.95f, 0.0f);
                 alphaAnimation_path.setDuration(800);
                 alphaAnimation_path.setRepeatMode(Animation.REVERSE);
                 alphaAnimation_path.setInterpolator(new LinearInterpolator());
                 alphaAnimation_path.setRepeatCount(-1);
                 layout.startAnimation(alphaAnimation_path);
+        }
+        }
+public void plus1(View v){
+        if(barrier_1.getMass()<=363) {
+                barrier_1.setMass(barrier_1.getMass() + 1);
+                TextView mass = findViewById(R.id.m_text1);
+                mass.setText(String.valueOf(barrier_1.getMass()));
+                LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
+                layout.removeAllViews();
+                ImageView earth_iView = findViewById(R.id.earth);
+                int left = earth_iView.getLeft() + earth_iView.getWidth() / 2;
+                int top = earth_iView.getTop() + earth_iView.getWidth() / 2;
+                ImageView door = findViewById(R.id.door);
+                Earth earth = new Earth(this);
+                float[] XDots = new float[door.getLeft() - left + door.getWidth() / 2];
+                float[] YDots = new float[door.getLeft() - left + door.getWidth() / 2];
+                for (int i = 0; i < door.getLeft() - left + door.getWidth() / 2; i++) {
+                        if (i <= (door.getLeft() - left + door.getWidth() / 2) / 2) {
+                                XDots[i] = i + left;
+                                YDots[i] = (float) (-(Math.pow(1.03, barrier_2.getMass() - a) * sin((2 * PI / (door.getLeft() - left + door.getWidth() / 2.0) * i)))) + top;
+                        } else {
+                                XDots[i] = i + left;
+                                YDots[i] = (float) (-(Math.pow(1.03, barrier_1.getMass() - a) * sin((2 * PI / (door.getLeft() - left + door.getWidth() / 2.0) * i)))) + top;
+                        }
+                }
+                earth.setXDots(XDots);
+                earth.setYDots(YDots);
+                //
+                layout.addView(earth);
+                AlphaAnimation alphaAnimation_path = new AlphaAnimation(0.95f, 0.0f);
+                alphaAnimation_path.setDuration(800);
+                alphaAnimation_path.setRepeatMode(Animation.REVERSE);
+                alphaAnimation_path.setInterpolator(new LinearInterpolator());
+                alphaAnimation_path.setRepeatCount(-1);
+                layout.startAnimation(alphaAnimation_path);
+        }
+}
+
+/*
+ *减质量
+ */
+public void minus(View v){
+        if(barrier_2.getMass()<=363) {
+                barrier_2.setMass(barrier_2.getMass() - 1);
+                TextView mass = findViewById(R.id.m_text2);
+                mass.setText(String.valueOf(barrier_2.getMass()));
+                LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
+                layout.removeAllViews();
+                ImageView earth_iView = findViewById(R.id.earth);
+                int left = earth_iView.getLeft() + earth_iView.getWidth() / 2;
+                int top = earth_iView.getTop() + earth_iView.getWidth() / 2;
+                ImageView door = findViewById(R.id.door);
+                Earth earth = new Earth(this);
+                float[] XDots = new float[door.getLeft() - left + door.getWidth() / 2];
+                float[] YDots = new float[door.getLeft() - left + door.getWidth() / 2];
+                for (int i = 0; i < door.getLeft() - left + door.getWidth() / 2; i++) {
+                        if (i <= (door.getLeft() - left + door.getWidth() / 2) / 2) {
+                                XDots[i] = i + left;
+                                YDots[i] = (float) (-(Math.pow(1.03, barrier_2.getMass() - a) * sin((2 * PI / (door.getLeft() - left + door.getWidth() / 2.0) * i)))) + top;
+                        } else {
+                                XDots[i] = i + left;
+                                YDots[i] = (float) (-(Math.pow(1.03, barrier_1.getMass() - a) * sin((2 * PI / (door.getLeft() - left + door.getWidth() / 2.0) * i)))) + top;
+                        }
+                }
+                earth.setXDots(XDots);
+                earth.setYDots(YDots);
+                //
+                layout.addView(earth);
+                AlphaAnimation alphaAnimation_path = new AlphaAnimation(0.95f, 0.0f);
+                alphaAnimation_path.setDuration(800);
+                alphaAnimation_path.setRepeatMode(Animation.REVERSE);
+                alphaAnimation_path.setInterpolator(new LinearInterpolator());
+                alphaAnimation_path.setRepeatCount(-1);
+                layout.startAnimation(alphaAnimation_path);
+        }
+        }
+        public void minus1(View v){
+        if(barrier_1.getMass()<=363) {
+                barrier_1.setMass(barrier_1.getMass() - 1);
+                TextView mass = findViewById(R.id.m_text1);
+                mass.setText(String.valueOf(barrier_1.getMass()));
+                LinearLayout layout = findViewById(R.id.LayoutInStartGame1);
+                layout.removeAllViews();
+                ImageView earth_iView = findViewById(R.id.earth);
+                int left = earth_iView.getLeft() + earth_iView.getWidth() / 2;
+                int top = earth_iView.getTop() + earth_iView.getWidth() / 2;
+                ImageView door = findViewById(R.id.door);
+                Earth earth = new Earth(this);
+                float[] XDots = new float[door.getLeft() - left + door.getWidth() / 2];
+                float[] YDots = new float[door.getLeft() - left + door.getWidth() / 2];
+                for (int i = 0; i < door.getLeft() - left + door.getWidth() / 2; i++) {
+                        if (i <= (door.getLeft() - left + door.getWidth() / 2) / 2) {
+                                XDots[i] = i + left;
+                                YDots[i] = (float) (-(Math.pow(1.03, barrier_2.getMass() - a) * sin((2 * PI / (door.getLeft() - left + door.getWidth() / 2.0) * i)))) + top;
+                        } else {
+                                XDots[i] = i + left;
+                                YDots[i] = (float) (-(Math.pow(1.03, barrier_1.getMass() - a) * sin((2 * PI / (door.getLeft() - left + door.getWidth() / 2.0) * i)))) + top;
+                        }
+                }
+                earth.setXDots(XDots);
+                earth.setYDots(YDots);
+                //
+                layout.addView(earth);
+                AlphaAnimation alphaAnimation_path = new AlphaAnimation(0.95f, 0.0f);
+                alphaAnimation_path.setDuration(800);
+                alphaAnimation_path.setRepeatMode(Animation.REVERSE);
+                alphaAnimation_path.setInterpolator(new LinearInterpolator());
+                alphaAnimation_path.setRepeatCount(-1);
+                layout.startAnimation(alphaAnimation_path);
+        }
         }
         @Override
         protected void onDestroy(){

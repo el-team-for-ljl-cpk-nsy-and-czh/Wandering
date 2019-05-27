@@ -15,9 +15,9 @@
             android:id="@+id/start_I"
             android:layout_width="64dp"
             android:layout_height="56dp"
-            android:layout_marginStart="500dp"
             android:layout_marginTop="232dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="164dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/play" />
 
@@ -26,27 +26,27 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="46dp"
             android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="235dp"
+            android:layout_marginEnd="8dp"
             android:alpha="0"
             android:background="?android:attr/panelBackground"
+            android:transitionName="BeginButton"
             android:visibility="visible"
-            app:layout_constraintStart_toEndOf="@+id/Continue"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible"
-            android:transitionName="BeginButton"/>
+            app:layout_constraintEnd_toEndOf="@+id/start_I"
+            app:layout_constraintTop_toTopOf="@+id/start_I"
+            tools:visibility="invisible" />
 
         <Button
             android:id="@+id/Setting"
             android:layout_width="43dp"
             android:layout_height="44dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:alpha="0"
             android:background="?android:attr/panelBackground"
             android:visibility="visible"
-            app:layout_constraintStart_toEndOf="@+id/StartGame"
-            app:layout_constraintTop_toTopOf="@+id/setting_I" />
+            app:layout_constraintStart_toStartOf="@+id/setting_I"
+            app:layout_constraintTop_toTopOf="@+id/setting_I"
+            tools:visibility="invisible" />
 
         <Button
             android:id="@+id/ExitGame"
@@ -57,27 +57,31 @@
             android:background="?android:attr/panelBackground"
             android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/Setting"
-            app:layout_constraintStart_toEndOf="@+id/Continue"
-            app:layout_constraintTop_toBottomOf="@+id/start_I" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/exit_I"
+            app:layout_constraintTop_toBottomOf="@+id/start_I"
+            tools:visibility="invisible" />
 
         <Button
             android:id="@+id/Continue"
             android:layout_width="34dp"
             android:layout_height="45dp"
-            android:layout_marginTop="260dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:alpha="0"
             android:background="@color/colorAccent"
             android:visibility="visible"
-            app:layout_constraintEnd_toStartOf="@+id/start_I"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/continue_I"
+            app:layout_constraintTop_toTopOf="@+id/continue_I"
+            tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/exit_I"
             android:layout_width="64dp"
             android:layout_height="56dp"
-            android:layout_marginStart="500dp"
             android:layout_marginTop="280dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="164dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/exit_button" />
 
@@ -85,9 +89,9 @@
             android:id="@+id/continue_I"
             android:layout_width="64dp"
             android:layout_height="56dp"
-            android:layout_marginStart="452dp"
-            android:layout_marginTop="255dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="256dp"
+            android:layout_marginEnd="211dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/select" />
 
@@ -95,9 +99,9 @@
             android:id="@+id/setting_I"
             android:layout_width="64dp"
             android:layout_height="56dp"
-            android:layout_marginStart="548dp"
             android:layout_marginTop="256dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="116dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/setting_button" />
 
