@@ -75,7 +75,7 @@
         android:background="@color/colorOfAlert"
         android:text="@string/AboutUs"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/Text"
         app:layout_constraintEnd_toEndOf="@+id/Text"

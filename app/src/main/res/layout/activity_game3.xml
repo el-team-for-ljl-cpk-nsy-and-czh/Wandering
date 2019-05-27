@@ -16,7 +16,7 @@
         android:layout_marginEnd="8dp"
         android:text="地球的流浪还在继续......\n希望您在游戏过程中有学到天文学的相关知识，\n后续关卡仍在开发中，敬请期待，爱你们哟！！"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

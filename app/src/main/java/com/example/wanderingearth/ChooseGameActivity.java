@@ -10,18 +10,23 @@ import android.view.WindowManager;
 
 public class ChooseGameActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer1;
+    private MediaPlayer backgroungPlayer;
     private int[] listOfButtons = {R.id.Level2,R.id.Level3,R.id.Level4,R.id.Level5};
     private int[] listOfLockedViews = {R.id.Level2ViewLocked,R.id.Level3ViewLocked,R.id.Level4ViewLocked,R.id.Level5ViewLocked};
     private int[] listOfUnlockedViews = {R.id.Level2ViewUnlocked,R.id.Level3ViewUnlocked,R.id.Level4ViewUnlocked,R.id.Level5ViewUnlocked};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int unlockedGames = getIntent().getExtras().getInt("UnlockedGame",1);
+        int musicTime = getIntent().getExtras().getInt("musicTime",0);
+        backgroungPlayer = MediaPlayer.create(this,R.raw.backgroundmusic);
+        backgroungPlayer.seekTo(musicTime);
+        backgroungPlayer.start();
         mediaPlayer1 = MediaPlayer.create(this,R.raw.disound);
         mediaPlayer1.seekTo(0);
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.activity_choose);
-        int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
         if(unlockedGames>1){
             for(int i=0;i<unlockedGames-1;i++){
                 findViewById(listOfButtons[i]).setVisibility(View.VISIBLE);
@@ -33,9 +38,13 @@ public class ChooseGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",unlockedGames);
+                backgroungPlayer.pause();
                 Intent intent = new Intent(ChooseGameActivity.this,StartGameActivity.class)
-                        .putExtra("UnlockedGame",unlockedGames);
+                        .putExtras(bundle);
                 startActivity(intent);
+                backgroungPlayer.release();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
@@ -47,8 +56,11 @@ public class ChooseGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                startActivity(new Intent(ChooseGameActivity.this,Game2Activity.class)
-                        .putExtra("UnlockedGame",unlockedGames));
+                backgroungPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",unlockedGames);
+                startActivity(new Intent(ChooseGameActivity.this,Game2Activity.class).putExtras(bundle));
+                backgroungPlayer.release();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
@@ -57,8 +69,12 @@ public class ChooseGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
+                backgroungPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",unlockedGames);
                 startActivity(new Intent(ChooseGameActivity.this,Game3Activity.class)
-                        .putExtra("UnlockedGame",unlockedGames));
+                        .putExtras(bundle));
+                backgroungPlayer.release();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
@@ -67,7 +83,12 @@ public class ChooseGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                Intent intent = new Intent(ChooseGameActivity.this,MainActivity.class).putExtra("UnlockedGame",unlockedGames);
+                backgroungPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",unlockedGames);
+                bundle.putInt("musicTime",musicTime);
+                Intent intent = new Intent(ChooseGameActivity.this,MainActivity.class).putExtras(bundle);
+                backgroungPlayer.release();
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
@@ -87,6 +108,7 @@ public class ChooseGameActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         mediaPlayer1.release();
+        backgroungPlayer.release();
     }
 
 }

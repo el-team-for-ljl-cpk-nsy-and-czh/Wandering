@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
@@ -27,11 +28,14 @@ public class StartGameActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayerAlert;
     private static boolean firstStart = true;
     private int numberNeededInGuide=0;
+    private MediaPlayer gamebackPlayer;
     //此处声明earth则在后续的所有方法中都可以使用earth；
     int WINDOWWIDTH,WINDOWHEIGHT;
     final double PI=3.1415926;
     Barrier jupiter=new Barrier();
     int a=150;
+    private int unlockedGames;
+    private int musicTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,12 @@ public class StartGameActivity extends AppCompatActivity {
         mediaPlayerAlert.seekTo(0);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.startgame);
-        int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
+        unlockedGames = getIntent().getExtras().getInt("UnlockedGame",1);
+        musicTime = getIntent().getExtras().getInt("musicTime",0);
+        gamebackPlayer = MediaPlayer.create(this,R.raw.musicingame);
+        gamebackPlayer.seekTo(musicTime);
+        gamebackPlayer.setLooping(true);
+        gamebackPlayer.start();
         //第一次进行游戏出现指导
         if(firstStart){
             firstStart = false;
@@ -108,8 +117,12 @@ public class StartGameActivity extends AppCompatActivity {
         findViewById(R.id.goback).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartGameActivity.this,ChooseGameActivity.class).putExtra("UnlockedGame",unlockedGames);
+                gamebackPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",unlockedGames);
+                Intent intent = new Intent(StartGameActivity.this,ChooseGameActivity.class).putExtras(bundle);
                 startActivity(intent);
+                gamebackPlayer.release();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
@@ -120,7 +133,12 @@ public class StartGameActivity extends AppCompatActivity {
         findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartGameActivity.this,StartGameActivity.class).putExtra("UnlockedGame",unlockedGames);
+                gamebackPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",unlockedGames);
+                bundle.putInt("musicTime",gamebackPlayer.getCurrentPosition());
+                gamebackPlayer.release();
+                Intent intent = new Intent(StartGameActivity.this,StartGameActivity.class).putExtras(bundle);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
@@ -252,7 +270,11 @@ public class StartGameActivity extends AppCompatActivity {
                     findViewById(R.id.restart).setClickable(true);
                     findViewById(R.id.start).setClickable(true);
                     findViewById(R.id.goback).setClickable(true);
-                    startActivity(new Intent(StartGameActivity.this,StartGameActivity.class));
+                    gamebackPlayer.pause();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("musicTime",gamebackPlayer.getCurrentPosition());
+                    startActivity(new Intent(StartGameActivity.this,StartGameActivity.class).putExtras(bundle));
+                    gamebackPlayer.release();
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     finish();
                 }
@@ -317,7 +339,11 @@ public class StartGameActivity extends AppCompatActivity {
                     findViewById(R.id.goback).setClickable(true);
                     findViewById(R.id.restart).setClickable(true);
                     findViewById(R.id.start).setClickable(true);
-                    startActivity(new Intent(StartGameActivity.this,ChooseGameActivity.class).putExtra("UnlockedGame",2));
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("UnlockedGame",2);
+                    gamebackPlayer.pause();
+                    gamebackPlayer.release();
+                    startActivity(new Intent(StartGameActivity.this,ChooseGameActivity.class).putExtras(bundle));
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     finish();
                 }
@@ -335,8 +361,11 @@ public class StartGameActivity extends AppCompatActivity {
                     findViewById(R.id.Mass_text).setVisibility(View.VISIBLE);
                     findViewById(R.id.jupiter).setVisibility(View.VISIBLE);
                     findViewById(R.id.barrier_1).setVisibility(View.VISIBLE);
-                    getWindow().setExitTransition(new Fade().setDuration(300).excludeChildren(R.drawable.gamebackgound,true));
-                    startActivity(new Intent(StartGameActivity.this,Game2Activity.class));
+                    gamebackPlayer.pause();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("musicTime",gamebackPlayer.getCurrentPosition());
+                    startActivity(new Intent(StartGameActivity.this,Game2Activity.class).putExtras(bundle));
+                    gamebackPlayer.release();
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     finish();
                 }
@@ -430,5 +459,6 @@ public class StartGameActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         mediaPlayerAlert.release();
+        gamebackPlayer.release();
     }
 }

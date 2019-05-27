@@ -351,6 +351,7 @@
             android:layout_marginTop="176dp"
             android:text="这是地球目前所在的位置，虚线即是地球目前的轨道"
             android:textColor="@android:color/white"
+            android:textSize="14dp"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -363,6 +364,7 @@
             android:layout_marginEnd="44dp"
             android:text="这是地球的目的地"
             android:textColor="@android:color/white"
+            android:textSize="14dp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -376,6 +378,7 @@
             android:layout_marginEnd="8dp"
             android:text="不好！地球的轨道中出现了一个巨大的障碍物"
             android:textColor="@color/dangerosColor"
+            android:textSize="14dp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -389,6 +392,7 @@
             android:layout_marginEnd="80dp"
             android:text="@string/change_mass"
             android:textColor="@android:color/white"
+            android:textSize="14dp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -402,6 +406,7 @@
             android:layout_marginBottom="96dp"
             android:text="改好质量后，按此按钮\n让地球动起来吧！"
             android:textColor="@android:color/white"
+            android:textSize="14dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
