@@ -16,12 +16,17 @@ import android.widget.TextView;
 
 public class SettingActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer ;
+    private MediaPlayer backgroundPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         mediaPlayer = MediaPlayer.create(this,R.raw.disound);
+        int unlockedGames = getIntent().getExtras().getInt("UnlockedGame",1);
+        int musicTime = getIntent().getExtras().getInt("musicTime",0);
+        backgroundPlayer = MediaPlayer.create(this,R.raw.backgroundmusic);
+        backgroundPlayer.seekTo(musicTime);
+        backgroundPlayer.start();
         mediaPlayer.seekTo(0);
-        int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         getWindow().setEnterTransition(new Fade().setDuration(300).excludeChildren(R.drawable.background_paintstyle,true));
         setContentView(R.layout.settings);
@@ -33,7 +38,12 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                Intent intent = new Intent(SettingActivity.this,MainActivity.class).putExtra("UnlockedGame",unlockedGames);
+                backgroundPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",unlockedGames);
+                bundle.putInt("musicTime",backgroundPlayer.getCurrentPosition());
+                backgroundPlayer.release();
+                Intent intent = new Intent(SettingActivity.this,MainActivity.class).putExtras(bundle);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
@@ -121,6 +131,7 @@ public class SettingActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         mediaPlayer.release();
+        backgroundPlayer.release();
     }
 
 }

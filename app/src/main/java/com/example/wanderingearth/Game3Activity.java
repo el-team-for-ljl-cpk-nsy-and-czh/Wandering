@@ -4,6 +4,8 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.ImageView;
 
 public class Game3Activity extends AppCompatActivity {
     int WINDOWWIDTH,WINDOWHEIGHT;
+    private MediaPlayer gamebackPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +30,21 @@ public class Game3Activity extends AppCompatActivity {
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
+        int musicTime = getIntent().getExtras().getInt("musicTime",0);
+        gamebackPlayer = MediaPlayer.create(this,R.raw.musicingame);
+        gamebackPlayer.seekTo(musicTime);
+        gamebackPlayer.setLooping(true);
+        gamebackPlayer.start();;
         WINDOWWIDTH = dm.widthPixels;//横屏宽度
         WINDOWHEIGHT = dm.heightPixels;//横屏高度
         findViewById(R.id.select).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Game3Activity.this,ChooseGameActivity.class).putExtra("UnlockedGame",3));
+                gamebackPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",3);
+                startActivity(new Intent(Game3Activity.this,ChooseGameActivity.class).putExtras(bundle));
+                gamebackPlayer.release();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
@@ -40,7 +52,11 @@ public class Game3Activity extends AppCompatActivity {
         findViewById(R.id.main).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Game3Activity.this,MainActivity.class).putExtra("UnlockedGame",3));
+                gamebackPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",3);
+                startActivity(new Intent(Game3Activity.this,MainActivity.class).putExtras(bundle));
+                gamebackPlayer.release();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
             }
@@ -59,5 +75,10 @@ public class Game3Activity extends AppCompatActivity {
             earth.startAnimation(translate);
         }
 
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        gamebackPlayer.release();
     }
 }

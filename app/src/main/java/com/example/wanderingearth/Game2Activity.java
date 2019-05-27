@@ -27,18 +27,25 @@ import static java.lang.Math.sin;
 
 public class Game2Activity extends AppCompatActivity {
         private MediaPlayer mediaPlayer;
+        private MediaPlayer gamebackPlayer;
         int WINDOWWIDTH,WINDOWHEIGHT;
         final double PI=3.1415926;
         Barrier barrier_1=new Barrier();
         Barrier barrier_2=new Barrier();
         int a=150;
+        private int unlockedGames;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityContainer.getInstance().addActivity(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
         setContentView(R.layout.activity_game2);
-        int unlockedGames = getIntent().getIntExtra("UnlockedGame",2);
+        unlockedGames = getIntent().getExtras().getInt("UnlockedGame",2);
+        int musicTime = getIntent().getExtras().getInt("musicTime",0);
+        gamebackPlayer = MediaPlayer.create(this,R.raw.musicingame);
+        gamebackPlayer.seekTo(musicTime);
+        gamebackPlayer.setLooping(true);
+        gamebackPlayer.start();
         WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
@@ -76,7 +83,11 @@ protected void onCreate(Bundle savedInstanceState) {
         findViewById(R.id.goback).setOnClickListener(new View.OnClickListener() {
 @Override
 public void onClick(View v) {
-        Intent intent = new Intent(Game2Activity.this,ChooseGameActivity.class).putExtra("UnlockedGame",unlockedGames);
+        gamebackPlayer.pause();
+        Bundle bundle = new Bundle();
+        bundle.putInt("UnlockedGames",unlockedGames);
+        Intent intent = new Intent(Game2Activity.this,ChooseGameActivity.class).putExtras(bundle);
+        gamebackPlayer.release();
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         finish();
@@ -88,7 +99,12 @@ public void onClick(View v) {
         findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
 @Override
 public void onClick(View v) {
-        Intent intent = new Intent(Game2Activity.this,Game2Activity.class).putExtra("UnlockedGame",unlockedGames);
+        gamebackPlayer.pause();
+        Bundle bundle = new Bundle();
+        bundle.putInt("UnlockedGame",unlockedGames);
+        bundle.putInt("musicTime",gamebackPlayer.getCurrentPosition());
+        Intent intent = new Intent(Game2Activity.this,Game2Activity.class).putExtras(bundle);
+        gamebackPlayer.release();
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         finish();
@@ -253,7 +269,11 @@ public void propertyMove(View v) {
                                 findViewById(R.id.restart).setClickable(true);
                                 findViewById(R.id.start).setClickable(true);
                                 findViewById(R.id.goback).setClickable(true);
-                                startActivity(new Intent(Game2Activity.this,Game2Activity.class));
+                                gamebackPlayer.pause();
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("musicTime",gamebackPlayer.getCurrentPosition());
+                                startActivity(new Intent(Game2Activity.this,Game2Activity.class).putExtras(bundle));
+                                gamebackPlayer.release();
                                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                                 finish();
                         }
@@ -321,7 +341,11 @@ public void propertyMove(View v) {
                                 findViewById(R.id.goback).setClickable(true);
                                 findViewById(R.id.restart).setClickable(true);
                                 findViewById(R.id.start).setClickable(true);
-                                startActivity(new Intent(Game2Activity.this,ChooseGameActivity.class).putExtra("UnlockedGame",3));
+                                gamebackPlayer.pause();
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("UnlockedGame",unlockedGames);
+                                startActivity(new Intent(Game2Activity.this,ChooseGameActivity.class).putExtras(bundle));
+                                gamebackPlayer.release();
                                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                                 finish();
                         }
@@ -343,8 +367,11 @@ public void propertyMove(View v) {
                                 findViewById(R.id.m_text2).setVisibility(View.VISIBLE);
                                 findViewById(R.id.barrier_2).setVisibility(View.VISIBLE);
                                 findViewById(R.id.barrier_1).setVisibility(View.VISIBLE);
-                                getWindow().setExitTransition(new Fade().setDuration(300).excludeChildren(R.drawable.gamebackgound,true));
-                                startActivity(new Intent(Game2Activity.this,Game3Activity.class));
+                                gamebackPlayer.pause();
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("musicTime",gamebackPlayer.getCurrentPosition());
+                                startActivity(new Intent(Game2Activity.this,Game3Activity.class).putExtras(bundle));
+                                gamebackPlayer.release();
                                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                                 finish();
                         }
@@ -522,6 +549,7 @@ public void minus(View v){
         protected void onDestroy(){
             super.onDestroy();
             mediaPlayer.release();
+            gamebackPlayer.release();
         }
 
 }

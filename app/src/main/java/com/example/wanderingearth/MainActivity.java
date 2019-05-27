@@ -23,11 +23,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
+    private MediaPlayer backgroundPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int unlockedGames = getIntent().getIntExtra("UnlockedGame",1);
+        int unlockedGames = getIntent().getExtras().getInt("UnlcokedGame",1);
+        int musicTime = getIntent().getExtras().getInt("musicTime",0);
         ActivityContainer.getInstance().addActivity(this);
+        backgroundPlayer.seekTo(musicTime);
+        backgroundPlayer.setLooping(true);
+        backgroundPlayer.start();
         mediaPlayer =MediaPlayer.create(this,R.raw.disound);
         mediaPlayer.seekTo(0);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//不显示状态栏的指令；
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     case 3:{intent = new Intent(MainActivity.this,Game3Activity.class);break;}
                     default:{intent = new Intent(MainActivity.this,StartGameActivity.class);}
                 }
+                backgroundPlayer.pause();
                 startActivity(intent.putExtra("UnlockedGame",unlockedGames));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
@@ -58,7 +64,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                Intent intent = new Intent(MainActivity.this,SettingActivity.class).putExtra("UnlockedGame",unlockedGames);
+                backgroundPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",unlockedGames);
+                bundle.putInt("musicTime",backgroundPlayer.getCurrentPosition());
+                backgroundPlayer.release();
+                Intent intent = new Intent(MainActivity.this,SettingActivity.class).putExtras(bundle);
                 startActivity(intent);//启动设置页面；
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
@@ -68,7 +79,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
-                Intent intent = new Intent(MainActivity.this,ChooseGameActivity.class).putExtra("UnlockedGame",unlockedGames);
+                backgroundPlayer.pause();
+                Bundle bundle = new Bundle();
+                bundle.putInt("UnlockedGame",unlockedGames);
+                bundle.putInt("musicTime",backgroundPlayer.getCurrentPosition());
+                backgroundPlayer.release();
+                Intent intent = new Intent(MainActivity.this,SettingActivity.class).putExtras(bundle);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
@@ -78,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playMusic();
+                mediaPlayer.release();
                 getWindow().setExitTransition(new Fade().setDuration(200));
                 ActivityContainer.getInstance().finishAllActivity();
             }
@@ -97,5 +114,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         mediaPlayer.release();
+        backgroundPlayer.release();
     }
 }
