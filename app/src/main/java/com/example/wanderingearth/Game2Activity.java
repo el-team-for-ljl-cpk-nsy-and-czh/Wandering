@@ -346,7 +346,7 @@ public void propertyMove(View v) {
                                 findViewById(R.id.start).setClickable(true);
                                 gamebackPlayer.pause();
                                 Bundle bundle = new Bundle();
-                                bundle.putInt("UnlockedGame",unlockedGames);
+                                bundle.putInt("UnlockedGame",3);
                                 startActivity(new Intent(Game2Activity.this,ChooseGameActivity.class).putExtras(bundle));
                                 gamebackPlayer.release();
                                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
